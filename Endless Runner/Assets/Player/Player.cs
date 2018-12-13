@@ -76,9 +76,8 @@ public class Player : MonoBehaviour
 
     private void FixedUpdate()
     {
-        rb.AddForce(0f, 0f, acceleration, ForceMode.Acceleration);
+        Run();
         onGround = isGrounded();
-        anim.SetBool("Run", true);
 
         if (isLerping)
         {
@@ -93,8 +92,6 @@ public class Player : MonoBehaviour
                 isLerping = false;
             }
         }
-
-        
     }
 
     void StartLerping(Vector3 direction)
@@ -110,5 +107,15 @@ public class Player : MonoBehaviour
     bool isGrounded()
     {
         return Physics.CheckSphere(groundCheck.position, groundRadius, whatIsGround);
+    }
+
+    void Run()
+    {
+        if(rb.velocity.z >= 20f)
+        {
+            rb.velocity = new Vector3(0, 0, 20f);
+        }
+        rb.AddForce(0f, 0f, acceleration, ForceMode.Acceleration);
+        anim.SetBool("Run", true);
     }
 }
