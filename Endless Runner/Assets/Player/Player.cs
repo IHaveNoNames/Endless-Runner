@@ -113,7 +113,7 @@ public class Player : MonoBehaviour
     {
         if(rb.velocity.z >= 20f)
         {
-            rb.velocity = new Vector3(0, 0, 20f);
+            rb.velocity = new Vector3(rb.velocity.x, rb.velocity.y, 20f);
         }
         rb.AddForce(0f, 0f, acceleration, ForceMode.Acceleration);
         anim.SetBool("Run", true);
