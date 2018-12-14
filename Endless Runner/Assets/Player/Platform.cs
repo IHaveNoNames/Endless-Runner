@@ -15,6 +15,14 @@ public class Platform : MonoBehaviour {
     [SerializeField]
     Transform rightPlatformPrefab;
 
+    public Queue<Transform> PlatformQueue
+    {
+        get
+        {
+            return platformQueue;
+        }
+    }
+
     Queue<Transform> platformQueue;
     Queue<Transform> platformLeftQueue;
     Queue<Transform> platformRightQueue;
@@ -108,6 +116,7 @@ public class Platform : MonoBehaviour {
 
         queue.Enqueue(platform);
 
+        
         //platformLeftQueue.Enqueue(leftPlatform);
         //platformQueue.Enqueue(platform);
         //platformRightQueue.Enqueue(rightPlatform);
