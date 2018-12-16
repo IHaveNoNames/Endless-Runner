@@ -4054,7 +4054,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5962df63783113d47a20233d9043d775, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  barrierPrefab: {fileID: 4676266417574478, guid: a56c1f0ca343c6b42a86ae2434fb5a7c,
+  barrierPrefab: {fileID: 1498069100533860, guid: a56c1f0ca343c6b42a86ae2434fb5a7c,
     type: 2}
-  vehiclePrefab: {fileID: 4543071068265108, guid: 3dd35f26d343434448ec475582f0dc76,
+  vehiclePrefab: {fileID: 1473840326230730, guid: 3dd35f26d343434448ec475582f0dc76,
     type: 2}
+  obstaclesPrefab: []

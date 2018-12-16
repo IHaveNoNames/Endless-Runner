@@ -116,10 +116,12 @@ public class Platform : MonoBehaviour {
 
         queue.Enqueue(platform);
 
-        
+        int determineObstacle = Random.Range(0, 1);
+
+
         //platformLeftQueue.Enqueue(leftPlatform);
         //platformQueue.Enqueue(platform);
         //platformRightQueue.Enqueue(rightPlatform);
-        
+
     }
 }
