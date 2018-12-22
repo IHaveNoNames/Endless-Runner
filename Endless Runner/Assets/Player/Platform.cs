@@ -15,8 +15,6 @@ public class Platform : MonoBehaviour {
     [SerializeField]
     Transform rightPlatformPrefab;
 
-    public Obstacle obstacle;
-
     public Queue<Transform> PlatformQueue
     {
         get
@@ -53,9 +51,6 @@ public class Platform : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        //leftPlatforms = GameObject.FindGameObjectsWithTag("Left Platform");
-        //platforms = GameObject.FindGameObjectsWithTag("Platform");
-        //rightPlatforms = GameObject.FindGameObjectsWithTag("Right Platform");
 
         platformLeftQueue = new Queue<Transform>(noOfPlatforms);
         platformQueue = new Queue<Transform>(noOfPlatforms);
@@ -102,57 +97,28 @@ public class Platform : MonoBehaviour {
 
     void Recycle(ref Vector3 nextPosition, ref Queue<Transform> queue, ref Queue<Transform> obsqueue)
     {
-        //Vector3 leftPos = nextLeftPos;
-        //Vector3 position = nextPos;
-        //Vector3 rightPos = nextRightPos;
 
         Vector3 position = nextPosition;
 
-        //leftPos.z += 25f * 0.5f;
-        //position.z += 25f * 0.5f;
-        //rightPos.z += 25f * 0.5f;
-
         position.z += 25f * 0.5f;
-
-        Vector3 barrierPos = new Vector3(position.x, position.y + barrierPrefab.transform.localScale.y / 2, position.z);
-        Vector3 vehiclePos = new Vector3(position.x, position.y + vehiclePrefab.transform.localScale.y / 2, position.z);
-
-        //Transform leftPlatform = platformLeftQueue.Dequeue();
-        //Transform platform = platformQueue.Dequeue();
-        //Transform rightPlatform = platformRightQueue.Dequeue();
 
         Transform platform = queue.Dequeue();
 
         Transform obstacle = obsqueue.Dequeue();
 
+        Destroy(obstacle.gameObject);
+
         platform.position = position;
 
-        obstacle.transform.position = barrierPos;
-
-        //leftPlatform.position = leftPos;
-        //platform.position = position;
-        //rightPlatform.position = rightPos;
-
         nextPosition.z += 25f;
-
-        //nextLeftPos.z += 25f;
-        //nextPos.z += 25f;
-        //nextRightPos.z += 25f;
 
         Color newColor = new Color(Random.value, Random.value, Random.value, 1.0f);
         platform.gameObject.GetComponent<Renderer>().material.color = newColor;
 
-
         queue.Enqueue(platform);
 
-        obsqueue.Enqueue(obstacle);
-
-        //obstacle.RecycleObstacles(platform.position);
-
-
-        //platformLeftQueue.Enqueue(leftPlatform);
-        //platformQueue.Enqueue(platform);
-        //platformRightQueue.Enqueue(rightPlatform);
+        int RNG = Random.Range(0, 2);
+        obsqueue.Enqueue((Transform)Instantiate(obstacles[RNG], new Vector3(position.x, position.y + obstacles[RNG].transform.localScale.y / 2, position.z), Quaternion.identity));
 
     }
 }
