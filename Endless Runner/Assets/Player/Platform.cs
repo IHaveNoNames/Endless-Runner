@@ -15,6 +15,8 @@ public class Platform : MonoBehaviour {
     [SerializeField]
     Transform rightPlatformPrefab;
 
+    public Obstacle obstacle;
+
     public Queue<Transform> PlatformQueue
     {
         get
@@ -35,10 +37,22 @@ public class Platform : MonoBehaviour {
     Vector3 nextPos;
     Vector3 nextRightPos;
 
-    int noOfPlatforms = 5;  
+    [SerializeField]
+    Transform barrierPrefab;
+    [SerializeField]
+    Transform vehiclePrefab;
+    Queue<Transform> obstacleQueueLeft;
+    Queue<Transform> obstacleQueue;
+    Queue<Transform> obstacleQueueRight;
 
-	// Use this for initialization
-	void Start () {
+    [SerializeField]
+    Transform[] obstacles;
+
+    int noOfPlatforms = 5;
+    int noOfObstacles = 5;
+
+    // Use this for initialization
+    void Start () {
         //leftPlatforms = GameObject.FindGameObjectsWithTag("Left Platform");
         //platforms = GameObject.FindGameObjectsWithTag("Platform");
         //rightPlatforms = GameObject.FindGameObjectsWithTag("Right Platform");
@@ -47,12 +61,20 @@ public class Platform : MonoBehaviour {
         platformQueue = new Queue<Transform>(noOfPlatforms);
         platformRightQueue = new Queue<Transform>(noOfPlatforms);
 
+        obstacleQueueLeft = new Queue<Transform>(noOfObstacles);
+        obstacleQueue = new Queue<Transform>(noOfObstacles);
+        obstacleQueueRight = new Queue<Transform>(noOfObstacles);
 
-        for(int i = 0; i<noOfPlatforms; i++)
+
+        for (int i = 0; i<noOfPlatforms; i++)
         {
             platformLeftQueue.Enqueue((Transform)Instantiate(leftPlatformPrefab));
             platformQueue.Enqueue((Transform)Instantiate(platformPrefab));
             platformRightQueue.Enqueue((Transform)Instantiate(rightPlatformPrefab));
+
+            obstacleQueueLeft.Enqueue((Transform)Instantiate(obstacles[Random.Range(0,2)]));
+            obstacleQueue.Enqueue((Transform)Instantiate(obstacles[Random.Range(0, 2)]));
+            obstacleQueueRight.Enqueue((Transform)Instantiate(obstacles[Random.Range(0, 2)]));
         }
 
         nextLeftPos = startLeftPos;
@@ -62,9 +84,9 @@ public class Platform : MonoBehaviour {
 
         for (int i = 0; i<noOfPlatforms; i++)
         {
-            Recycle(ref nextLeftPos, ref platformLeftQueue);
-            Recycle(ref nextPos, ref platformQueue);
-            Recycle(ref nextRightPos, ref platformRightQueue);
+            Recycle(ref nextLeftPos, ref platformLeftQueue, ref obstacleQueueLeft);
+            Recycle(ref nextPos, ref platformQueue,  ref obstacleQueue);
+            Recycle(ref nextRightPos, ref platformRightQueue, ref obstacleQueueRight);
         }
 	}
 	
@@ -72,13 +94,13 @@ public class Platform : MonoBehaviour {
 	void Update () {
         if (platformQueue.Peek().localPosition.z + 25f < Camera.main.transform.position.z)
         {
-            Recycle(ref nextLeftPos, ref platformLeftQueue);
-            Recycle(ref nextPos, ref platformQueue);
-            Recycle(ref nextRightPos, ref platformRightQueue);
+            Recycle(ref nextLeftPos, ref platformLeftQueue, ref obstacleQueueLeft);
+            Recycle(ref nextPos, ref platformQueue, ref obstacleQueue);
+            Recycle(ref nextRightPos, ref platformRightQueue, ref obstacleQueueRight);
         }
 	}
 
-    void Recycle(ref Vector3 nextPosition, ref Queue<Transform> queue)
+    void Recycle(ref Vector3 nextPosition, ref Queue<Transform> queue, ref Queue<Transform> obsqueue)
     {
         //Vector3 leftPos = nextLeftPos;
         //Vector3 position = nextPos;
@@ -92,13 +114,20 @@ public class Platform : MonoBehaviour {
 
         position.z += 25f * 0.5f;
 
+        Vector3 barrierPos = new Vector3(position.x, position.y + barrierPrefab.transform.localScale.y / 2, position.z);
+        Vector3 vehiclePos = new Vector3(position.x, position.y + vehiclePrefab.transform.localScale.y / 2, position.z);
+
         //Transform leftPlatform = platformLeftQueue.Dequeue();
         //Transform platform = platformQueue.Dequeue();
         //Transform rightPlatform = platformRightQueue.Dequeue();
 
         Transform platform = queue.Dequeue();
 
+        Transform obstacle = obsqueue.Dequeue();
+
         platform.position = position;
+
+        obstacle.transform.position = barrierPos;
 
         //leftPlatform.position = leftPos;
         //platform.position = position;
@@ -116,7 +145,9 @@ public class Platform : MonoBehaviour {
 
         queue.Enqueue(platform);
 
-        int determineObstacle = Random.Range(0, 1);
+        obsqueue.Enqueue(obstacle);
+
+        //obstacle.RecycleObstacles(platform.position);
 
 
         //platformLeftQueue.Enqueue(leftPlatform);
