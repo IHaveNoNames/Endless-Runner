@@ -330,7 +330,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 282840810}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.5, z: -3}
+  m_LocalPosition: {x: 0, y: 2.5, z: -4.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 905711881}
@@ -4029,7 +4029,6 @@ MonoBehaviour:
     type: 2}
   rightPlatformPrefab: {fileID: 4910854033084850, guid: e1b11cbb20879ee4c88377961bd52519,
     type: 2}
-  obstacle: {fileID: 0}
   barrierPrefab: {fileID: 4676266417574478, guid: a56c1f0ca343c6b42a86ae2434fb5a7c,
     type: 2}
   vehiclePrefab: {fileID: 4543071068265108, guid: 3dd35f26d343434448ec475582f0dc76,
