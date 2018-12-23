@@ -7,8 +7,6 @@ TagManager:
   - Platform
   - Left Platform
   - Right Platform
-  - LightObstacle
-  - HeavyObstacle
   layers:
   - Default
   - TransparentFX
