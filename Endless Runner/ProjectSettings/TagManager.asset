@@ -9,6 +9,7 @@ TagManager:
   - Right Platform
   - LightObstacle
   - HeavyObstacle
+  - Boss
   layers:
   - Default
   - TransparentFX

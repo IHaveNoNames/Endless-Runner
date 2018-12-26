@@ -7,7 +7,12 @@ public class GameManager : MonoBehaviour
 
     public GameObject player;
 
-
+    
+    public int bossTotalHeath = 10;
+    [HideInInspector]
+    public int bossCurrentHealth;
+    [HideInInspector]
+    public bool bossFightActive = false;
 
     // Use this for initialization
     void Start()
@@ -20,6 +25,12 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         PowerUpCountDown();
+
+        if (bossCurrentHealth <= 0 && bossFightActive == true)
+        {
+            BossDefeated();
+        }
+        
     }
 
     /*public void GetMagicWind()
@@ -76,5 +87,20 @@ public class GameManager : MonoBehaviour
             PlayerStatus.vest = false;
         }
 
+    }
+
+    public void BossDefeated()
+    {
+        {
+            bossFightActive = false;
+            //boss defeated
+            //disable all the grenades
+        }
+    }
+
+    public void BossFightStart()
+    {
+        bossCurrentHealth = bossTotalHeath;
+        bossFightActive = true;
     }
 }

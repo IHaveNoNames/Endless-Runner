@@ -13,4 +13,6 @@ public static class PlayerStatus {
     public static float magnetRemaining = 0f;
 
     public static int coinCollected = 0;
+
+    public static float distanceTravelled = 0f;
 }
