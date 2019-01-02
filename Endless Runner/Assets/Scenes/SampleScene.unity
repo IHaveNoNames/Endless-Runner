@@ -422,6 +422,10 @@ Prefab:
       propertyPath: m_IsTrigger
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1195243474231864, guid: 136bec91c2a110a48a49533fdca8b404, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 136bec91c2a110a48a49533fdca8b404, type: 2}
   m_IsPrefabParent: 0
@@ -529,7 +533,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!136 &716698722
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -669,6 +673,10 @@ Prefab:
         type: 2}
       propertyPath: thrownSpeed
       value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 1517087111942606, guid: 71a8bbb5f959c0348876bb3e009a5c13, type: 2}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 71a8bbb5f959c0348876bb3e009a5c13, type: 2}
