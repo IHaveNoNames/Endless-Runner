@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    float acceleration = 20f;
+    public static float acceleration = 20f;
 
     Rigidbody rb;
 
@@ -23,6 +23,17 @@ public class Player : MonoBehaviour
     Vector3 jumpVelocity = new Vector3(0, 5f, 0f);
 
     private Animator anim;
+
+    public static bool vest = false;
+    public static float vestRemaining = 0f;
+    public static bool magicWand = false;
+
+    public static bool magnet = false;
+    public static float magnetRemaining = 0f;
+
+    public static int coinCollected = 0;
+
+    public static float distanceTravelled = 0f;
 
     //Ground Checking
     [SerializeField]
@@ -78,6 +89,7 @@ public class Player : MonoBehaviour
     {
         Run();
         onGround = isGrounded();
+        distanceTravelled = transform.localPosition.z;
 
         if (isLerping)
         {
@@ -111,9 +123,9 @@ public class Player : MonoBehaviour
 
     void Run()
     {
-        if(rb.velocity.z >= 20f)
+        if(rb.velocity.z >= acceleration)
         {
-            rb.velocity = new Vector3(rb.velocity.x, rb.velocity.y, 20f);
+            rb.velocity = new Vector3(rb.velocity.x, rb.velocity.y, acceleration);
         }
         rb.AddForce(0f, 0f, acceleration, ForceMode.Acceleration);
         anim.SetBool("Run", true);

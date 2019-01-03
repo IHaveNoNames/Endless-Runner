@@ -26,7 +26,7 @@ public class Vest : MonoBehaviour {
 
     public void GetVest() //These funciton is called when the powers being picked up
     {
-        PlayerStatus.vest = true;
-        PlayerStatus.vestRemaining = 30f;
+        Player.vest = true;
+        Player.vestRemaining = 30f;
     }
 }

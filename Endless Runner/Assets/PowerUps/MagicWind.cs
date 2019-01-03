@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MagicWind : MonoBehaviour {
+public class MagicWand : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
@@ -18,14 +18,14 @@ public class MagicWind : MonoBehaviour {
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            GetWind();
+            GetWand();
             Destroy(gameObject);
         }
     }
 
-    public void GetWind() //These funciton is called when the powers being picked up
+    public void GetWand() //These funciton is called when the powers being picked up
     {
-        PlayerStatus.magicWind = true;
+        Player.magicWand = true;
         
     }
 }
