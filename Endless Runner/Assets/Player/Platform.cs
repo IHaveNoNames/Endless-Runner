@@ -203,4 +203,31 @@ public class Platform : MonoBehaviour {
             powerupq.Enqueue((Transform)Instantiate(powerups[0], new Vector3(position.x, position.y + powerups[0].transform.localScale.y / 2, position.z), Quaternion.identity));
         }
     }
+
+     void DestroyLaneObstacles(ref Queue<Transform> obstacleq)
+    {
+        for (int i = 0;i< noOfObstacles;i++)
+        {
+            Transform obstacle = obstacleq.Dequeue();
+            Destroy(obstacle.gameObject);
+        }
+
+        
+    }
+
+    public void DestroyAllObstacles()
+    {
+        DestroyLaneObstacles( ref obstacleQueueLeft);
+        DestroyLaneObstacles(ref obstacleQueue);
+        DestroyLaneObstacles(ref obstacleQueueRight);
+
+
+        for (int i = 0; i < noOfObstacles; i++)
+        {
+            obstacleQueueLeft.Enqueue((Transform)Instantiate(obstacles[Random.Range(0, 2)]));
+            obstacleQueue.Enqueue((Transform)Instantiate(obstacles[Random.Range(0, 2)]));
+            obstacleQueueRight.Enqueue((Transform)Instantiate(obstacles[Random.Range(0, 2)]));
+        }
+
+    }
 }

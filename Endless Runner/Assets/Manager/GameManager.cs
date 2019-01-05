@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
 {
 
     public GameObject player;
+    private Platform platform;
 
     
     public int bossTotalHeath = 10;
@@ -28,12 +29,15 @@ public class GameManager : MonoBehaviour
 
     public Text coinText;
     public Text distanceText;
+    public GameObject wandButton;
+    public GameObject magnetImage;
+    public GameObject vestImage;
 
 
     // Use this for initialization
     void Start()
     {
-
+        platform = GameObject.Find("Game Manager").GetComponent<Platform>();
 
     }
 
@@ -57,11 +61,12 @@ public class GameManager : MonoBehaviour
         }
 
         PowerUpCountDown();
-
+        DisplayPowerUps();
         if (bossCurrentHealth <= 0 && bossFightActive == true)
         {
             BossDefeated();
         }
+
         UpdateUIText();
         
     }
@@ -82,9 +87,10 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    void UseMagicWind()
+    public void UseMagicWind()
     {
-
+        platform.DestroyAllObstacles();
+        GameStatus.magicWand = false;
     }
 
     public void TakingFatalHit()   //when player is hit, either function will be called
@@ -157,5 +163,33 @@ public class GameManager : MonoBehaviour
         coinText.text = "Coin:" + GameStatus.coinCollected.ToString();
         distanceText.text = currentDistance.ToString();
 
+    }
+
+    void DisplayPowerUps()
+    {
+        if (GameStatus.vest)
+        {
+            vestImage.SetActive(true);
+        }
+        else
+        {
+            vestImage.SetActive(false);
+        }
+        if (GameStatus.magnet)
+        {
+            magnetImage.SetActive(true);
+        }
+        else
+        {
+            magnetImage.SetActive(false);
+        }
+        if (GameStatus.magicWand)
+        {
+            wandButton.SetActive(true);
+        }
+        else
+        {
+            wandButton.SetActive(false);
+        }
     }
 }
