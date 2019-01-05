@@ -24,16 +24,7 @@ public class Player : MonoBehaviour
 
     private Animator anim;
 
-    public static bool vest = false;
-    public static float vestRemaining = 0f;
-    public static bool magicWand = false;
-
-    public static bool magnet = false;
-    public static float magnetRemaining = 0f;
-
-    public static int coinCollected = 0;
-
-    public static float distanceTravelled = 0f;
+   
 
     //Ground Checking
     [SerializeField]
@@ -89,7 +80,7 @@ public class Player : MonoBehaviour
     {
         Run();
         onGround = isGrounded();
-        distanceTravelled = transform.localPosition.z;
+        GameStatus.distanceTravelled = transform.localPosition.z;
 
         if (isLerping)
         {

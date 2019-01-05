@@ -25,7 +25,7 @@ GameObject:
   - component: {fileID: 114085896475731500}
   m_Layer: 0
   m_Name: Vehicle
-  m_TagString: Obstacle
+  m_TagString: HeavyObstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

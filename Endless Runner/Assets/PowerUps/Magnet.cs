@@ -25,7 +25,7 @@ public class Magnet : MonoBehaviour {
 
     public void GetMagnet() //These funciton is called when the powers being picked up
     {
-        Player.magnet = true;
-        Player.magnetRemaining = 15f;
+        GameStatus.magnet = true;
+        GameStatus.magnetRemaining = 15f;
     }
 }

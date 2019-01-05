@@ -108,7 +108,7 @@ public class Platform : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (platformQueue.Peek().localPosition.z + 25f < Player.distanceTravelled)
+        if (platformQueue.Peek().localPosition.z + 25f < GameStatus.distanceTravelled)
         {
             Recycle(ref nextLeftPos, ref platformLeftQueue, ref obstacleQueueLeft, ref powerupQueueLeft);
             Recycle(ref nextPos, ref platformQueue, ref obstacleQueue, ref powerupQueue);

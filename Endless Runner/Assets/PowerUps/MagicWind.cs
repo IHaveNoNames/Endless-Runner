@@ -25,7 +25,7 @@ public class MagicWand : MonoBehaviour {
 
     public void GetWand() //These funciton is called when the powers being picked up
     {
-        Player.magicWand = true;
+        GameStatus.magicWand = true;
         
     }
 }

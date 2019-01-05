@@ -20,7 +20,7 @@ public class Coin : MonoBehaviour {
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            Player.coinCollected += 1;
+            GameStatus.coinCollected += 1;
             Destroy(gameObject);
         }
     }
@@ -29,7 +29,7 @@ public class Coin : MonoBehaviour {
     {
         float distance=Vector3.Distance(gameObject.transform.position, player.transform.position);
 
-        if (Player.magnet==true&&distance < attractDistance)
+        if (GameStatus.magnet==true&&distance < attractDistance)
         {
             transform.position = Vector3.MoveTowards(transform.position, player.transform.position, attractSpeed * Time.deltaTime);
         }

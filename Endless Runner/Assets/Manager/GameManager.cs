@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -24,6 +26,9 @@ public class GameManager : MonoBehaviour
     public static int percentVest = 40;
     public static int percentMagnet = 60;
 
+    public Text coinText;
+    public Text distanceText;
+
 
     // Use this for initialization
     void Start()
@@ -35,7 +40,7 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Player.distanceTravelled % minigameDistance == 0) //for every 100 metres
+        if(GameStatus.distanceTravelled % minigameDistance == 0) //for every 100 metres
         {
             float n = Random.Range(0, 2);
             if (n == 0)
@@ -57,31 +62,23 @@ public class GameManager : MonoBehaviour
         {
             BossDefeated();
         }
+        UpdateUIText();
         
     }
 
-    /*public void GetMagicWand()
-    {
-        PlayerStatus.magicWand = true;
-    }
-
-    public void GetMagnet()
-    {
-        PlayerStatus.magnet = true;
-        PlayerStatus.magnetRemaining = 15f;
-    }*/
+    
 
     void PowerUpCountDown()
     {
-        Player.vestRemaining -= Time.deltaTime;
-        Player.magnetRemaining -= Time.deltaTime;
-        if (Player.vestRemaining <= 0f)
+        GameStatus.vestRemaining -= Time.deltaTime;
+        GameStatus.magnetRemaining -= Time.deltaTime;
+        if (GameStatus.vestRemaining <= 0f)
         {
-            Player.vest = false;
+            GameStatus.vest = false;
         }
-        if (Player.magnetRemaining <= 0f)
+        if (GameStatus.magnetRemaining <= 0f)
         {
-            Player.magnet = false;
+            GameStatus.magnet = false;
         }
     }
 
@@ -92,7 +89,7 @@ public class GameManager : MonoBehaviour
 
     public void TakingFatalHit()   //when player is hit, either function will be called
     {
-        if (Player.vest == false)
+        if (GameStatus.vest == false)
         {
             //gameover event
             print("GameOVer");
@@ -100,18 +97,18 @@ public class GameManager : MonoBehaviour
         else
         {
             print("Protected");
-            Player.vest = false;
+            GameStatus.vest = false;
         }
     }
     public void TakingLightHit()
     {
-        if (Player.vest == false)
+        if (GameStatus.vest == false)
         {
             //police catches up
         }
         else
         {
-            Player.vest = false;
+            GameStatus.vest = false;
         }
 
     }
@@ -152,5 +149,13 @@ public class GameManager : MonoBehaviour
         {
             percentObstacle += 10;
         }
+    }
+
+    void UpdateUIText()
+    {
+        float currentDistance = Mathf.RoundToInt(GameStatus.distanceTravelled);
+        coinText.text = "Coin:" + GameStatus.coinCollected.ToString();
+        distanceText.text = currentDistance.ToString();
+
     }
 }

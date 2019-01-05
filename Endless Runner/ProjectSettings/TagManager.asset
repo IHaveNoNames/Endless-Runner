@@ -10,7 +10,6 @@ TagManager:
   - LightObstacle
   - HeavyObstacle
   - Boss
-  - Obstacle
   layers:
   - Default
   - TransparentFX
