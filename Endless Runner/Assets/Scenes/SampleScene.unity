@@ -422,6 +422,10 @@ Prefab:
       propertyPath: m_IsTrigger
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1195243474231864, guid: 136bec91c2a110a48a49533fdca8b404, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 136bec91c2a110a48a49533fdca8b404, type: 2}
   m_IsPrefabParent: 0
@@ -529,7 +533,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!136 &716698722
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -669,6 +673,10 @@ Prefab:
         type: 2}
       propertyPath: thrownSpeed
       value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 1517087111942606, guid: 71a8bbb5f959c0348876bb3e009a5c13, type: 2}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 71a8bbb5f959c0348876bb3e009a5c13, type: 2}
@@ -4273,10 +4281,11 @@ MonoBehaviour:
   vehiclePrefab: {fileID: 4543071068265108, guid: 3dd35f26d343434448ec475582f0dc76,
     type: 2}
   obstacles:
+  - {fileID: 4747933368735136, guid: 1ebdf22158bf46842bc055d95b677c64, type: 2}
   - {fileID: 4434212785813074, guid: a56c1f0ca343c6b42a86ae2434fb5a7c, type: 2}
   - {fileID: 4543071068265108, guid: 3dd35f26d343434448ec475582f0dc76, type: 2}
   powerups:
-  - {fileID: 4622100322702640, guid: 0c05d5e3e5ae33b409500e8761d03ab5, type: 2}
+  - {fileID: 4747933368735136, guid: 1ebdf22158bf46842bc055d95b677c64, type: 2}
   - {fileID: 4868467226140394, guid: f1ab93367271f414c995e99ed5639c9a, type: 2}
   - {fileID: 4637247520651578, guid: 611f2229ebdebb041b862480ec174b89, type: 2}
 --- !u!4 &2128009533
@@ -4306,4 +4315,3 @@ MonoBehaviour:
   player: {fileID: 905711876}
   bossTotalHeath: 10
   bossCurrentHealth: 0
-  bossFightActive: 0

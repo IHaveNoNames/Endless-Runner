@@ -12,7 +12,18 @@ public class GameManager : MonoBehaviour
     [HideInInspector]
     public int bossCurrentHealth;
     [HideInInspector]
-    public bool bossFightActive = false;
+    public static bool bossFightActive = false;
+
+    float minigameDistance = 100;
+
+    public static int percentObstacle = 50;
+    public static int percentCar = 50;
+    public static int percentBarrier = 50;
+
+    public static int percentPowerup = 30;
+    public static int percentVest = 40;
+    public static int percentMagnet = 60;
+
 
     // Use this for initialization
     void Start()
@@ -24,6 +35,22 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(Player.distanceTravelled % minigameDistance == 0) //for every 100 metres
+        {
+            float n = Random.Range(0, 2);
+            if (n == 0)
+            {
+                QTEStart();
+            } 
+
+            else if (n == 1)
+            {
+                BossFightStart();
+            }
+
+            IncreaseDifficulty();
+        }
+
         PowerUpCountDown();
 
         if (bossCurrentHealth <= 0 && bossFightActive == true)
@@ -33,9 +60,9 @@ public class GameManager : MonoBehaviour
         
     }
 
-    /*public void GetMagicWind()
+    /*public void GetMagicWand()
     {
-        PlayerStatus.magicWind = true;
+        PlayerStatus.magicWand = true;
     }
 
     public void GetMagnet()
@@ -46,15 +73,15 @@ public class GameManager : MonoBehaviour
 
     void PowerUpCountDown()
     {
-        PlayerStatus.vestRemaining -= Time.deltaTime;
-        PlayerStatus.magnetRemaining -= Time.deltaTime;
-        if (PlayerStatus.vestRemaining <= 0f)
+        Player.vestRemaining -= Time.deltaTime;
+        Player.magnetRemaining -= Time.deltaTime;
+        if (Player.vestRemaining <= 0f)
         {
-            PlayerStatus.vest = false;
+            Player.vest = false;
         }
-        if (PlayerStatus.magnetRemaining <= 0f)
+        if (Player.magnetRemaining <= 0f)
         {
-            PlayerStatus.magnet = false;
+            Player.magnet = false;
         }
     }
 
@@ -65,7 +92,7 @@ public class GameManager : MonoBehaviour
 
     public void TakingFatalHit()   //when player is hit, either function will be called
     {
-        if (PlayerStatus.vest == false)
+        if (Player.vest == false)
         {
             //gameover event
             print("GameOVer");
@@ -73,18 +100,18 @@ public class GameManager : MonoBehaviour
         else
         {
             print("Protected");
-            PlayerStatus.vest = false;
+            Player.vest = false;
         }
     }
     public void TakingLightHit()
     {
-        if (PlayerStatus.vest == false)
+        if (Player.vest == false)
         {
             //police catches up
         }
         else
         {
-            PlayerStatus.vest = false;
+            Player.vest = false;
         }
 
     }
@@ -102,5 +129,28 @@ public class GameManager : MonoBehaviour
     {
         bossCurrentHealth = bossTotalHeath;
         bossFightActive = true;
+    }
+
+    void QTEStart()
+    {
+
+    }
+
+    void DefaultValues()
+    {
+        percentCar = 50;
+        percentBarrier = 50;
+
+        percentVest = 40;
+        percentMagnet = 60;
+    }
+
+    void IncreaseDifficulty()
+    {
+        Player.acceleration += 5f;
+        if(percentObstacle != 100)
+        {
+            percentObstacle += 10;
+        }
     }
 }
