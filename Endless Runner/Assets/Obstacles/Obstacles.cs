@@ -4,9 +4,12 @@ using UnityEngine;
 
 public abstract class Obstacles : MonoBehaviour {
 
-    
+    public MeshRenderer meshRenderer;
+    public BoxCollider boxCollider;
 	// Use this for initialization
 	void Start () {
+        /*meshRenderer =gameObject.GetComponent<MeshRenderer>();
+        boxCollider = gameObject.GetComponent<BoxCollider>();*/
         
 	}
 	
@@ -19,7 +22,7 @@ public abstract class Obstacles : MonoBehaviour {
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            GameManager GM = GameObject.Find("GameManager").GetComponent<GameManager>();
+            GameManager GM = GameObject.Find("Game Manager").GetComponent<GameManager>();
             
             if (gameObject.CompareTag("HeavyObstacle"))
             {
@@ -32,7 +35,9 @@ public abstract class Obstacles : MonoBehaviour {
                 GM.TakingLightHit();
             }
 
-            Destroy(this.gameObject);
+            meshRenderer.enabled = false;
+            boxCollider.enabled = false;
+            //maybe some visual effect
         }           
         
     }

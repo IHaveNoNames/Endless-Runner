@@ -15,6 +15,7 @@ public class Chaser : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+        //placeholder for now
         transform.position = Far.transform.position;
 	}
 

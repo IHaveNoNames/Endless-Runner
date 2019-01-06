@@ -5,11 +5,14 @@ using UnityEngine;
 public class MovingObstacles : Obstacles
 {
     public float speed;
-    
-	// Use this for initialization
-	void Start () {
-        
-	}
+    /*private MeshRenderer meshRenderer;
+    private BoxCollider boxCollider;*/
+
+    // Use this for initialization
+    void Start () {
+       /* meshRenderer = gameObject.GetComponent<MeshRenderer>();
+        boxCollider = gameObject.GetComponent<BoxCollider>();*/
+    }
 	
 	// Update is called once per frame
 	void FixedUpdate () {
@@ -24,4 +27,9 @@ public class MovingObstacles : Obstacles
         temp.z = temp.z - speed * Time.fixedDeltaTime;
         transform.position= temp;
     }
+    /*private void OnCollisionEnter(Collision collision)
+    {
+        meshRenderer.enabled = false;
+        boxCollider.enabled = false;
+    }*/
 }
