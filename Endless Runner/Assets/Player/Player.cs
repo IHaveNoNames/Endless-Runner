@@ -24,7 +24,8 @@ public class Player : MonoBehaviour
 
     private Animator anim;
 
-   
+    private Vector2 touchOrigin = -Vector2.one;
+
 
     //Ground Checking
     [SerializeField]
@@ -46,7 +47,7 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+#if UNITY_EDITOR || UNITY_STANDALONE || UNITY_WEBPLAYER
         if (Input.GetKeyDown(KeyCode.RightArrow))
         {
             if (!isLerping && transform.position.x < 5)
@@ -74,6 +75,57 @@ public class Player : MonoBehaviour
         {
             anim.SetTrigger("Slide");
         }
+#else
+        if (Input.touchCount > 0)
+        {
+            Touch myTouch = Input.touches[0];
+
+            if(myTouch.phase == TouchPhase.Began)
+            {
+                touchOrigin = myTouch.position;
+            }
+
+            else if (myTouch.phase == TouchPhase.Ended && touchOrigin.x >= 0)
+            {
+                Vector2 touchEnd = myTouch.position;
+                float x = touchEnd.x - touchOrigin.x;
+                float y = touchEnd.y - touchOrigin.y;
+                touchOrigin.x = -1; //make sure that this if-else is breaked.
+                if(Mathf.Abs(x) > Mathf.Abs(y))
+                {
+                    if (x > 0)
+                    {
+                        if(!isLerping && transform.position.x < 5)
+                        {
+                            StartLerping(Vector3.right);
+                        }
+                    }
+
+                    else if (x < 0)
+                    {
+                        if (!isLerping && transform.position.x > -5)
+                        {
+                            StartLerping(Vector3.left);
+                        }
+                    }
+                }
+
+                else if(Mathf.Abs(y) > Mathf.Abs(x))
+                {
+                    if (y > 0 && onGround)
+                    {
+                        anim.SetTrigger("Jump");
+                        rb.AddForce(jumpVelocity, ForceMode.VelocityChange);
+                    }
+
+                    else if (y < 0)
+                    {
+                        anim.SetTrigger("Slide");
+                    }
+                }
+            }
+        }
+#endif
     }
 
     private void FixedUpdate()
