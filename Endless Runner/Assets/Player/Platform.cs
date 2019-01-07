@@ -168,7 +168,7 @@ public class Platform : MonoBehaviour {
 
         RecycleObstacle(leftPlatform, platform, rightPlatform, out leftPlatformStatus, out platformStatus, out rightPlatformStatus);
 
-        RecyclePowerups(leftPlatformStatus, platformStatus, rightPlatformStatus);
+        //RecyclePowerups(leftPlatformStatus, platformStatus, rightPlatformStatus);
 
         
         
@@ -339,6 +339,8 @@ public class Platform : MonoBehaviour {
 
         else if (noOfItems > ((GameManager.oneObstaclePercent + GameManager.twoObstaclesPercent + GameManager.threeObstaclesPercent) - GameManager.threeObstaclesPercent))
         {
+            int oddPlatform = Random.Range(1, 3);
+
             int leftObstacle = Random.Range(1, 3);
             Transform newLeftObstacle = HandleRecyclingObstacles(obstacleQueueLeft, leftObstacle, leftPlatform);
             //obstacleQueueLeft.Enqueue((Transform)Instantiate(obstacles[leftObstacle], new Vector3(leftPlatform.position.x, leftPlatform.position.y + obstacles[leftObstacle].transform.localScale.y / 2, leftPlatform.position.z), Quaternion.identity));
@@ -366,11 +368,10 @@ public class Platform : MonoBehaviour {
 
     Transform HandleRecyclingObstacles(Queue<Transform> queue, int index, Transform transform)
     {
-        queue.Enqueue((Transform)Instantiate(obstacles[index], new Vector3(transform.position.x, transform.position.y + obstacles[index].transform.localScale.y / 2, transform.position.z), Quaternion.identity));
-        Queue<Transform> reverse = Reverse(queue);
-        Transform obstacle = reverse.Dequeue();
+        Transform gObj = Instantiate(obstacles[index], new Vector3(transform.position.x, transform.position.y + obstacles[index].transform.localScale.y / 2, transform.position.z), Quaternion.identity);
+        queue.Enqueue(gObj);
 
-        return obstacle;
+        return gObj;
     }
 
     void RecyclePowerups(Transform leftStatus, Transform middleStatus, Transform rightStaus)

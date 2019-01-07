@@ -19,9 +19,9 @@ public class GameManager : MonoBehaviour
 
     float minigameDistance = 100;
 
-    public static int oneObstaclePercent = 50;
-    public static int twoObstaclesPercent = 40;
-    public static int threeObstaclesPercent = 10;
+    public static int oneObstaclePercent = 35;
+    public static int twoObstaclesPercent = 45;
+    public static int threeObstaclesPercent = 20;
 
     public static int percentPowerup = 30;
     public static int percentVest = 40;
