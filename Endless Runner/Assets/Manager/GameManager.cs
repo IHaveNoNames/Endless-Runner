@@ -32,6 +32,10 @@ public class GameManager : MonoBehaviour
     public GameObject wandButton;
     public GameObject magnetImage;
     public GameObject vestImage;
+    public Image vestFillBar;
+    public Image magnetFillBar;
+    public Text coinTextGameOver;
+    public Text distanceTextGameOver;
 
 
     // Use this for initialization
@@ -169,6 +173,7 @@ public class GameManager : MonoBehaviour
         if (GameStatus.vest)
         {
             vestImage.SetActive(true);
+            vestFillBar.fillAmount = GameStatus.vestRemaining / 30f;
         }
         else
         {
@@ -177,6 +182,7 @@ public class GameManager : MonoBehaviour
         if (GameStatus.magnet)
         {
             magnetImage.SetActive(true);
+            magnetFillBar.fillAmount = GameStatus.magnetRemaining / 15f;
         }
         else
         {
