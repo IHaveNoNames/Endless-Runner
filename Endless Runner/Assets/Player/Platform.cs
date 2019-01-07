@@ -141,6 +141,76 @@ public class Platform : MonoBehaviour {
         }
     }
 
+    void RecyclePlatform()
+    {
+        Vector3 leftPos = nextLeftPos;
+        Vector3 position = nextPos;
+        Vector3 rightPos = nextRightPos;
+
+        leftPos.z += 25f * 0.5f;
+        position.z += 25f * 0.5f;
+        rightPos.z += 25f * 0.5f;
+
+        Transform leftPlatform = platformLeftQueue.Dequeue();
+        Transform platform = platformQueue.Dequeue();
+        Transform rightPlatform = platformRightQueue.Dequeue();
+
+        leftPlatform.position = leftPos;
+        platform.position = position;
+        rightPlatform.position = rightPos;
+
+        nextLeftPos.z += 25f;
+        nextPos.z += 25f;
+        nextRightPos.z += 25f;
+
+        platformLeftQueue.Enqueue(leftPlatform);
+        platformQueue.Enqueue(platform);
+        platformRightQueue.Enqueue(rightPlatform);
+
+        int minNoOfItems = 1;
+        int maxNoOfItems = 3;
+
+        int noOfItems = Random.Range(1, 100);
+
+        int percent = 50;
+        int percent2 = 40;
+        int percent3 = 10;
+
+        if(noOfItems <= 50) //if 1 item is spawn
+        {
+            int platformChosen = Random.Range(1, 3);
+            if(platformChosen == 1)
+            {
+                //if platform chosen to be left platform
+                int whichObstacle = Random.Range(1, 3);
+                obstacleQueueLeft.Enqueue((Transform)Instantiate(obstacles[whichObstacle], new Vector3(leftPlatform.position.x, leftPlatform.position.y + obstacles[whichObstacle].transform.localScale.y / 2, leftPlatform.position.z), Quaternion.identity));
+            }
+
+            else if (platformChosen == 2)
+            {
+                //if platform chosen to be left platform
+                int whichObstacle = Random.Range(1, 3);
+                obstacleQueue.Enqueue((Transform)Instantiate(obstacles[whichObstacle], new Vector3(platform.position.x, platform.position.y + obstacles[whichObstacle].transform.localScale.y / 2, platform.position.z), Quaternion.identity));
+            }
+
+            else
+            {
+                //if platform chosen to be left platform
+                int whichObstacle = Random.Range(1, 3);
+                obstacleQueueRight.Enqueue((Transform)Instantiate(obstacles[whichObstacle], new Vector3(rightPlatform.position.x, rightPlatform.position.y + obstacles[whichObstacle].transform.localScale.y / 2, rightPlatform.position.z), Quaternion.identity));
+            }
+
+        }
+
+        else if(noOfItems >50 && noOfItems <= 90)
+        {
+
+        }
+
+
+
+    }
+
     void RecycleObstacles(Vector3 position, ref Queue<Transform> obstacleq)
     {
         Transform obstacle = obstacleq.Dequeue();
@@ -217,7 +287,7 @@ public class Platform : MonoBehaviour {
 
     public void DestroyAllObstacles()
     {
-        DestroyLaneObstacles( ref obstacleQueueLeft);
+        DestroyLaneObstacles(ref obstacleQueueLeft);
         DestroyLaneObstacles(ref obstacleQueue);
         DestroyLaneObstacles(ref obstacleQueueRight);
 
@@ -228,6 +298,18 @@ public class Platform : MonoBehaviour {
             obstacleQueue.Enqueue((Transform)Instantiate(obstacles[Random.Range(0, 2)]));
             obstacleQueueRight.Enqueue((Transform)Instantiate(obstacles[Random.Range(0, 2)]));
         }
+
+    }
+
+    void CheckObstacles()
+    {
+        int noOfItemsPerLaneMin = 1;
+        GameObject platformLeft = obstacleQueueLeft.Peek().gameObject;
+        GameObject platform = obstacleQueue.Peek().gameObject;
+        GameObject platformRight = obstacleQueueRight.Peek().gameObject;
+
+
+
 
     }
 }
