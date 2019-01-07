@@ -48,6 +48,7 @@ public class Platform : MonoBehaviour {
     int noOfObstacles = 5;
     int noOfPowerups = 5;
 
+
     // Use this for initialization
     void Start () {
 
@@ -95,7 +96,7 @@ public class Platform : MonoBehaviour {
             //Recycle(ref nextLeftPos, ref platformLeftQueue, ref obstacleQueueLeft, ref powerupQueueLeft);
             //Recycle(ref nextPos, ref platformQueue,  ref obstacleQueue, ref powerupQueue);
             //Recycle(ref nextRightPos, ref platformRightQueue, ref obstacleQueueRight, ref powerupQueueRight);
-            RecyclePlatform();
+            Recycle();
         }
 	}
 	
@@ -106,7 +107,7 @@ public class Platform : MonoBehaviour {
             //Recycle(ref nextLeftPos, ref platformLeftQueue, ref obstacleQueueLeft, ref powerupQueueLeft);
             //Recycle(ref nextPos, ref platformQueue, ref obstacleQueue, ref powerupQueue);
             //Recycle(ref nextRightPos, ref platformRightQueue, ref obstacleQueueRight, ref powerupQueueRight);
-            RecyclePlatform();
+            Recycle();
         }
 	}
 
@@ -135,7 +136,7 @@ public class Platform : MonoBehaviour {
     //    }
     //}
 
-    void RecyclePlatform()
+    void Recycle()
     {
         Vector3 leftPos = nextLeftPos;
         Vector3 position = nextPos;
@@ -176,7 +177,7 @@ public class Platform : MonoBehaviour {
         //40% 2 platform
         //10% 3 platform
 
-        if (noOfItems <= 50) //if 1 item is spawn
+        if (noOfItems <= GameManager.oneObstaclePercent) //if 1 item is spawn
         {
             int platformChosen = Random.Range(1, 3);
             if (platformChosen == 1)
@@ -215,7 +216,7 @@ public class Platform : MonoBehaviour {
 
         }
 
-        else if (noOfItems > 50 && noOfItems <= 90) //if 2 item is going to spawn
+        else if (noOfItems > GameManager.oneObstaclePercent && noOfItems <= GameManager.oneObstaclePercent + GameManager.twoObstaclesPercent) //if 2 item is going to spawn
         {
             int platformChosen = Random.Range(1, 3);
 
@@ -254,7 +255,7 @@ public class Platform : MonoBehaviour {
             }
         }
 
-        else if(noOfItems > 90)
+        else if(noOfItems > ((GameManager.oneObstaclePercent + GameManager.twoObstaclesPercent + GameManager.threeObstaclesPercent) - GameManager.threeObstaclesPercent))
         {
             int leftObstacle = Random.Range(1, 3);
             obstacleQueueLeft.Enqueue((Transform)Instantiate(obstacles[leftObstacle], new Vector3(leftPlatform.position.x, leftPlatform.position.y + obstacles[leftObstacle].transform.localScale.y / 2, leftPlatform.position.z), Quaternion.identity));
@@ -265,6 +266,12 @@ public class Platform : MonoBehaviour {
             int rightObstacle = Random.Range(1, 3);
             obstacleQueueRight.Enqueue((Transform)Instantiate(obstacles[rightObstacle], new Vector3(rightPlatform.position.x, rightPlatform.position.y + obstacles[rightObstacle].transform.localScale.y / 2, rightPlatform.position.z), Quaternion.identity));
         }
+
+        //obstacle recycling done
+
+        //add coin to powerup prefab
+        //make coin have chance to spawn
+        //check for any object in position.transform.x
 
     }
 
@@ -300,36 +307,36 @@ public class Platform : MonoBehaviour {
     //    //obstacleq.Enqueue((Transform)Instantiate(obstacles[RNG], new Vector3(position.x, position.y + obstacles[RNG].transform.localScale.y / 2, position.z), Quaternion.identity));
     //}
 
-    void RecyclePowerups(Vector3 position, ref Queue<Transform> powerupq)
-    {
-        Transform powerup = powerupq.Dequeue();
+    //void RecyclePowerups(Vector3 position, ref Queue<Transform> powerupq)
+    //{
+    //    Transform powerup = powerupq.Dequeue();
 
-        if (powerup != null) //change it next time to powerup.gameobject.coin.pickedup == true
-        {
-            Destroy(powerup.gameObject);
-        }
+    //    if (powerup != null) //change it next time to powerup.gameobject.coin.pickedup == true
+    //    {
+    //        Destroy(powerup.gameObject);
+    //    }
 
-        int percentage = Random.Range(0, 100);
+    //    int percentage = Random.Range(0, 100);
 
-        if (percentage <= GameManager.percentPowerup)
-        {
-            int itemPercentage = Random.Range(0, 100);
-            if(itemPercentage <= GameManager.percentCar)
-            {
-                powerupq.Enqueue((Transform)Instantiate(powerups[2], new Vector3(position.x, position.y + powerups[2].transform.localScale.y / 2, position.z), Quaternion.identity));
-            }
+    //    if (percentage <= GameManager.percentPowerup)
+    //    {
+    //        int itemPercentage = Random.Range(0, 100);
+    //        if(itemPercentage <= GameManager.percentCar)
+    //        {
+    //            powerupq.Enqueue((Transform)Instantiate(powerups[2], new Vector3(position.x, position.y + powerups[2].transform.localScale.y / 2, position.z), Quaternion.identity));
+    //        }
 
-            else if (itemPercentage > ((GameManager.percentCar + GameManager.percentBarrier) - GameManager.percentBarrier) && itemPercentage <= (GameManager.percentCar + GameManager.percentBarrier))
-            {
-                powerupq.Enqueue((Transform)Instantiate(powerups[1], new Vector3(position.x, position.y + powerups[1].transform.localScale.y / 2, position.z), Quaternion.identity));
-            }
-        }
+    //        else if (itemPercentage > ((GameManager.percentCar + GameManager.percentBarrier) - GameManager.percentBarrier) && itemPercentage <= (GameManager.percentCar + GameManager.percentBarrier))
+    //        {
+    //            powerupq.Enqueue((Transform)Instantiate(powerups[1], new Vector3(position.x, position.y + powerups[1].transform.localScale.y / 2, position.z), Quaternion.identity));
+    //        }
+    //    }
 
-        else
-        {
-            powerupq.Enqueue((Transform)Instantiate(powerups[0], new Vector3(position.x, position.y + powerups[0].transform.localScale.y / 2, position.z), Quaternion.identity));
-        }
-    }
+    //    else
+    //    {
+    //        powerupq.Enqueue((Transform)Instantiate(powerups[0], new Vector3(position.x, position.y + powerups[0].transform.localScale.y / 2, position.z), Quaternion.identity));
+    //    }
+    //}
 
      void DestroyLaneObstacles(ref Queue<Transform> obstacleq)
     {

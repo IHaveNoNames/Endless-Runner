@@ -19,9 +19,9 @@ public class GameManager : MonoBehaviour
 
     float minigameDistance = 100;
 
-    public static int percentObstacle = 50;
-    public static int percentCar = 50;
-    public static int percentBarrier = 50;
+    public static int oneObstaclePercent = 50;
+    public static int twoObstaclesPercent = 40;
+    public static int threeObstaclesPercent = 10;
 
     public static int percentPowerup = 30;
     public static int percentVest = 40;
@@ -141,8 +141,9 @@ public class GameManager : MonoBehaviour
 
     void DefaultValues()
     {
-        percentCar = 50;
-        percentBarrier = 50;
+        oneObstaclePercent = 50;
+        twoObstaclesPercent = 40;
+        threeObstaclesPercent = 10;
 
         percentVest = 40;
         percentMagnet = 60;
@@ -151,10 +152,8 @@ public class GameManager : MonoBehaviour
     void IncreaseDifficulty()
     {
         Player.acceleration += 5f;
-        if(percentObstacle != 100)
-        {
-            percentObstacle += 10;
-        }
+
+        //obstacle
     }
 
     void UpdateUIText()
