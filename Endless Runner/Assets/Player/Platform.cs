@@ -100,9 +100,10 @@ public class Platform : MonoBehaviour {
 
         for (int i = 0; i<noOfPlatforms; i++)
         {
-            Recycle(ref nextLeftPos, ref platformLeftQueue, ref obstacleQueueLeft, ref powerupQueueLeft);
-            Recycle(ref nextPos, ref platformQueue,  ref obstacleQueue, ref powerupQueue);
-            Recycle(ref nextRightPos, ref platformRightQueue, ref obstacleQueueRight, ref powerupQueueRight);
+            //Recycle(ref nextLeftPos, ref platformLeftQueue, ref obstacleQueueLeft, ref powerupQueueLeft);
+            //Recycle(ref nextPos, ref platformQueue,  ref obstacleQueue, ref powerupQueue);
+            //Recycle(ref nextRightPos, ref platformRightQueue, ref obstacleQueueRight, ref powerupQueueRight);
+            RecyclePlatform();
         }
 	}
 	
@@ -110,9 +111,10 @@ public class Platform : MonoBehaviour {
 	void Update () {
         if (platformQueue.Peek().localPosition.z + 25f < GameStatus.distanceTravelled)
         {
-            Recycle(ref nextLeftPos, ref platformLeftQueue, ref obstacleQueueLeft, ref powerupQueueLeft);
-            Recycle(ref nextPos, ref platformQueue, ref obstacleQueue, ref powerupQueue);
-            Recycle(ref nextRightPos, ref platformRightQueue, ref obstacleQueueRight, ref powerupQueueRight);
+            //Recycle(ref nextLeftPos, ref platformLeftQueue, ref obstacleQueueLeft, ref powerupQueueLeft);
+            //Recycle(ref nextPos, ref platformQueue, ref obstacleQueue, ref powerupQueue);
+            //Recycle(ref nextRightPos, ref platformRightQueue, ref obstacleQueueRight, ref powerupQueueRight);
+            RecyclePlatform();
         }
 	}
 
@@ -167,47 +169,110 @@ public class Platform : MonoBehaviour {
         platformQueue.Enqueue(platform);
         platformRightQueue.Enqueue(rightPlatform);
 
-        int minNoOfItems = 1;
-        int maxNoOfItems = 3;
+
+        Transform obstacleLeft = obstacleQueueLeft.Dequeue();
+        Transform obstacleMiddle = obstacleQueue.Dequeue();
+        Transform obstacleRight = obstacleQueueRight.Dequeue();
+
+        Destroy(obstacleLeft.gameObject);
+        Destroy(obstacleMiddle.gameObject);
+        Destroy(obstacleRight.gameObject);
 
         int noOfItems = Random.Range(1, 100);
 
-        int percent = 50;
-        int percent2 = 40;
-        int percent3 = 10;
+        //50% 1 platform
+        //40% 2 platform
+        //10% 3 platform
 
-        if(noOfItems <= 50) //if 1 item is spawn
+        if (noOfItems <= 50) //if 1 item is spawn
         {
             int platformChosen = Random.Range(1, 3);
-            if(platformChosen == 1)
+            if (platformChosen == 1)
             {
                 //if platform chosen to be left platform
-                int whichObstacle = Random.Range(1, 3);
-                obstacleQueueLeft.Enqueue((Transform)Instantiate(obstacles[whichObstacle], new Vector3(leftPlatform.position.x, leftPlatform.position.y + obstacles[whichObstacle].transform.localScale.y / 2, leftPlatform.position.z), Quaternion.identity));
+                int leftObstacle = Random.Range(1, 3);
+                obstacleQueueLeft.Enqueue((Transform)Instantiate(obstacles[leftObstacle], new Vector3(leftPlatform.position.x, leftPlatform.position.y + obstacles[leftObstacle].transform.localScale.y / 2, leftPlatform.position.z), Quaternion.identity));
+
+                obstacleQueue.Enqueue((Transform)Instantiate(obstacles[0], new Vector3(platform.position.x, platform.position.y + obstacles[0].transform.localScale.y / 2, platform.position.z), Quaternion.identity));
+
+                obstacleQueueRight.Enqueue((Transform)Instantiate(obstacles[0], new Vector3(rightPlatform.position.x, rightPlatform.position.y + obstacles[0].transform.localScale.y / 2, rightPlatform.position.z), Quaternion.identity));
             }
 
             else if (platformChosen == 2)
             {
-                //if platform chosen to be left platform
-                int whichObstacle = Random.Range(1, 3);
-                obstacleQueue.Enqueue((Transform)Instantiate(obstacles[whichObstacle], new Vector3(platform.position.x, platform.position.y + obstacles[whichObstacle].transform.localScale.y / 2, platform.position.z), Quaternion.identity));
+                //if platform chosen to be middle platform
+                obstacleQueueLeft.Enqueue((Transform)Instantiate(obstacles[0], new Vector3(leftPlatform.position.x, leftPlatform.position.y + obstacles[0].transform.localScale.y / 2, leftPlatform.position.z), Quaternion.identity));
+
+                int obstacle = Random.Range(1, 3);
+                obstacleQueue.Enqueue((Transform)Instantiate(obstacles[obstacle], new Vector3(platform.position.x, platform.position.y + obstacles[obstacle].transform.localScale.y / 2, platform.position.z), Quaternion.identity));
+
+                obstacleQueueRight.Enqueue((Transform)Instantiate(obstacles[0], new Vector3(rightPlatform.position.x, rightPlatform.position.y + obstacles[0].transform.localScale.y / 2, rightPlatform.position.z), Quaternion.identity));
             }
 
             else
             {
-                //if platform chosen to be left platform
-                int whichObstacle = Random.Range(1, 3);
-                obstacleQueueRight.Enqueue((Transform)Instantiate(obstacles[whichObstacle], new Vector3(rightPlatform.position.x, rightPlatform.position.y + obstacles[whichObstacle].transform.localScale.y / 2, rightPlatform.position.z), Quaternion.identity));
+                //if platform chosen to be right platform
+
+                obstacleQueueLeft.Enqueue((Transform)Instantiate(obstacles[0], new Vector3(leftPlatform.position.x, leftPlatform.position.y + obstacles[0].transform.localScale.y / 2, leftPlatform.position.z), Quaternion.identity));
+
+                obstacleQueue.Enqueue((Transform)Instantiate(obstacles[0], new Vector3(platform.position.x, platform.position.y + obstacles[0].transform.localScale.y / 2, platform.position.z), Quaternion.identity));
+
+                int rightObstacle = Random.Range(1, 3);
+                obstacleQueueRight.Enqueue((Transform)Instantiate(obstacles[rightObstacle], new Vector3(rightPlatform.position.x, rightPlatform.position.y + obstacles[rightObstacle].transform.localScale.y / 2, rightPlatform.position.z), Quaternion.identity));
             }
 
         }
 
-        else if(noOfItems >50 && noOfItems <= 90)
+        else if (noOfItems > 50 && noOfItems <= 90) //if 2 item is going to spawn
         {
+            int platformChosen = Random.Range(1, 3);
 
+            if (platformChosen == 1)
+            {
+                //if platform chosen to be middle and right
+                obstacleQueueLeft.Enqueue((Transform)Instantiate(obstacles[0], new Vector3(leftPlatform.position.x, leftPlatform.position.y + obstacles[0].transform.localScale.y / 2, leftPlatform.position.z), Quaternion.identity));
+
+                int obstacle = Random.Range(1, 3);
+                obstacleQueue.Enqueue((Transform)Instantiate(obstacles[obstacle], new Vector3(platform.position.x, platform.position.y + obstacles[obstacle].transform.localScale.y / 2, platform.position.z), Quaternion.identity));
+
+                int rightObstacle = Random.Range(1, 3);
+                obstacleQueueRight.Enqueue((Transform)Instantiate(obstacles[rightObstacle], new Vector3(rightPlatform.position.x, rightPlatform.position.y + obstacles[rightObstacle].transform.localScale.y / 2, rightPlatform.position.z), Quaternion.identity));
+            }
+
+            else if (platformChosen == 2) //platform is left and right
+            {
+                int leftObstacle = Random.Range(1, 3);
+                obstacleQueueLeft.Enqueue((Transform)Instantiate(obstacles[leftObstacle], new Vector3(leftPlatform.position.x, leftPlatform.position.y + obstacles[leftObstacle].transform.localScale.y / 2, leftPlatform.position.z), Quaternion.identity));
+
+                obstacleQueue.Enqueue((Transform)Instantiate(obstacles[0], new Vector3(platform.position.x, platform.position.y + obstacles[0].transform.localScale.y / 2, platform.position.z), Quaternion.identity));
+
+                int rightObstacle = Random.Range(1, 3);
+                obstacleQueueRight.Enqueue((Transform)Instantiate(obstacles[rightObstacle], new Vector3(rightPlatform.position.x, rightPlatform.position.y + obstacles[rightObstacle].transform.localScale.y / 2, rightPlatform.position.z), Quaternion.identity));
+            }
+
+            else if (platformChosen == 3) //left middle
+            {
+                int leftObstacle = Random.Range(1, 3);
+                obstacleQueueLeft.Enqueue((Transform)Instantiate(obstacles[leftObstacle], new Vector3(leftPlatform.position.x, leftPlatform.position.y + obstacles[leftObstacle].transform.localScale.y / 2, leftPlatform.position.z), Quaternion.identity));
+
+                int obstacle = Random.Range(1, 3);
+                obstacleQueue.Enqueue((Transform)Instantiate(obstacles[obstacle], new Vector3(platform.position.x, platform.position.y + obstacles[obstacle].transform.localScale.y / 2, platform.position.z), Quaternion.identity));
+
+                obstacleQueueRight.Enqueue((Transform)Instantiate(obstacles[0], new Vector3(rightPlatform.position.x, rightPlatform.position.y + obstacles[0].transform.localScale.y / 2, rightPlatform.position.z), Quaternion.identity));
+            }
         }
 
+        else if(noOfItems > 90)
+        {
+            int leftObstacle = Random.Range(1, 3);
+            obstacleQueueLeft.Enqueue((Transform)Instantiate(obstacles[leftObstacle], new Vector3(leftPlatform.position.x, leftPlatform.position.y + obstacles[leftObstacle].transform.localScale.y / 2, leftPlatform.position.z), Quaternion.identity));
 
+            int obstacle = Random.Range(1, 3);
+            obstacleQueue.Enqueue((Transform)Instantiate(obstacles[obstacle], new Vector3(platform.position.x, platform.position.y + obstacles[obstacle].transform.localScale.y / 2, platform.position.z), Quaternion.identity));
+
+            int rightObstacle = Random.Range(1, 3);
+            obstacleQueueRight.Enqueue((Transform)Instantiate(obstacles[rightObstacle], new Vector3(rightPlatform.position.x, rightPlatform.position.y + obstacles[rightObstacle].transform.localScale.y / 2, rightPlatform.position.z), Quaternion.identity));
+        }
 
     }
 
@@ -301,15 +366,4 @@ public class Platform : MonoBehaviour {
 
     }
 
-    void CheckObstacles()
-    {
-        int noOfItemsPerLaneMin = 1;
-        GameObject platformLeft = obstacleQueueLeft.Peek().gameObject;
-        GameObject platform = obstacleQueue.Peek().gameObject;
-        GameObject platformRight = obstacleQueueRight.Peek().gameObject;
-
-
-
-
-    }
 }
