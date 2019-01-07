@@ -275,6 +275,57 @@ public class Platform : MonoBehaviour {
 
     }
 
+    private Queue<int> originalQueue;
+    private Stack<int> originalStack;
+    private int numItems = 5;
+
+    void Start()
+    {
+        originalQueue = new Queue<int>(numItems);
+
+        for (int i = 0; i < numItems; i++)
+        {
+            originalQueue.Enqueue(Random.Range(1, 101));
+        }
+
+        Debug.Log("====== original queue ======\n");
+        Print(originalQueue);
+
+        Queue<int> reversedQueue = Reverse(originalQueue);
+
+        Debug.Log("====== reversed queue ======\n");
+        Print(reversedQueue);
+    }
+
+    Queue<int> Reverse(Queue<int> queue)
+    {
+        Queue<int> reversed = new Queue<int>(numItems);
+
+        originalStack = new Stack<int>(numItems);
+        // MISSING CODE
+
+
+        for (int i = 0; i < numItems; i++)
+        {
+            originalStack.Push(originalQueue.Dequeue());
+        }
+
+        for (int i = 0; i < numItems; i++)
+        {
+            reversed.Enqueue(originalStack.Pop());
+        }
+
+        return reversed;
+    }
+
+    void Print(Queue<int> q)
+    {
+        foreach (int item in q)
+        {
+            Debug.Log(item);
+        }
+    }
+
     //void RecycleObstacles(Vector3 position, ref Queue<Transform> obstacleq)
     //{
     //    Transform obstacle = obstacleq.Dequeue();
@@ -338,7 +389,7 @@ public class Platform : MonoBehaviour {
     //    }
     //}
 
-     void DestroyLaneObstacles(ref Queue<Transform> obstacleq)
+    void DestroyLaneObstacles(ref Queue<Transform> obstacleq)
     {
         for (int i = 0;i< noOfObstacles;i++)
         {
