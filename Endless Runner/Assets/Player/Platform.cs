@@ -15,14 +15,6 @@ public class Platform : MonoBehaviour {
     [SerializeField]
     Transform rightPlatformPrefab;
 
-    public Queue<Transform> PlatformQueue
-    {
-        get
-        {
-            return platformQueue;
-        }
-    }
-
     Queue<Transform> platformQueue;
     Queue<Transform> platformLeftQueue;
     Queue<Transform> platformRightQueue;
@@ -118,30 +110,30 @@ public class Platform : MonoBehaviour {
         }
 	}
 
-    void Recycle(ref Vector3 nextPosition, ref Queue<Transform> queue, ref Queue<Transform>obstacleq, ref Queue<Transform> powerupq)
-    {
+    //void Recycle(ref Vector3 nextPosition, ref Queue<Transform> queue, ref Queue<Transform>obstacleq, ref Queue<Transform> powerupq)
+    //{
 
-        Vector3 position = nextPosition;
+    //    Vector3 position = nextPosition;
 
-        position.z += 25f * 0.5f;
+    //    position.z += 25f * 0.5f;
 
-        Transform platform = queue.Dequeue();
+    //    Transform platform = queue.Dequeue();
         
-        platform.position = position;
+    //    platform.position = position;
 
-        nextPosition.z += 25f;
+    //    nextPosition.z += 25f;
 
-        Color newColor = new Color(Random.value, Random.value, Random.value, 1.0f);
-        platform.gameObject.GetComponent<Renderer>().material.color = newColor;
+    //    Color newColor = new Color(Random.value, Random.value, Random.value, 1.0f);
+    //    platform.gameObject.GetComponent<Renderer>().material.color = newColor;
 
-        queue.Enqueue(platform);
+    //    queue.Enqueue(platform);
 
-        if(GameManager.bossFightActive != true)
-        {
-            RecycleObstacles(position, ref obstacleq);
-            RecyclePowerups(position, ref powerupq);
-        }
-    }
+    //    if(GameManager.bossFightActive != true)
+    //    {
+    //        RecycleObstacles(position, ref obstacleq);
+    //        RecyclePowerups(position, ref powerupq);
+    //    }
+    //}
 
     void RecyclePlatform()
     {
@@ -149,9 +141,9 @@ public class Platform : MonoBehaviour {
         Vector3 position = nextPos;
         Vector3 rightPos = nextRightPos;
 
-        leftPos.z += 25f * 0.5f;
-        position.z += 25f * 0.5f;
-        rightPos.z += 25f * 0.5f;
+        leftPos.z += ((leftPlatformPrefab.localScale.z / 2) * 0.5f);
+        position.z += ((platformPrefab.localScale.z / 2) * 0.5f);
+        rightPos.z += ((rightPlatformPrefab.localScale.z / 2) * 0.5f);
 
         Transform leftPlatform = platformLeftQueue.Dequeue();
         Transform platform = platformQueue.Dequeue();
@@ -161,9 +153,9 @@ public class Platform : MonoBehaviour {
         platform.position = position;
         rightPlatform.position = rightPos;
 
-        nextLeftPos.z += 25f;
-        nextPos.z += 25f;
-        nextRightPos.z += 25f;
+        nextLeftPos.z += (leftPlatformPrefab.localScale.z / 2);
+        nextPos.z += (platformPrefab.localScale.z / 2);
+        nextRightPos.z += (rightPlatformPrefab.localScale.z / 2);
 
         platformLeftQueue.Enqueue(leftPlatform);
         platformQueue.Enqueue(platform);
@@ -276,37 +268,37 @@ public class Platform : MonoBehaviour {
 
     }
 
-    void RecycleObstacles(Vector3 position, ref Queue<Transform> obstacleq)
-    {
-        Transform obstacle = obstacleq.Dequeue();
+    //void RecycleObstacles(Vector3 position, ref Queue<Transform> obstacleq)
+    //{
+    //    Transform obstacle = obstacleq.Dequeue();
 
-        Destroy(obstacle.gameObject);
+    //    Destroy(obstacle.gameObject);
 
 
-        int percentage = Random.Range(0, 100);
+    //    int percentage = Random.Range(0, 100);
 
-        if(percentage <= GameManager.percentObstacle)
-        {
-            int obstaclePercentage = Random.Range(0, 100);
-            if (obstaclePercentage <= 50)
-            {
-                obstacleq.Enqueue((Transform)Instantiate(obstacles[1], new Vector3(position.x, position.y + obstacles[1].transform.localScale.y / 2, position.z), Quaternion.identity));
-            }
+    //    if(percentage <= GameManager.percentObstacle)
+    //    {
+    //        int obstaclePercentage = Random.Range(0, 100);
+    //        if (obstaclePercentage <= 50)
+    //        {
+    //            obstacleq.Enqueue((Transform)Instantiate(obstacles[1], new Vector3(position.x, position.y + obstacles[1].transform.localScale.y / 2, position.z), Quaternion.identity));
+    //        }
 
-            else
-            {
-                obstacleq.Enqueue((Transform)Instantiate(obstacles[2], new Vector3(position.x, position.y + obstacles[2].transform.localScale.y / 2, position.z), Quaternion.identity));
-            }
-        }
+    //        else
+    //        {
+    //            obstacleq.Enqueue((Transform)Instantiate(obstacles[2], new Vector3(position.x, position.y + obstacles[2].transform.localScale.y / 2, position.z), Quaternion.identity));
+    //        }
+    //    }
 
-        else
-        {
-            obstacleq.Enqueue((Transform)Instantiate(obstacles[0], new Vector3(position.x, position.y + obstacles[0].transform.localScale.y / 2, position.z), Quaternion.identity));
-        }
+    //    else
+    //    {
+    //        obstacleq.Enqueue((Transform)Instantiate(obstacles[0], new Vector3(position.x, position.y + obstacles[0].transform.localScale.y / 2, position.z), Quaternion.identity));
+    //    }
 
-        //int RNG = Random.Range(0, 2);
-        //obstacleq.Enqueue((Transform)Instantiate(obstacles[RNG], new Vector3(position.x, position.y + obstacles[RNG].transform.localScale.y / 2, position.z), Quaternion.identity));
-    }
+    //    //int RNG = Random.Range(0, 2);
+    //    //obstacleq.Enqueue((Transform)Instantiate(obstacles[RNG], new Vector3(position.x, position.y + obstacles[RNG].transform.localScale.y / 2, position.z), Quaternion.identity));
+    //}
 
     void RecyclePowerups(Vector3 position, ref Queue<Transform> powerupq)
     {
