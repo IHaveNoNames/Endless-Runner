@@ -141,9 +141,9 @@ public class Platform : MonoBehaviour {
         Vector3 position = nextPos;
         Vector3 rightPos = nextRightPos;
 
-        leftPos.z += ((leftPlatformPrefab.localScale.z / 2) * 0.5f);
-        position.z += ((platformPrefab.localScale.z / 2) * 0.5f);
-        rightPos.z += ((rightPlatformPrefab.localScale.z / 2) * 0.5f);
+        leftPos.z += (leftPlatformPrefab.localScale.z / 2);
+        position.z += (platformPrefab.localScale.z / 2);
+        rightPos.z += (rightPlatformPrefab.localScale.z / 2);
 
         Transform leftPlatform = platformLeftQueue.Dequeue();
         Transform platform = platformQueue.Dequeue();
@@ -153,9 +153,9 @@ public class Platform : MonoBehaviour {
         platform.position = position;
         rightPlatform.position = rightPos;
 
-        nextLeftPos.z += (leftPlatformPrefab.localScale.z / 2);
-        nextPos.z += (platformPrefab.localScale.z / 2);
-        nextRightPos.z += (rightPlatformPrefab.localScale.z / 2);
+        nextLeftPos.z += leftPlatformPrefab.localScale.z;
+        nextPos.z += platformPrefab.localScale.z;
+        nextRightPos.z += rightPlatformPrefab.localScale.z;
 
         platformLeftQueue.Enqueue(leftPlatform);
         platformQueue.Enqueue(platform);
