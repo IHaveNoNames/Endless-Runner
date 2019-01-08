@@ -14,12 +14,13 @@ public class Chaser : MonoBehaviour
     public const float dangerousDuration = 10f;
     public static float dangerousTimeRemaining;
 
-    private float toCloseDurationOfLerp = 0.5f;
+    private float toCloseDurationOfLerp = 0.7f;
     private float toFarDurationOfLerp = 1f;
-    private float toCatchDurationOfLerp = 0.2f;
+    private float toCatchDurationOfLerp = 0.5f;
     public static bool isLerping = false;
-    float timeStarted;
-    Vector3 startPos;
+    public static float timeStarted;
+    public static Vector3 startPos;
+    
     // Use this for initialization
     void Start()
     {
@@ -42,8 +43,7 @@ public class Chaser : MonoBehaviour
         }
         if (isLerping)
         {
-            timeStarted = Time.time;
-            startPos = transform.position;
+            
             if (isCaught)
             {
                 LerpToCatch();
@@ -65,9 +65,13 @@ public class Chaser : MonoBehaviour
                 transform.position = Far.transform.position;
 
             }
-            else if (isClose)
+            if (isClose)
             {
                 transform.position = Close.transform.position;
+            }
+            if (isCaught)
+            {
+                transform.position = Catch.transform.position;
             }
         }
         //placeholder for now
@@ -78,7 +82,7 @@ public class Chaser : MonoBehaviour
     public void LerpToClose()
     {
 
-        
+
         
         
         if (isLerping)
@@ -119,26 +123,32 @@ public class Chaser : MonoBehaviour
 
     public void LerpToCatch()
     {
-        Catch.transform.parent = null;
+       
         
-        if (isLerping)
-        {
+        //Catch.transform.parent = null;
 
-            {
-                float timeSinceStarted = Time.time - timeStarted;
-                float percentageComplete = timeSinceStarted / toCatchDurationOfLerp;
+         if (isLerping)
+         {
+
+             {
+                 float timeSinceStarted = Time.time - timeStarted;
+                 float percentageComplete = timeSinceStarted / toCatchDurationOfLerp;
                 
-                    Vector3 newPos = Vector3.Lerp(startPos, Catch.transform.position, percentageComplete);
-                    transform.position = new Vector3(newPos.x, transform.position.y, transform.position.z);
-
-                    if (percentageComplete >= 1.0f)
-                    {
-                        isLerping = false;
-                    }
                 
-            }
+                     Vector3 newPos = Vector3.Lerp(startPos, Catch.transform.position, percentageComplete);
+                
+                     transform.position = new Vector3(newPos.x, transform.position.y, transform.position.z);
+                
+                     if (percentageComplete >= 1.0f)
+                     {
+                         isLerping = false;
+                     }
 
-        }
+             }
+
+         }
+        /*float speed = 20f;
+        Vector3.MoveTowards(transform.position, playerLastPosition, speed * Time.deltaTime);*/
     }
 }
     

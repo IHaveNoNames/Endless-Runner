@@ -131,6 +131,8 @@ public class GameManager : MonoBehaviour
             }
             else if (Chaser.isFar == true)
             {
+                Chaser.timeStarted = Time.time;
+                Chaser.startPos = chaser.gameObject.transform.position;
                 Chaser.dangerousTimeRemaining = Chaser.dangerousDuration;
                 Chaser.isFar = false;
                 Chaser.isClose = true;
@@ -221,11 +223,14 @@ public class GameManager : MonoBehaviour
 
     public void GameOver()
     {
-        print("GameOVer");
+        Chaser.timeStarted = Time.time;
+        Chaser.startPos = chaser.gameObject.transform.position;
+        Chaser.isCaught = true;
         Chaser.isFar = false;
         Chaser.isClose = false;
-        Chaser.isCaught = true;
+        
         Chaser.isLerping=true;
+        
         gameOverCanvas.SetActive(true);
         coinTextGameOver.text = GameStatus.coinCollected.ToString();
         distanceTextGameOver.text = Mathf.RoundToInt(GameStatus.distanceTravelled).ToString();
