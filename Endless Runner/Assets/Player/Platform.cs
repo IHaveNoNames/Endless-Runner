@@ -326,12 +326,20 @@ public class Platform : MonoBehaviour {
         //Vest = 20%
         //Magic Wand = 10%
 
-        Transform[] possibleSpawn = new Transform[3];
+        Transform[] possibleSpawn = new Transform[2];
         CheckIfEmpty(leftStatus, middleStatus, rightStatus, ref possibleSpawn);
         int rand = Random.Range(0, possibleSpawn.Length);
-
+        int notRand = 1 - rand;
+        Debug.Log(possibleSpawn.Length);
+;
         if (possibleSpawn[0] != null)
         {
+            if(possibleSpawn[1] != null)
+            {
+                int coin = 1;
+                Instantiate(powerups[coin], new Vector3(possibleSpawn[notRand].transform.position.x, possibleSpawn[notRand].transform.position.y + (powerups[coin].transform.localScale.y / 2), possibleSpawn[notRand].transform.position.z), Quaternion.identity);
+            }
+
             if (percentage <= GameManager.percentMagicWand)
             {
                 int magicWand = 4;
@@ -348,11 +356,6 @@ public class Platform : MonoBehaviour {
             {
                 int magnet = 2;
                 Instantiate(powerups[magnet], new Vector3(possibleSpawn[rand].transform.position.x, possibleSpawn[rand].transform.position.y + (powerups[magnet].transform.localScale.y / 2), possibleSpawn[rand].transform.position.z), Quaternion.identity);
-            }
-
-            else
-            {
-                Instantiate(powerups[0], new Vector3(possibleSpawn[rand].transform.position.x, possibleSpawn[rand].transform.position.y + (powerups[0].transform.localScale.y / 2), possibleSpawn[rand].transform.position.z), Quaternion.identity);
             }
         }
     }
@@ -397,7 +400,7 @@ public class Platform : MonoBehaviour {
             }
         }
 
-        else if(middle.gameObject.tag == obstacles[0].tag)
+        if(middle.gameObject.tag == obstacles[0].tag)
         {
             for (int i = 0; i < storeInside.Length; i++)
             {
@@ -408,7 +411,7 @@ public class Platform : MonoBehaviour {
             }
         }
 
-        else if(right.gameObject.tag == obstacles[0].tag)
+        if(right.gameObject.tag == obstacles[0].tag)
         {
             for (int i = 0; i < storeInside.Length; i++)
             {
