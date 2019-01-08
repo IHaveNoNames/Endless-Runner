@@ -126,7 +126,9 @@ public class GameManager : MonoBehaviour
             }
             else if (Chaser.isFar == true)
             {
-                chaser.LerpToClose();
+                Chaser.isFar = false;
+                Chaser.isClose = true;
+                Chaser.isLerping = true;
             }
         }
         else
@@ -214,7 +216,10 @@ public class GameManager : MonoBehaviour
     public void GameOver()
     {
         print("GameOVer");
-        chaser.LerpToCatch();
+        Chaser.isFar = false;
+        Chaser.isClose = false;
+        Chaser.isCaught = true;
+        Chaser.isLerping=true;
         gameOverCanvas.SetActive(true);
         coinTextGameOver.text = GameStatus.coinCollected.ToString();
         distanceTextGameOver.text = Mathf.RoundToInt(GameStatus.distanceTravelled).ToString();

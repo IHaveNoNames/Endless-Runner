@@ -182,6 +182,12 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 35441889}
+--- !u!114 &59506266 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114783743137757930, guid: 01c00a1893c76c041b99b53405fc09fc,
+    type: 2}
+  m_PrefabInternal: {fileID: 1826678524}
+  m_Script: {fileID: 11500000, guid: 9cc00eebefe8f144b99de9724d0b2e84, type: 3}
 --- !u!1 &161215018
 GameObject:
   m_ObjectHideFlags: 0
@@ -5829,6 +5835,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 905711876}
   mainCamera: {fileID: 282840813}
+  chaser: {fileID: 59506266}
   bossTotalHeath: 10
   bossCurrentHealth: 0
   coinText: {fileID: 1106384364}
