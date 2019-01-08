@@ -25,9 +25,11 @@ public class GameManager : MonoBehaviour
     public static int twoObstaclesPercent = 45;
     public static int threeObstaclesPercent = 20;
 
-    public static int percentPowerup = 30;
-    public static int percentVest = 40;
-    public static int percentMagnet = 60;
+    public static int percentMagicWand = 10;
+    public static int percentVest = 20;
+    public static int percentMagnet = 30;
+
+    public static bool readyToSpawn = true; //put in game manager when cross 500m.
 
     public Text coinText;
     public Text distanceText;
@@ -52,7 +54,8 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(GameStatus.distanceTravelled % minigameDistance == 0) //for every 100 metres
+
+        if(Mathf.RoundToInt(GameStatus.distanceTravelled) % minigameDistance == 0) //for every 100 metres
         {
             float n = Random.Range(0, 2);
             if (n == 0)
@@ -66,6 +69,8 @@ public class GameManager : MonoBehaviour
             }
 
             IncreaseDifficulty();
+
+            readyToSpawn = true;
         }
 
         PowerUpCountDown();

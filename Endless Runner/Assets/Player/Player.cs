@@ -26,7 +26,6 @@ public class Player : MonoBehaviour
 
     private Vector2 touchOrigin = -Vector2.one;
 
-
     //Ground Checking
     [SerializeField]
     Transform groundCheck;
