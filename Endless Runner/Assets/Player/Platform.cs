@@ -152,17 +152,7 @@ public class Platform : MonoBehaviour {
         Transform rightPlatformStatus;
 
         RecycleObstacle(leftPlatform, platform, rightPlatform, out leftPlatformStatus, out platformStatus, out rightPlatformStatus);
-
         RecyclePowerups(leftPlatformStatus, platformStatus, rightPlatformStatus);
-
-        
-        
-
-        //obstacle recycling done
-
-
-        //make coin have chance to spawn
-        //check for any object in position.transform.x
 
     }
 
@@ -191,19 +181,10 @@ public class Platform : MonoBehaviour {
                 //if platform chosen to be left platform
                 int leftObstacle = Random.Range(1, obstacles.Length);
                 Transform newLeftObstacle = HandleRecyclingObstacles(obstacleQueueLeft, leftObstacle, leftPlatform);
-                //obstacleQueueLeft.Enqueue((Transform)Instantiate(obstacles[leftObstacle], new Vector3(leftPlatform.position.x, leftPlatform.position.y + obstacles[leftObstacle].transform.localScale.y / 2, leftPlatform.position.z), Quaternion.identity));
-                //Queue<Transform> reverseLeft = Reverse(obstacleQueueLeft);
-                //Transform newLeftObstacle = reverseLeft.Dequeue();
 
                 Transform newObstacle = HandleRecyclingObstacles(obstacleQueue, 0, platform);
-                //obstacleQueue.Enqueue((Transform)Instantiate(obstacles[0], new Vector3(platform.position.x, platform.position.y + obstacles[0].transform.localScale.y / 2, platform.position.z), Quaternion.identity));
-                //Queue<Transform> reverse = Reverse(obstacleQueue);
-                //Transform newObstacle = reverseLeft.Dequeue();
 
                 Transform newRightObstacle = HandleRecyclingObstacles(obstacleQueueRight, 0, rightPlatform);
-                //obstacleQueueRight.Enqueue((Transform)Instantiate(obstacles[0], new Vector3(rightPlatform.position.x, rightPlatform.position.y + obstacles[0].transform.localScale.y / 2, rightPlatform.position.z), Quaternion.identity));
-                //Queue<Transform> reverseRight = Reverse(obstacleQueueRight);
-                //Transform newRightObstacle = reverseRight.Dequeue();
 
                 leftPlatformStatus = newLeftObstacle;
                 platformStatus = newObstacle;
@@ -214,20 +195,11 @@ public class Platform : MonoBehaviour {
             {
                 //if platform chosen to be middle platform
                 Transform newLeftObstacle = HandleRecyclingObstacles(obstacleQueueLeft, 0, leftPlatform);
-                //obstacleQueueLeft.Enqueue((Transform)Instantiate(obstacles[0], new Vector3(leftPlatform.position.x, leftPlatform.position.y + obstacles[0].transform.localScale.y / 2, leftPlatform.position.z), Quaternion.identity));
-                //Queue<Transform> reverseLeft = Reverse(obstacleQueueLeft);
-                //Transform newLeftObstacle = reverseLeft.Dequeue();
 
                 int obstacle = Random.Range(1, obstacles.Length);
                 Transform newObstacle = HandleRecyclingObstacles(obstacleQueue, obstacle, platform);
-                //obstacleQueue.Enqueue((Transform)Instantiate(obstacles[obstacle], new Vector3(platform.position.x, platform.position.y + obstacles[obstacle].transform.localScale.y / 2, platform.position.z), Quaternion.identity));
-                //Queue<Transform> reverse = Reverse(obstacleQueue);
-                //Transform newObstacle = reverseLeft.Dequeue();
 
                 Transform newRightObstacle = HandleRecyclingObstacles(obstacleQueueRight, 0, rightPlatform);
-                //obstacleQueueRight.Enqueue((Transform)Instantiate(obstacles[0], new Vector3(rightPlatform.position.x, rightPlatform.position.y + obstacles[0].transform.localScale.y / 2, rightPlatform.position.z), Quaternion.identity));
-                //Queue<Transform> reverseRight = Reverse(obstacleQueueRight);
-                //Transform newRightObstacle = reverseRight.Dequeue();
 
                 leftPlatformStatus = newLeftObstacle;
                 platformStatus = newObstacle;
@@ -239,20 +211,11 @@ public class Platform : MonoBehaviour {
                 //if platform chosen to be right platform
 
                 Transform newLeftObstacle = HandleRecyclingObstacles(obstacleQueueLeft, 0, leftPlatform);
-                //obstacleQueueLeft.Enqueue((Transform)Instantiate(obstacles[0], new Vector3(leftPlatform.position.x, leftPlatform.position.y + obstacles[0].transform.localScale.y / 2, leftPlatform.position.z), Quaternion.identity));
-                //Queue<Transform> reverseLeft = Reverse(obstacleQueueLeft);
-                //Transform newLeftObstacle = reverseLeft.Dequeue();
 
                 Transform newObstacle = HandleRecyclingObstacles(obstacleQueue, 0, platform);
-                //obstacleQueue.Enqueue((Transform)Instantiate(obstacles[0], new Vector3(platform.position.x, platform.position.y + obstacles[0].transform.localScale.y / 2, platform.position.z), Quaternion.identity));
-                //Queue<Transform> reverse = Reverse(obstacleQueue);
-                //Transform newObstacle = reverseLeft.Dequeue();
 
                 int rightObstacle = Random.Range(1, obstacles.Length);
                 Transform newRightObstacle = HandleRecyclingObstacles(obstacleQueueRight, rightObstacle, rightPlatform);
-                //obstacleQueueRight.Enqueue((Transform)Instantiate(obstacles[rightObstacle], new Vector3(rightPlatform.position.x, rightPlatform.position.y + obstacles[rightObstacle].transform.localScale.y / 2, rightPlatform.position.z), Quaternion.identity));
-                //Queue<Transform> reverseRight = Reverse(obstacleQueueRight);
-                //Transform newRightObstacle = reverseRight.Dequeue();
 
                 leftPlatformStatus = newLeftObstacle;
                 platformStatus = newObstacle;
@@ -269,15 +232,12 @@ public class Platform : MonoBehaviour {
             {
                 //if platform chosen to be middle and right
                 Transform newLeftObstacle = HandleRecyclingObstacles(obstacleQueueLeft, 0, leftPlatform);
-                //obstacleQueueLeft.Enqueue((Transform)Instantiate(obstacles[0], new Vector3(leftPlatform.position.x, leftPlatform.position.y + obstacles[0].transform.localScale.y / 2, leftPlatform.position.z), Quaternion.identity));
 
                 int obstacle = Random.Range(1, obstacles.Length);
                 Transform newObstacle = HandleRecyclingObstacles(obstacleQueue, obstacle, platform);
-                //obstacleQueue.Enqueue((Transform)Instantiate(obstacles[obstacle], new Vector3(platform.position.x, platform.position.y + obstacles[obstacle].transform.localScale.y / 2, platform.position.z), Quaternion.identity));
 
                 int rightObstacle = Random.Range(1, obstacles.Length);
                 Transform newRightObstacle = HandleRecyclingObstacles(obstacleQueueRight, rightObstacle, rightPlatform);
-                //obstacleQueueRight.Enqueue((Transform)Instantiate(obstacles[rightObstacle], new Vector3(rightPlatform.position.x, rightPlatform.position.y + obstacles[rightObstacle].transform.localScale.y / 2, rightPlatform.position.z), Quaternion.identity));
 
                 leftPlatformStatus = newLeftObstacle;
                 platformStatus = newObstacle;
@@ -366,27 +326,25 @@ public class Platform : MonoBehaviour {
         //Vest = 20%
         //Magic Wand = 10%
 
-        
-        if(GameManager.readyToSpawn == true)
+        Transform[] possibleSpawn = new Transform[3];
+        CheckIfEmpty(leftStatus, middleStatus, rightStatus, ref possibleSpawn);
+        int rand = Random.Range(0, possibleSpawn.Length);
+
+        if (possibleSpawn[0] != null)
         {
-            Transform[] possibleSpawn = new Transform[3];
-            CheckIfEmpty(leftStatus, middleStatus, rightStatus, ref possibleSpawn);
-            int rand = Random.Range(0, possibleSpawn.Length);
-
-
             if (percentage <= GameManager.percentMagicWand)
             {
                 int magicWand = 4;
                 Instantiate(powerups[magicWand], new Vector3(possibleSpawn[rand].transform.position.x, possibleSpawn[rand].transform.position.y + (powerups[magicWand].transform.localScale.y / 2), possibleSpawn[rand].transform.position.z), Quaternion.identity);
             }
 
-            else if(percentage > GameManager.percentMagicWand && percentage <= GameManager.percentVest + GameManager.percentMagicWand)
+            else if (percentage > GameManager.percentMagicWand && percentage <= GameManager.percentVest + GameManager.percentMagicWand)
             {
                 int vest = 3;
                 Instantiate(powerups[vest], new Vector3(possibleSpawn[rand].transform.position.x, possibleSpawn[rand].transform.position.y + (powerups[vest].transform.localScale.y / 2), possibleSpawn[rand].transform.position.z), Quaternion.identity);
             }
 
-            else if(percentage > GameManager.percentMagicWand + GameManager.percentVest && percentage <= GameManager.percentMagicWand + GameManager.percentVest + GameManager.percentMagnet)
+            else if (percentage > GameManager.percentMagicWand + GameManager.percentVest && percentage <= GameManager.percentMagicWand + GameManager.percentVest + GameManager.percentMagnet)
             {
                 int magnet = 2;
                 Instantiate(powerups[magnet], new Vector3(possibleSpawn[rand].transform.position.x, possibleSpawn[rand].transform.position.y + (powerups[magnet].transform.localScale.y / 2), possibleSpawn[rand].transform.position.z), Quaternion.identity);
@@ -396,43 +354,8 @@ public class Platform : MonoBehaviour {
             {
                 Instantiate(powerups[0], new Vector3(possibleSpawn[rand].transform.position.x, possibleSpawn[rand].transform.position.y + (powerups[0].transform.localScale.y / 2), possibleSpawn[rand].transform.position.z), Quaternion.identity);
             }
-
-            GameManager.readyToSpawn = false;
-
         }
-
-        //take this results, use System.Array.IndexOf to check if the obstacles[]'s array = 0;
     }
-    //void RecyclePowerups(Vector3 position, ref Queue<Transform> powerupq)
-    //{
-    //    Transform powerup = powerupq.Dequeue();
-
-    //    if (powerup != null) //change it next time to powerup.gameobject.coin.pickedup == true
-    //    {
-    //        Destroy(powerup.gameObject);
-    //    }
-
-    //    int percentage = Random.Range(0, 100);
-
-    //    if (percentage <= GameManager.percentPowerup)
-    //    {
-    //        int itemPercentage = Random.Range(0, 100);
-    //        if(itemPercentage <= GameManager.percentCar)
-    //        {
-    //            powerupq.Enqueue((Transform)Instantiate(powerups[2], new Vector3(position.x, position.y + powerups[2].transform.localScale.y / 2, position.z), Quaternion.identity));
-    //        }
-
-    //        else if (itemPercentage > ((GameManager.percentCar + GameManager.percentBarrier) - GameManager.percentBarrier) && itemPercentage <= (GameManager.percentCar + GameManager.percentBarrier))
-    //        {
-    //            powerupq.Enqueue((Transform)Instantiate(powerups[1], new Vector3(position.x, position.y + powerups[1].transform.localScale.y / 2, position.z), Quaternion.identity));
-    //        }
-    //    }
-
-    //    else
-    //    {
-    //        powerupq.Enqueue((Transform)Instantiate(powerups[0], new Vector3(position.x, position.y + powerups[0].transform.localScale.y / 2, position.z), Quaternion.identity));
-    //    }
-    //}
 
     void DestroyLaneObstacles(ref Queue<Transform> obstacleq)
     {
@@ -461,67 +384,39 @@ public class Platform : MonoBehaviour {
 
     }
 
-    Queue<Transform> Reverse(Queue<Transform> queue)
+    void CheckIfEmpty(Transform left, Transform middle, Transform right, ref Transform[] storeInside)
     {
-        Queue<Transform> reversed = new Queue<Transform>(noOfPlatforms);
-
-        Stack<Transform> stack = new Stack<Transform>(noOfPlatforms);
-
-        for (int i = 0; i < noOfPlatforms; i++)
-        {
-            stack.Push(queue.Dequeue());
-        }
-
-        for (int i = 0; i < noOfPlatforms; i++)
-        {
-            reversed.Enqueue(stack.Pop());
-        }
-
-        return reversed;
-    }
-
-    void CheckIfEmpty(Transform leftStatus, Transform middleStatus, Transform rightStatus, ref Transform[] storeInside)
-    {
-        if (leftStatus.gameObject.tag == obstacles[0].tag)
+        if (left.gameObject.tag == obstacles[0].tag)
         {
             for (int i = 0; i < storeInside.Length; i++)
             {
                 if (storeInside[i] == null)
                 {
-                    storeInside[i] = leftStatus;
+                    storeInside[i] = left;
                 }
             }
         }
 
-        else if(middleStatus.gameObject.tag == obstacles[0].tag)
+        else if(middle.gameObject.tag == obstacles[0].tag)
         {
             for (int i = 0; i < storeInside.Length; i++)
             {
                 if (storeInside[i] == null)
                 {
-                    storeInside[i] = middleStatus;
+                    storeInside[i] = middle;
                 }
             }
         }
 
-        else if(rightStatus.gameObject.tag == obstacles[0].tag)
+        else if(right.gameObject.tag == obstacles[0].tag)
         {
             for (int i = 0; i < storeInside.Length; i++)
             {
                 if (storeInside[i] == null)
                 {
-                    storeInside[i] = rightStatus;
+                    storeInside[i] = right;
                 }
             }
         }
     }
-
-    enum Status {
-
-        leftStatus,
-        middleStatus,
-        rightStatus
-    }
-
-    
 }

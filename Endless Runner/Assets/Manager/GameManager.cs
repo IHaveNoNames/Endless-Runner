@@ -68,8 +68,6 @@ public class GameManager : MonoBehaviour
                 BossFightStart();
             }
 
-            IncreaseDifficulty();
-
             readyToSpawn = true;
         }
 
