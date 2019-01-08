@@ -2344,7 +2344,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1557528194}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2128009535}
+        m_MethodName: LoadGameLevel
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &1557528194
@@ -5753,6 +5764,7 @@ GameObject:
   - component: {fileID: 2128009533}
   - component: {fileID: 2128009532}
   - component: {fileID: 2128009534}
+  - component: {fileID: 2128009535}
   m_Layer: 0
   m_Name: Game Manager
   m_TagString: Untagged
@@ -5816,6 +5828,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 905711876}
+  mainCamera: {fileID: 282840813}
   bossTotalHeath: 10
   bossCurrentHealth: 0
   coinText: {fileID: 1106384364}
@@ -5827,3 +5840,16 @@ MonoBehaviour:
   magnetFillBar: {fileID: 1458767199}
   coinTextGameOver: {fileID: 1578992300}
   distanceTextGameOver: {fileID: 277993928}
+  gameOverCanvas: {fileID: 390682208}
+  mainCanvas: {fileID: 2067440965}
+--- !u!114 &2128009535
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2128009531}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c2c7f3e8a162d04b97afd53f457b4e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

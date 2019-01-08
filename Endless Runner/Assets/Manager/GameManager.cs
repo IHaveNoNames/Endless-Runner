@@ -9,6 +9,8 @@ public class GameManager : MonoBehaviour
 
     public GameObject player;
     private Platform platform;
+    public Camera mainCamera;
+    public Chaser chaser;
 
     
     public int bossTotalHeath = 10;
@@ -36,6 +38,8 @@ public class GameManager : MonoBehaviour
     public Image magnetFillBar;
     public Text coinTextGameOver;
     public Text distanceTextGameOver;
+    public GameObject gameOverCanvas;
+    public GameObject mainCanvas;
 
 
     // Use this for initialization
@@ -102,7 +106,9 @@ public class GameManager : MonoBehaviour
         if (GameStatus.vest == false)
         {
             //gameover event
-            print("GameOVer");
+
+            GameOver();
+
         }
         else
         {
@@ -114,7 +120,14 @@ public class GameManager : MonoBehaviour
     {
         if (GameStatus.vest == false)
         {
-            //police catches up
+            if (Chaser.isClose == true)
+            {
+                GameOver();
+            }
+            else if (Chaser.isFar == true)
+            {
+                chaser.LerpToClose();
+            }
         }
         else
         {
@@ -196,5 +209,18 @@ public class GameManager : MonoBehaviour
         {
             wandButton.SetActive(false);
         }
+    }
+
+    public void GameOver()
+    {
+        print("GameOVer");
+        chaser.LerpToCatch();
+        gameOverCanvas.SetActive(true);
+        coinTextGameOver.text = GameStatus.coinCollected.ToString();
+        distanceTextGameOver.text = Mathf.RoundToInt(GameStatus.distanceTravelled).ToString();
+        mainCamera.transform.parent = null;
+        mainCanvas.SetActive(false);
+        player.SetActive(false);
+        
     }
 }
