@@ -126,6 +126,7 @@ public class GameManager : MonoBehaviour
             }
             else if (Chaser.isFar == true)
             {
+                Chaser.dangerousTimeRemaining = Chaser.dangerousDuration;
                 Chaser.isFar = false;
                 Chaser.isClose = true;
                 Chaser.isLerping = true;

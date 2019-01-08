@@ -11,14 +11,15 @@ public class Chaser : MonoBehaviour
     public static bool isFar = true;
     public static bool isClose = false;
     public static bool isCaught = false;
-    public float dangerousDuration = 10f;
-    private float dangerousTimeRemaining;
+    public const float dangerousDuration = 10f;
+    public static float dangerousTimeRemaining;
 
     private float toCloseDurationOfLerp = 0.5f;
     private float toFarDurationOfLerp = 1f;
     private float toCatchDurationOfLerp = 0.2f;
     public static bool isLerping = false;
-
+    float timeStarted;
+    Vector3 startPos;
     // Use this for initialization
     void Start()
     {
@@ -35,10 +36,14 @@ public class Chaser : MonoBehaviour
 
         if (dangerousTimeRemaining <= 0 && isClose == true)//lerp to far
         {
-            LerpToFar();
+            isClose = false;
+            isFar = true;
+            isLerping = true;
         }
         if (isLerping)
         {
+            timeStarted = Time.time;
+            startPos = transform.position;
             if (isCaught)
             {
                 LerpToCatch();
@@ -75,8 +80,7 @@ public class Chaser : MonoBehaviour
 
         
         
-        float timeStarted = Time.time;
-        Vector3 startPos = transform.position;
+        
         if (isLerping)
         {
             float timeSinceStarted = Time.time - timeStarted;
@@ -96,12 +100,7 @@ public class Chaser : MonoBehaviour
 
     public void LerpToFar()
     {
-
-
-        
-       
-        float timeStarted = Time.time;
-        Vector3 startPos = transform.position;
+            
         if (isLerping)
         {
             float timeSinceStarted = Time.time - timeStarted;
@@ -122,10 +121,6 @@ public class Chaser : MonoBehaviour
     {
         Catch.transform.parent = null;
         
-
-        isLerping = true;
-        float timeStarted = Time.time;
-        Vector3 startPos = transform.position;
         if (isLerping)
         {
 
