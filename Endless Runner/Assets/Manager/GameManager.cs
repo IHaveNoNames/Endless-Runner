@@ -247,11 +247,16 @@ public class GameManager : MonoBehaviour
         mainCamera.transform.parent = null;
         mainCanvas.SetActive(false);
         player.SetActive(false);
-        
+
+        GameStatus.vest = false;
+        GameStatus.vestRemaining = 0f;
+        GameStatus.magicWand = false;
+        GameStatus.magnet = false;
+        GameStatus.magnetRemaining = 0f;
+        GameStatus.coinCollected = 0;
+        GameStatus.distanceTravelled = 0f;
+
     }
 
-    void SpawnPowerups()
-    {
-        
-    }
+    
 }
