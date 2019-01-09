@@ -43,6 +43,8 @@ public class GameManager : MonoBehaviour
     public Text distanceTextGameOver;
     public GameObject gameOverCanvas;
     public GameObject mainCanvas;
+    public GameObject pauseUI;
+    
 
 
     // Use this for initialization
@@ -256,6 +258,18 @@ public class GameManager : MonoBehaviour
         GameStatus.coinCollected = 0;
         GameStatus.distanceTravelled = 0f;
 
+    }
+
+    public void GamePause()
+    {
+        pauseUI.SetActive(true);
+        Time.timeScale = 0;
+    }
+
+    public void GameResume()
+    {
+        pauseUI.SetActive(false);
+        Time.timeScale = 1;
     }
 
     

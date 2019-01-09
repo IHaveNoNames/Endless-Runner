@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class SceneTransition : MonoBehaviour {
 
-	
+    
 	
 
     public void LoadGameLevel()
@@ -13,4 +13,6 @@ public class SceneTransition : MonoBehaviour {
         SceneManager.UnloadSceneAsync("SampleScene");
         SceneManager.LoadScene("SampleScene");
     }
+
+    
 }
