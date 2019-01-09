@@ -4,14 +4,17 @@ using UnityEngine;
 
 public class MovingObstacles : Obstacles
 {
-    public float speed;
+    public float maxSpeed;
+    public float minSpeed;
+    private float speed;
     /*private MeshRenderer meshRenderer;
     private BoxCollider boxCollider;*/
 
     // Use this for initialization
     void Start () {
-       /* meshRenderer = gameObject.GetComponent<MeshRenderer>();
-        boxCollider = gameObject.GetComponent<BoxCollider>();*/
+        /* meshRenderer = gameObject.GetComponent<MeshRenderer>();
+         boxCollider = gameObject.GetComponent<BoxCollider>();*/
+        speed = Random.Range(minSpeed, maxSpeed);
     }
 	
 	// Update is called once per frame
