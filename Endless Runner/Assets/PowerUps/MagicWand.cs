@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class MagicWand : MonoBehaviour {
 
+    private AudioController audioController;
 	// Use this for initialization
 	void Start () {
-		
+        audioController = GameObject.Find("Audio").GetComponent<AudioController>();
 	}
 	
 	// Update is called once per frame
@@ -19,6 +20,7 @@ public class MagicWand : MonoBehaviour {
         if (other.gameObject.CompareTag("Player"))
         {
             GetWand();
+            audioController.powerup.PlayOneShot(audioController.powerup.clip);
             Destroy(gameObject);
         }
     }

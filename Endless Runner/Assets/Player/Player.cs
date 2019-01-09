@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    private AudioController audioController;
     public static float acceleration = 20f;
 
     Rigidbody rb;
@@ -40,7 +41,7 @@ public class Player : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         anim = GetComponent<Animator>();
-        
+        audioController = GameObject.Find("Audio").GetComponent<AudioController>();
     }
 
     // Update is called once per frame
@@ -67,6 +68,7 @@ public class Player : MonoBehaviour
         if (Input.GetButtonDown("Jump") && onGround)
         {
             anim.SetTrigger("Jump");
+            audioController.jump.Play();
             rb.AddForce(jumpVelocity, ForceMode.VelocityChange);
         }
 

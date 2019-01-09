@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Coin : MonoBehaviour
 {
+    private AudioController audioController;
     private GameObject player;
     public float attractDistance;
     public float attractSpeed;
@@ -11,6 +12,7 @@ public class Coin : MonoBehaviour
     void Start()
     {
         player = GameObject.Find("Player");
+        audioController = GameObject.Find("Audio").GetComponent<AudioController>();
     }
 
     // Update is called once per frame
@@ -23,7 +25,9 @@ public class Coin : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
+            audioController.coin.PlayOneShot(audioController.coin.clip);
             GameStatus.coinCollected += 1;
+            
             Destroy(gameObject);
         }
     }

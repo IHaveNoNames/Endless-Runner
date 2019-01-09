@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class Vest : MonoBehaviour {
     public float vestDuration = 20f;
-    
-	// Use this for initialization
-	void Start () {
-        
-	}
+    private AudioController audioController;
+    // Use this for initialization
+    void Start () {
+        audioController = GameObject.Find("Audio").GetComponent<AudioController>();
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -20,6 +20,7 @@ public class Vest : MonoBehaviour {
         if (other.gameObject.CompareTag("Player"))
         {
             GetVest();
+            audioController.powerup.PlayOneShot(audioController.powerup.clip);
             Destroy(gameObject);
         }
     }

@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Magnet : MonoBehaviour {
-
+    private AudioController audioController;
     public float magnetDuration =10f;
 	// Use this for initialization
 	void Start () {
-		
-	}
+        audioController = GameObject.Find("Audio").GetComponent<AudioController>();
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -20,6 +20,7 @@ public class Magnet : MonoBehaviour {
         if (other.gameObject.CompareTag("Player"))
         {
             GetMagnet();
+            audioController.powerup.PlayOneShot(audioController.powerup.clip);
             Destroy(gameObject);
         }
     }

@@ -44,8 +44,8 @@ public class GameManager : MonoBehaviour
     public GameObject gameOverCanvas;
     public GameObject mainCanvas;
     public GameObject pauseUI;
-    
 
+    private AudioController audioController;
 
     // Use this for initialization
     void Start()
@@ -58,7 +58,7 @@ public class GameManager : MonoBehaviour
         GameStatus.magnetRemaining = 0f;
         GameStatus.coinCollected = 0;
         GameStatus.distanceTravelled = 0f;
-
+        audioController = GameObject.Find("Audio").GetComponent<AudioController>();
     }
 
     // Update is called once per frame
@@ -235,6 +235,8 @@ public class GameManager : MonoBehaviour
 
     public void GameOver()
     {
+        
+        audioController.die.PlayOneShot(audioController.die.clip);
         chaser.timeStarted = Time.time;
         chaser.startPos = chaser.gameObject.transform.position;
         chaser.isCaught = true;
@@ -263,12 +265,14 @@ public class GameManager : MonoBehaviour
     public void GamePause()
     {
         pauseUI.SetActive(true);
+        audioController.click.PlayOneShot(audioController.click.clip);
         Time.timeScale = 0;
     }
 
     public void GameResume()
     {
         pauseUI.SetActive(false);
+        audioController.click.PlayOneShot(audioController.click.clip);
         Time.timeScale = 1;
     }
 
