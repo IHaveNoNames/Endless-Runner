@@ -20,7 +20,7 @@ public class GameManager : MonoBehaviour
     public static bool bossFightActive = false;
 
     float minigameDistance = 100;
-    int powerupDistance = 200;
+    float powerupDistance = 200;
 
     public static int oneObstaclePercent = 35;
     public static int twoObstaclesPercent = 45;
@@ -30,7 +30,7 @@ public class GameManager : MonoBehaviour
     public static int percentVest = 20;
     public static int percentMagnet = 30;
 
-    public static bool readyToSpawn = true; //put in game manager when cross 500m.
+    public static bool readyForPowerup = false; //put in game manager when cross 500m.
 
     public Text coinText;
     public Text distanceText;
@@ -56,14 +56,16 @@ public class GameManager : MonoBehaviour
         GameStatus.magnetRemaining = 0f;
         GameStatus.coinCollected = 0;
         GameStatus.distanceTravelled = 0f;
-        platform.DestroyAllObstacles();
 
     }
 
     // Update is called once per frame
     void Update()
     {
-        SpawnPowerups();
+        if (Mathf.RoundToInt(GameStatus.distanceTravelled) % powerupDistance == 0 && Mathf.RoundToInt(GameStatus.distanceTravelled) != 0)
+        {
+            readyForPowerup = true;
+        }
 
         //if(Mathf.RoundToInt(GameStatus.distanceTravelled) % minigameDistance == 0) //for every 100 metres
         //{
@@ -250,9 +252,6 @@ public class GameManager : MonoBehaviour
 
     void SpawnPowerups()
     {
-        if(Mathf.RoundToInt(GameStatus.distanceTravelled) % powerupDistance == 0)
-        {
-            readyToSpawn = true;
-        }
+        
     }
 }

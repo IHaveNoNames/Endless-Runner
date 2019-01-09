@@ -123,10 +123,12 @@ public class Platform : MonoBehaviour {
         if(GameStatus.distanceTravelled > 50)
         {
             RecycleObstacle(leftPlatform, platform, rightPlatform, out leftPlatformStatus, out platformStatus, out rightPlatformStatus);
-            if(GameManager.readyToSpawn == true)
+
+            
+            if (GameManager.readyForPowerup == true)
             {
                 RecyclePowerups(leftPlatformStatus, platformStatus, rightPlatformStatus);
-                GameManager.readyToSpawn = false;
+                GameManager.readyForPowerup = false;
             }        
         }
     }
@@ -301,16 +303,10 @@ public class Platform : MonoBehaviour {
         //Vest = 20%
         //Magic Wand = 10%
 
-        Transform[] possibleSpawn = new Transform[2];
-        CheckIfEmpty(leftStatus, middleStatus, rightStatus, ref possibleSpawn);
+        Transform[] possibleSpawn = CheckIfEmpty(leftStatus, middleStatus, rightStatus);
+
         int rand = Random.Range(0, possibleSpawn.Length);
-        int reverserand = 1 - rand;
-        Debug.Log(rand + "," + reverserand);
-        
-        int notRand = 1 - rand;
-        Debug.Log(possibleSpawn.Length);
-;
-        if (possibleSpawn[0] != null)
+        if (possibleSpawn.Length != 0)
         {
 
             if (percentage <= GameManager.percentMagicWand)
@@ -336,6 +332,12 @@ public class Platform : MonoBehaviour {
                 int coin = 1;
                 Instantiate(powerups[coin], new Vector3(possibleSpawn[rand].transform.position.x, possibleSpawn[rand].transform.position.y + (powerups[coin].transform.localScale.y / 2), possibleSpawn[rand].transform.position.z), transform.rotation);
             }
+
+            if(possibleSpawn.Length == 2)
+            {
+                int coin = 1;
+                Instantiate(powerups[coin], new Vector3(possibleSpawn[1-rand].transform.position.x, possibleSpawn[rand].transform.position.y + (powerups[coin].transform.localScale.y / 2), possibleSpawn[1-rand].transform.position.z), transform.rotation);
+            }
         }
     }
 
@@ -346,8 +348,6 @@ public class Platform : MonoBehaviour {
             Transform obstacle = obstacleq.Dequeue();
             Destroy(obstacle.gameObject);
         }
-
-        
     }
 
     public void DestroyAllObstacles()
@@ -366,39 +366,99 @@ public class Platform : MonoBehaviour {
 
     }
 
-    void CheckIfEmpty(Transform left, Transform middle, Transform right, ref Transform[] storeInside)
+    Transform[] CheckIfEmpty(Transform left, Transform middle, Transform right)
     {
+        Transform[] storeInside = new Transform[3];
+        int count = 0;
         if (left.gameObject.tag == obstacles[0].tag)
         {
-            for (int i = 0; i < storeInside.Length; i++)
+            storeInside[0] = left;
+            count++;
+            
+            if(middle.gameObject.tag == obstacles[0].tag)
             {
-                if (storeInside[i] == null)
-                {
-                    storeInside[i] = left;
-                }
+                storeInside[1] = middle;
+                storeInside[2] = null;
+                count++;
+            }
+
+            else if(right.gameObject.tag == obstacles[0].tag)
+            {
+                storeInside[1] = null;
+                storeInside[2] = right;
+                count++;
+            }
+
+            else
+            {
+                storeInside[1] = null;
+                storeInside[2] = null;
+            }
+
+            
+        }
+
+        else if(middle.gameObject.tag == obstacles[0].tag)
+        {
+            storeInside[1] = middle;
+            count++;
+
+            if (right.gameObject.tag == obstacles[0].tag)
+            {
+                storeInside[0] = null;
+                storeInside[2] = right;
+                count++;
+            }
+
+            else
+            {
+                storeInside[0] = null;
+                storeInside[2] = null;
+            }
+
+            
+        }
+
+        else if(right.gameObject.tag == obstacles[0].tag)
+        {
+            storeInside[0] = null;
+            storeInside[1] = null;
+            storeInside[2] = right;
+            count++;
+            
+        }
+
+        else
+        {
+            storeInside[0] = null;
+            storeInside[1] = null;
+            storeInside[2] = null;
+        }
+
+        Transform[] result = new Transform[count];
+        int count2 = 0;
+        foreach (Transform obs in storeInside)
+        {
+            if (obs != null)
+            {
+                result[count2] = obs;
+                count2++;
             }
         }
 
-        if(middle.gameObject.tag == obstacles[0].tag)
-        {
-            for (int i = 0; i < storeInside.Length; i++)
-            {
-                if (storeInside[i] == null)
-                {
-                    storeInside[i] = middle;
-                }
-            }
-        }
+        return result;
 
-        if(right.gameObject.tag == obstacles[0].tag)
-        {
-            for (int i = 0; i < storeInside.Length; i++)
-            {
-                if (storeInside[i] == null)
-                {
-                    storeInside[i] = right;
-                }
-            }
-        }
+        //if(right.gameObject.tag == obstacles[0].tag)
+        //{
+        //    for (int i = 0; i < storeInside.Length; i++)
+        //    {
+        //        if (storeInside[i] == null)
+        //        {
+        //            storeInside[i] = right;
+        //            Debug.Log("Right" + i);
+        //        }
+        //    }
+        //}
+
     }
 }
