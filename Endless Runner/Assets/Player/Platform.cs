@@ -304,6 +304,9 @@ public class Platform : MonoBehaviour {
         Transform[] possibleSpawn = new Transform[2];
         CheckIfEmpty(leftStatus, middleStatus, rightStatus, ref possibleSpawn);
         int rand = Random.Range(0, possibleSpawn.Length);
+        int reverserand = 1 - rand;
+        Debug.Log(rand + "," + reverserand);
+        
         int notRand = 1 - rand;
         Debug.Log(possibleSpawn.Length);
 ;

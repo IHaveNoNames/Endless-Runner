@@ -56,7 +56,7 @@ public class GameManager : MonoBehaviour
         GameStatus.magnetRemaining = 0f;
         GameStatus.coinCollected = 0;
         GameStatus.distanceTravelled = 0f;
-
+        platform.DestroyAllObstacles();
 
     }
 
