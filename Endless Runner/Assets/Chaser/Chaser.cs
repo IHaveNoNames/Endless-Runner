@@ -48,17 +48,17 @@ public class Chaser : MonoBehaviour
             {
                 LerpToCatch();
             }
-            else if (isFar)
+            if (isFar)
             {
                 LerpToFar();
             }
-            else if (isClose)
+            if (isClose)
             {
                 LerpToClose();
 
             }
         }
-        if (isLerping == false)
+        else if (isLerping == false)
         {
             if (isFar)
             {
@@ -82,7 +82,7 @@ public class Chaser : MonoBehaviour
     public void LerpToClose()
     {
 
-
+       
         
         
         if (isLerping)
@@ -91,7 +91,7 @@ public class Chaser : MonoBehaviour
             float percentageComplete = timeSinceStarted / toCloseDurationOfLerp;
             
                 Vector3 newPos = Vector3.Lerp(startPos, Close.transform.position, percentageComplete);
-                transform.position = new Vector3(newPos.x, transform.position.y, transform.position.z);
+                transform.position = new Vector3(transform.position.x, transform.position.y, newPos.z);
 
                 if (percentageComplete >= 1.0f)
                 {
@@ -111,7 +111,7 @@ public class Chaser : MonoBehaviour
             float percentageComplete = timeSinceStarted / toFarDurationOfLerp;
 
             Vector3 newPos = Vector3.Lerp(startPos, Far.transform.position, percentageComplete);
-            transform.position = new Vector3(newPos.x, transform.position.y, transform.position.z);
+            transform.position = new Vector3(transform.position.x, transform.position.y, newPos.z);
 
             if (percentageComplete >= 1.0f)
             {
@@ -137,7 +137,7 @@ public class Chaser : MonoBehaviour
                 
                      Vector3 newPos = Vector3.Lerp(startPos, Catch.transform.position, percentageComplete);
                 
-                     transform.position = new Vector3(newPos.x, transform.position.y, transform.position.z);
+                     transform.position = new Vector3(transform.position.x, transform.position.y, newPos.z);
                 
                      if (percentageComplete >= 1.0f)
                      {

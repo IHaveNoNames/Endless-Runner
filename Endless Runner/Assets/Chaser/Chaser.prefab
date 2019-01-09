@@ -99,6 +99,17 @@ MonoBehaviour:
   Catch: {fileID: 0}
   Close: {fileID: 0}
   Far: {fileID: 0}
+  isFar: 1
+  isClose: 0
+  isCaught: 0
+  dangerousDuration: 10
+  dangerousTimeRemaining: 0
+  toCloseDurationOfLerp: 0.6
+  toFarDurationOfLerp: 1
+  toCatchDurationOfLerp: 0.4
+  isLerping: 0
+  timeStarted: 0
+  startPos: {x: 0, y: 0, z: 0}
 --- !u!136 &136111369796988038
 CapsuleCollider:
   m_ObjectHideFlags: 1
