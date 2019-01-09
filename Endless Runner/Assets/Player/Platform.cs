@@ -334,11 +334,6 @@ public class Platform : MonoBehaviour {
 ;
         if (possibleSpawn[0] != null)
         {
-            if(possibleSpawn[1] != null)
-            {
-                int coin = 1;
-                Instantiate(powerups[coin], new Vector3(possibleSpawn[notRand].transform.position.x, possibleSpawn[notRand].transform.position.y + (powerups[coin].transform.localScale.y / 2), possibleSpawn[notRand].transform.position.z), Quaternion.identity);
-            }
 
             if (percentage <= GameManager.percentMagicWand)
             {
@@ -356,6 +351,12 @@ public class Platform : MonoBehaviour {
             {
                 int magnet = 2;
                 Instantiate(powerups[magnet], new Vector3(possibleSpawn[rand].transform.position.x, possibleSpawn[rand].transform.position.y + (powerups[magnet].transform.localScale.y / 2), possibleSpawn[rand].transform.position.z), Quaternion.identity);
+            }
+
+            else
+            {
+                int coin = 1;
+                Instantiate(powerups[coin], new Vector3(possibleSpawn[rand].transform.position.x, possibleSpawn[rand].transform.position.y + (powerups[coin].transform.localScale.y / 2), possibleSpawn[rand].transform.position.z), transform.rotation);
             }
         }
     }
