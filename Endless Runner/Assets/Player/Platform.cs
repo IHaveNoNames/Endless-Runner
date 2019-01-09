@@ -78,9 +78,6 @@ public class Platform : MonoBehaviour {
 
         for (int i = 0; i<noOfPlatforms; i++)
         {
-            //Recycle(ref nextLeftPos, ref platformLeftQueue, ref obstacleQueueLeft, ref powerupQueueLeft);
-            //Recycle(ref nextPos, ref platformQueue,  ref obstacleQueue, ref powerupQueue);
-            //Recycle(ref nextRightPos, ref platformRightQueue, ref obstacleQueueRight, ref powerupQueueRight);
             Recycle();
         }
 	}
@@ -89,37 +86,9 @@ public class Platform : MonoBehaviour {
 	void Update () {
         if (platformQueue.Peek().localPosition.z + 25f < GameStatus.distanceTravelled)
         {
-            //Recycle(ref nextLeftPos, ref platformLeftQueue, ref obstacleQueueLeft, ref powerupQueueLeft);
-            //Recycle(ref nextPos, ref platformQueue, ref obstacleQueue, ref powerupQueue);
-            //Recycle(ref nextRightPos, ref platformRightQueue, ref obstacleQueueRight, ref powerupQueueRight);
             Recycle();
         }
 	}
-
-    //void Recycle(ref Vector3 nextPosition, ref Queue<Transform> queue, ref Queue<Transform>obstacleq, ref Queue<Transform> powerupq)
-    //{
-
-    //    Vector3 position = nextPosition;
-
-    //    position.z += 25f * 0.5f;
-
-    //    Transform platform = queue.Dequeue();
-        
-    //    platform.position = position;
-
-    //    nextPosition.z += 25f;
-
-    //    Color newColor = new Color(Random.value, Random.value, Random.value, 1.0f);
-    //    platform.gameObject.GetComponent<Renderer>().material.color = newColor;
-
-    //    queue.Enqueue(platform);
-
-    //    if(GameManager.bossFightActive != true)
-    //    {
-    //        RecycleObstacles(position, ref obstacleq);
-    //        RecyclePowerups(position, ref powerupq);
-    //    }
-    //}
 
     void Recycle()
     {
@@ -151,9 +120,15 @@ public class Platform : MonoBehaviour {
         Transform platformStatus;
         Transform rightPlatformStatus;
 
-        RecycleObstacle(leftPlatform, platform, rightPlatform, out leftPlatformStatus, out platformStatus, out rightPlatformStatus);
-        RecyclePowerups(leftPlatformStatus, platformStatus, rightPlatformStatus);
-
+        if(GameStatus.distanceTravelled > 50)
+        {
+            RecycleObstacle(leftPlatform, platform, rightPlatform, out leftPlatformStatus, out platformStatus, out rightPlatformStatus);
+            if(GameManager.readyToSpawn == true)
+            {
+                RecyclePowerups(leftPlatformStatus, platformStatus, rightPlatformStatus);
+                GameManager.readyToSpawn = false;
+            }        
+        }
     }
 
     void RecycleObstacle(Transform leftPlatform, Transform platform, Transform rightPlatform, out Transform leftPlatformStatus, out Transform platformStatus, out Transform rightPlatformStatus)

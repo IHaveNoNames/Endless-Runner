@@ -20,6 +20,7 @@ public class GameManager : MonoBehaviour
     public static bool bossFightActive = false;
 
     float minigameDistance = 100;
+    int powerupDistance = 200;
 
     public static int oneObstaclePercent = 35;
     public static int twoObstaclesPercent = 45;
@@ -62,22 +63,23 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        SpawnPowerups();
 
-        if(Mathf.RoundToInt(GameStatus.distanceTravelled) % minigameDistance == 0) //for every 100 metres
-        {
-            float n = Random.Range(0, 2);
-            if (n == 0)
-            {
-                QTEStart();
-            } 
+        //if(Mathf.RoundToInt(GameStatus.distanceTravelled) % minigameDistance == 0) //for every 100 metres
+        //{
+        //    float n = Random.Range(0, 2);
+        //    if (n == 0)
+        //    {
+        //        QTEStart();
+        //    } 
 
-            else if (n == 1)
-            {
-                BossFightStart();
-            }
+        //    else if (n == 1)
+        //    {
+        //        BossFightStart();
+        //    }
 
-            readyToSpawn = true;
-        }
+        //    readyToSpawn = true;
+        //}
 
         PowerUpCountDown();
         DisplayPowerUps();
@@ -244,5 +246,13 @@ public class GameManager : MonoBehaviour
         mainCanvas.SetActive(false);
         player.SetActive(false);
         
+    }
+
+    void SpawnPowerups()
+    {
+        if(Mathf.RoundToInt(GameStatus.distanceTravelled) % powerupDistance == 0)
+        {
+            readyToSpawn = true;
+        }
     }
 }
