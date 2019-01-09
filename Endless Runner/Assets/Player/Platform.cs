@@ -40,8 +40,8 @@ public class Platform : MonoBehaviour {
     [SerializeField]
     Transform[] powerups;
 
-    int noOfPlatforms = 5;
-    int noOfObstacles = 5;
+    int noOfPlatforms = 7;
+    int noOfObstacles = 7;
 
 
     // Use this for initialization
