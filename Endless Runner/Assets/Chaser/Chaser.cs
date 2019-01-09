@@ -14,9 +14,9 @@ public class Chaser : MonoBehaviour
     public  float dangerousDuration = 10f;
     public  float dangerousTimeRemaining;
 
-    public float toCloseDurationOfLerp = 1.5f;
-    public float toFarDurationOfLerp = 2f;
-    public float toCatchDurationOfLerp = 1f;
+    private float toCloseDurationOfLerp = 1.5f;
+    private float toFarDurationOfLerp = 2f;
+    private float toCatchDurationOfLerp = 1f;
     public  bool isLerping = false;
     public  float timeStarted;
     public  Vector3 startPos;
