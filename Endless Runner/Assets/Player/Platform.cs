@@ -448,17 +448,5 @@ public class Platform : MonoBehaviour {
 
         return result;
 
-        //if(right.gameObject.tag == obstacles[0].tag)
-        //{
-        //    for (int i = 0; i < storeInside.Length; i++)
-        //    {
-        //        if (storeInside[i] == null)
-        //        {
-        //            storeInside[i] = right;
-        //            Debug.Log("Right" + i);
-        //        }
-        //    }
-        //}
-
     }
 }
