@@ -48,6 +48,14 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         platform = GameObject.Find("Game Manager").GetComponent<Platform>();
+        GameStatus.vest = false;
+        GameStatus.vestRemaining = 0f;
+        GameStatus.magicWand = false;
+        GameStatus.magnet = false;
+        GameStatus.magnetRemaining = 0f;
+        GameStatus.coinCollected = 0;
+        GameStatus.distanceTravelled = 0f;
+
 
     }
 
@@ -123,18 +131,18 @@ public class GameManager : MonoBehaviour
     {
         if (GameStatus.vest == false)
         {
-            if (Chaser.isClose == true)
+            if (chaser.isClose == true)
             {
                 GameOver();
             }
-            else if (Chaser.isFar == true)
+            else if (chaser.isFar == true)
             {
-                Chaser.timeStarted = Time.time;
-                Chaser.startPos = chaser.gameObject.transform.position;
-                Chaser.dangerousTimeRemaining = Chaser.dangerousDuration;
-                Chaser.isFar = false;
-                Chaser.isClose = true;
-                Chaser.isLerping = true;
+                chaser.timeStarted = Time.time;
+                chaser.startPos = chaser.gameObject.transform.position;
+                chaser.dangerousTimeRemaining = chaser.dangerousDuration;
+                chaser.isFar = false;
+                chaser.isClose = true;
+                chaser.isLerping = true;
             }
         }
         else
@@ -221,17 +229,17 @@ public class GameManager : MonoBehaviour
 
     public void GameOver()
     {
-        Chaser.timeStarted = Time.time;
-        Chaser.startPos = chaser.gameObject.transform.position;
-        Chaser.isCaught = true;
-        Chaser.isFar = false;
-        Chaser.isClose = false;
+        chaser.timeStarted = Time.time;
+        chaser.startPos = chaser.gameObject.transform.position;
+        chaser.isCaught = true;
+        chaser.isFar = false;
+        chaser.isClose = false;
         
-        Chaser.isLerping=true;
+        chaser.isLerping=true;
         
         gameOverCanvas.SetActive(true);
-        coinTextGameOver.text = GameStatus.coinCollected.ToString();
-        distanceTextGameOver.text = Mathf.RoundToInt(GameStatus.distanceTravelled).ToString();
+        coinTextGameOver.text = "Coin:"+GameStatus.coinCollected.ToString();
+        distanceTextGameOver.text = "Distance:"+Mathf.RoundToInt(GameStatus.distanceTravelled).ToString();
         mainCamera.transform.parent = null;
         mainCanvas.SetActive(false);
         player.SetActive(false);

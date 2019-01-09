@@ -8,18 +8,18 @@ public class Chaser : MonoBehaviour
     public Transform Catch;
     public Transform Close;
     public Transform Far;
-    public static bool isFar = true;
-    public static bool isClose = false;
-    public static bool isCaught = false;
-    public const float dangerousDuration = 10f;
-    public static float dangerousTimeRemaining;
+    public bool isFar = true;
+    public  bool isClose = false;
+    public  bool isCaught = false;
+    public  float dangerousDuration = 10f;
+    public  float dangerousTimeRemaining;
 
-    private float toCloseDurationOfLerp = 0.7f;
-    private float toFarDurationOfLerp = 1f;
-    private float toCatchDurationOfLerp = 0.5f;
-    public static bool isLerping = false;
-    public static float timeStarted;
-    public static Vector3 startPos;
+    private float toCloseDurationOfLerp = 1.5f;
+    private float toFarDurationOfLerp = 2f;
+    private float toCatchDurationOfLerp = 1f;
+    public  bool isLerping = false;
+    public  float timeStarted;
+    public  Vector3 startPos;
     
     // Use this for initialization
     void Start()

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Vest : MonoBehaviour {
-
+    public float vestDuration = 20f;
     
 	// Use this for initialization
 	void Start () {
@@ -27,6 +27,6 @@ public class Vest : MonoBehaviour {
     public void GetVest() //These funciton is called when the powers being picked up
     {
         GameStatus.vest = true;
-        GameStatus.vestRemaining = 30f;
+        GameStatus.vestRemaining = vestDuration;
     }
 }

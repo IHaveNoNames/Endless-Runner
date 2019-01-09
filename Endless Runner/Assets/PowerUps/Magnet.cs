@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Magnet : MonoBehaviour {
 
+    public float magnetDuration =10f;
 	// Use this for initialization
 	void Start () {
 		
@@ -26,6 +27,6 @@ public class Magnet : MonoBehaviour {
     public void GetMagnet() //These funciton is called when the powers being picked up
     {
         GameStatus.magnet = true;
-        GameStatus.magnetRemaining = 15f;
+        GameStatus.magnetRemaining = magnetDuration;
     }
 }

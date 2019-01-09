@@ -4,8 +4,8 @@ using UnityEngine;
 
 public abstract class Obstacles : MonoBehaviour {
 
-    public MeshRenderer meshRenderer;
-    public BoxCollider boxCollider;
+   /* public MeshRenderer meshRenderer;
+    public BoxCollider boxCollider;*/
 	// Use this for initialization
 	void Start () {
         /*meshRenderer =gameObject.GetComponent<MeshRenderer>();
@@ -35,8 +35,9 @@ public abstract class Obstacles : MonoBehaviour {
                 GM.TakingLightHit();
             }
 
-            meshRenderer.enabled = false;
-            boxCollider.enabled = false;
+            gameObject.SetActive(false);
+           /* meshRenderer.enabled = false;
+            boxCollider.enabled = false;*/
             //maybe some visual effect
         }           
         

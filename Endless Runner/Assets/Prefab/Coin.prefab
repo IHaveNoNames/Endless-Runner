@@ -97,7 +97,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attractDistance: 15
-  attractSpeed: 10
+  attractSpeed: 25
 --- !u!136 &136144622239271478
 CapsuleCollider:
   m_ObjectHideFlags: 1
