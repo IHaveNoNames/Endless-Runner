@@ -226,14 +226,11 @@ public class Platform : MonoBehaviour {
             {
                 int leftObstacle = Random.Range(1, obstacles.Length);
                 Transform newLeftObstacle = HandleRecyclingObstacles(obstacleQueueLeft, leftObstacle, leftPlatform);
-                //obstacleQueueLeft.Enqueue((Transform)Instantiate(obstacles[leftObstacle], new Vector3(leftPlatform.position.x, leftPlatform.position.y + obstacles[leftObstacle].transform.localScale.y / 2, leftPlatform.position.z), Quaternion.identity));
 
                 Transform newObstacle = HandleRecyclingObstacles(obstacleQueue, 0, platform);
-                //obstacleQueue.Enqueue((Transform)Instantiate(obstacles[0], new Vector3(platform.position.x, platform.position.y + obstacles[0].transform.localScale.y / 2, platform.position.z), Quaternion.identity));
 
                 int rightObstacle = Random.Range(1, obstacles.Length);
                 Transform newRightObstacle = HandleRecyclingObstacles(obstacleQueueRight, rightObstacle, rightPlatform);
-                //obstacleQueueRight.Enqueue((Transform)Instantiate(obstacles[rightObstacle], new Vector3(rightPlatform.position.x, rightPlatform.position.y + obstacles[rightObstacle].transform.localScale.y / 2, rightPlatform.position.z), Quaternion.identity));
 
                 leftPlatformStatus = newLeftObstacle;
                 platformStatus = newObstacle;
@@ -244,14 +241,11 @@ public class Platform : MonoBehaviour {
             {
                 int leftObstacle = Random.Range(1, obstacles.Length);
                 Transform newLeftObstacle = HandleRecyclingObstacles(obstacleQueueLeft, leftObstacle, leftPlatform);
-                //obstacleQueueLeft.Enqueue((Transform)Instantiate(obstacles[leftObstacle], new Vector3(leftPlatform.position.x, leftPlatform.position.y + obstacles[leftObstacle].transform.localScale.y / 2, leftPlatform.position.z), Quaternion.identity));
 
                 int obstacle = Random.Range(1, obstacles.Length);
                 Transform newObstacle = HandleRecyclingObstacles(obstacleQueue, obstacle, platform);
-                //obstacleQueue.Enqueue((Transform)Instantiate(obstacles[obstacle], new Vector3(platform.position.x, platform.position.y + obstacles[obstacle].transform.localScale.y / 2, platform.position.z), Quaternion.identity));
 
                 Transform newRightObstacle = HandleRecyclingObstacles(obstacleQueueRight, 0, rightPlatform);
-                //obstacleQueueRight.Enqueue((Transform)Instantiate(obstacles[0], new Vector3(rightPlatform.position.x, rightPlatform.position.y + obstacles[0].transform.localScale.y / 2, rightPlatform.position.z), Quaternion.identity));
 
                 leftPlatformStatus = newLeftObstacle;
                 platformStatus = newObstacle;
@@ -263,15 +257,12 @@ public class Platform : MonoBehaviour {
         {
             int leftObstacle = Random.Range(1, obstacles.Length);
             Transform newLeftObstacle = HandleRecyclingObstacles(obstacleQueueLeft, leftObstacle, leftPlatform);
-            //obstacleQueueLeft.Enqueue((Transform)Instantiate(obstacles[leftObstacle], new Vector3(leftPlatform.position.x, leftPlatform.position.y + obstacles[leftObstacle].transform.localScale.y / 2, leftPlatform.position.z), Quaternion.identity));
 
             int obstacle = Random.Range(1, obstacles.Length);
             Transform newObstacle = HandleRecyclingObstacles(obstacleQueue, obstacle, platform);
-            //obstacleQueue.Enqueue((Transform)Instantiate(obstacles[obstacle], new Vector3(platform.position.x, platform.position.y + obstacles[obstacle].transform.localScale.y / 2, platform.position.z), Quaternion.identity));
 
             int rightObstacle = Random.Range(1, obstacles.Length);
             Transform newRightObstacle = HandleRecyclingObstacles(obstacleQueueRight, rightObstacle, rightPlatform);
-            //obstacleQueueRight.Enqueue((Transform)Instantiate(obstacles[rightObstacle], new Vector3(rightPlatform.position.x, rightPlatform.position.y + obstacles[rightObstacle].transform.localScale.y / 2, rightPlatform.position.z), Quaternion.identity));
 
             leftPlatformStatus = newLeftObstacle;
             platformStatus = newObstacle;
