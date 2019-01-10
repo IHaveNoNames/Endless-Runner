@@ -7,7 +7,7 @@ public class Platform : MonoBehaviour {
     //GameObject[] leftPlatforms;
     //GameObject[] platforms;
     //GameObject[] rightPlatforms;
-
+    public GameObject destroyParticle;
     [SerializeField]
     Transform leftPlatformPrefab;
     [SerializeField]
@@ -337,6 +337,7 @@ public class Platform : MonoBehaviour {
         for (int i = 0;i< noOfObstacles;i++)
         {
             Transform obstacle = obstacleq.Dequeue();
+            Instantiate(destroyParticle, new Vector3(obstacle.transform.position.x, obstacle.transform.position.y + 1.5f, obstacle.transform.position.z), Quaternion.identity);
             Destroy(obstacle.gameObject);
         }
     }

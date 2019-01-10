@@ -10,6 +10,7 @@ public  class  AudioController :MonoBehaviour {
     public  AudioSource coin;
     public  AudioSource die;
     public  AudioSource jump;
+    public AudioSource magic;
     // Use this for initialization
 
     private void Start()

@@ -11,8 +11,8 @@ public class GameManager : MonoBehaviour
     private Platform platform;
     public Camera mainCamera;
     public Chaser chaser;
+    public GameObject destroyParticle;
 
-    
     public int bossTotalHeath = 10;
     [HideInInspector]
     public int bossCurrentHealth;
@@ -114,12 +114,16 @@ public class GameManager : MonoBehaviour
 
     public void UseMagicWind()
     {
+        audioController.magic.PlayOneShot(audioController.magic.clip);
+
         platform.DestroyAllObstacles();
         GameStatus.magicWand = false;
     }
 
     public void TakingFatalHit()   //when player is hit, either function will be called
     {
+        Instantiate(destroyParticle, new Vector3(player.transform.position.x, player.transform.position.y + 1.5f, player.transform.position.z), Quaternion.identity);
+
         if (GameStatus.vest == false)
         {
             //gameover event
@@ -135,6 +139,10 @@ public class GameManager : MonoBehaviour
     }
     public void TakingLightHit()
     {
+        Instantiate(destroyParticle, new Vector3(player.transform.position.x, player.transform.position.y + 1.5f, player.transform.position.z), Quaternion.identity);
+
+        audioController.hit.PlayOneShot(audioController.hit.clip);
+
         if (GameStatus.vest == false)
         {
             if (chaser.isClose == true)
@@ -235,7 +243,7 @@ public class GameManager : MonoBehaviour
 
     public void GameOver()
     {
-        
+        Instantiate(destroyParticle, new Vector3(player.transform.position.x, player.transform.position.y + 1.5f, player.transform.position.z), Quaternion.identity);
         audioController.die.PlayOneShot(audioController.die.clip);
         chaser.timeStarted = Time.time;
         chaser.startPos = chaser.gameObject.transform.position;

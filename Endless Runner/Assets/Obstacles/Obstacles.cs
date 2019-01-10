@@ -3,14 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public abstract class Obstacles : MonoBehaviour {
-    private AudioController audioController;
+    
+
     /* public MeshRenderer meshRenderer;
      public BoxCollider boxCollider;*/
     // Use this for initialization
     void Start () {
         /*meshRenderer =gameObject.GetComponent<MeshRenderer>();
         boxCollider = gameObject.GetComponent<BoxCollider>();*/
-        audioController = GameObject.Find("Audio").GetComponent<AudioController>();
+       
     }
 	
 	// Update is called once per frame
@@ -23,9 +24,10 @@ public abstract class Obstacles : MonoBehaviour {
         if (collision.gameObject.CompareTag("Player"))
         {
             GameManager GM = GameObject.Find("Game Manager").GetComponent<GameManager>();
-            audioController.hit.PlayOneShot(audioController.hit.clip);
+
             if (gameObject.CompareTag("HeavyObstacle"))
             {
+                
                 GM.TakingFatalHit();
                 
             }
@@ -40,6 +42,10 @@ public abstract class Obstacles : MonoBehaviour {
             boxCollider.enabled = false;*/
             //maybe some visual effect
         }           
+        
+    }
+    public void OnDestroy()
+    {
         
     }
 

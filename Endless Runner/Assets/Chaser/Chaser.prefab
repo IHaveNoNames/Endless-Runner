@@ -104,9 +104,9 @@ MonoBehaviour:
   isCaught: 0
   dangerousDuration: 10
   dangerousTimeRemaining: 0
-  toCloseDurationOfLerp: 0.6
-  toFarDurationOfLerp: 1
-  toCatchDurationOfLerp: 0.4
+  toCloseDurationOfLerp: 0.7
+  toFarDurationOfLerp: 2
+  toCatchDurationOfLerp: 0.3
   isLerping: 0
   timeStarted: 0
   startPos: {x: 0, y: 0, z: 0}

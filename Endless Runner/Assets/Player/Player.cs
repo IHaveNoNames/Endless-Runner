@@ -5,6 +5,7 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     private AudioController audioController;
+    
     public static float acceleration = 20f;
 
     Rigidbody rb;
