@@ -32,10 +32,6 @@ public class Platform : MonoBehaviour {
     Vector3 nextRightPos;
 
     [SerializeField]
-    Transform barrierPrefab;
-    [SerializeField]
-    Transform vehiclePrefab;
-    [SerializeField]
     Transform[] obstacles;
     [SerializeField]
     Transform[] powerups;
