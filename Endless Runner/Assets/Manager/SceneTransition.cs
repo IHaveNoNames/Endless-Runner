@@ -10,10 +10,23 @@ public class SceneTransition : MonoBehaviour {
 
     public void LoadGameLevel()
     {
-        SceneManager.UnloadSceneAsync("SampleScene");
+        
         SceneManager.LoadScene("SampleScene");
         Time.timeScale = 1f;
     }
+    public void UnloadGameLevel()
+    {
+        SceneManager.UnloadSceneAsync("SampleScene");
+    }
 
+    public void UnloadMenuLevel()
+    {
+        SceneManager.UnloadSceneAsync(0);
+    }
+
+    public void LoadMenuLevel()
+    {
+        SceneManager.LoadScene(0);
+    }
     
 }
