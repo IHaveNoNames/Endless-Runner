@@ -50,6 +50,8 @@ public class GameManager : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        gameOverCanvas.SetActive(false);
+        pauseUI.SetActive(false);
         platform = GameObject.Find("Game Manager").GetComponent<Platform>();
         GameStatus.vest = false;
         GameStatus.vestRemaining = 0f;
