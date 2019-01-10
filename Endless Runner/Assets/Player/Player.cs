@@ -43,6 +43,9 @@ public class Player : MonoBehaviour
     float slidingDuration = 1.2f;
     float slidingRemaining = 0f;
 
+    float jumpDuration = 0.7f;
+    float jumpRemainning = 0f;
+
     // Use this for initialization
     void Start()
     {
@@ -55,13 +58,19 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-        if (slidingRemaining >0f)
+        if (jumpRemainning > 0)
+        {
+            jumpRemainning -= Time.deltaTime;
+        }
+        if (slidingRemaining >0f )
         {
             slidingRemaining -= Time.deltaTime;
-            //boxcollider becomes smaller
-            boxCollider.center = new Vector3(0f, 0.2f, 0f);
-            boxCollider.size = new Vector3(0.4f,0.42f, 0.4f);
+            if (slidingRemaining <= 1.05f)
+            {
+                //boxcollider becomes smaller
+                boxCollider.center = new Vector3(0f, 0.2f, 0f);
+                boxCollider.size = new Vector3(0.4f, 0.42f, 0.4f);
+            }
         }
         if (slidingRemaining <= 0f)
         {
@@ -89,14 +98,15 @@ public class Player : MonoBehaviour
             }
         }
 
-        if (Input.GetButtonDown("Jump") && onGround)
+        if (Input.GetButtonDown("Jump") && onGround &&jumpRemainning<=0&&slidingRemaining<=0)
         {
             anim.SetTrigger("Jump");
+            jumpRemainning = jumpDuration;
             audioController.jump.Play();
             rb.AddForce(jumpVelocity, ForceMode.VelocityChange);
         }
 
-        if (Input.GetKeyDown(KeyCode.DownArrow))
+        if (Input.GetKeyDown(KeyCode.DownArrow) && slidingRemaining<=0&&jumpRemainning<=0)
         {
             anim.SetTrigger("Slide");
             slidingRemaining = slidingDuration;
