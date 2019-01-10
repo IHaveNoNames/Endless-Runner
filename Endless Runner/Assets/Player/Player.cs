@@ -28,6 +28,8 @@ public class Player : MonoBehaviour
 
     private Vector2 touchOrigin = -Vector2.one;
 
+    private BoxCollider boxCollider;
+
     //Ground Checking
     [SerializeField]
     Transform groundCheck;
@@ -37,9 +39,14 @@ public class Player : MonoBehaviour
     [SerializeField]
     bool onGround;
 
+    bool isSliding = false;
+    float slidingDuration = 1.2f;
+    float slidingRemaining = 0f;
+
     // Use this for initialization
     void Start()
     {
+        boxCollider = GetComponent<BoxCollider>();
         rb = GetComponent<Rigidbody>();
         anim = GetComponent<Animator>();
         audioController = GameObject.Find("Audio").GetComponent<AudioController>();
@@ -48,6 +55,22 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        if (slidingRemaining >0f)
+        {
+            slidingRemaining -= Time.deltaTime;
+            //boxcollider becomes smaller
+            boxCollider.center = new Vector3(0f, 0.2f, 0f);
+            boxCollider.size = new Vector3(0.4f,0.42f, 0.4f);
+        }
+        if (slidingRemaining <= 0f)
+        {
+            //normal boxcollider
+            boxCollider.center = new Vector3(0f, 0.77f, 0f);
+            boxCollider.size = new Vector3(0.4f, 1.14f, 0.4f);
+        }
+
+
 #if UNITY_EDITOR || UNITY_STANDALONE || UNITY_WEBPLAYER
         if (Input.GetKeyDown(KeyCode.RightArrow))
         {
@@ -76,6 +99,7 @@ public class Player : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.DownArrow))
         {
             anim.SetTrigger("Slide");
+            slidingRemaining = slidingDuration;
         }
 #else
         if (Input.touchCount > 0)
