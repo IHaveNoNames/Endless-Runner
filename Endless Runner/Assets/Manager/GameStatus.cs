@@ -4,7 +4,7 @@ using UnityEngine;
 
 public static class GameStatus  {
 
-	
+    public static bool usedWand = false;
 	
 
     public static bool vest = false;

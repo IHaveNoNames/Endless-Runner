@@ -44,6 +44,7 @@ public class GameManager : MonoBehaviour
     public GameObject gameOverCanvas;
     public GameObject mainCanvas;
     public GameObject pauseUI;
+    public Text wandText;
 
     private AudioController audioController;
 
@@ -286,5 +287,16 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 1;
     }
 
+    public void PickingUpWand()
+    {
+        if (GameStatus.usedWand == false)
+        {
+            wandText.gameObject.SetActive(true);
+        }
+        else
+        {
+            wandText.gameObject.SetActive(false);
+        }
+    }
     
 }
