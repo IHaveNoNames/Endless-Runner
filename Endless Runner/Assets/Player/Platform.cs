@@ -123,13 +123,7 @@ public class Platform : MonoBehaviour {
         if(GameStatus.distanceTravelled > 50)
         {
             RecycleObstacle(leftPlatform, platform, rightPlatform, out leftPlatformStatus, out platformStatus, out rightPlatformStatus);
-
-            
-            if (GameManager.readyForPowerup == true)
-            {
-                RecyclePowerups(leftPlatformStatus, platformStatus, rightPlatformStatus);
-                GameManager.readyForPowerup = false;
-            }        
+            RecyclePowerups(leftPlatformStatus, platformStatus, rightPlatformStatus);
         }
     }
 
@@ -297,39 +291,56 @@ public class Platform : MonoBehaviour {
         Transform[] possibleSpawn = CheckIfEmpty(leftStatus, middleStatus, rightStatus);
 
         int rand = Random.Range(0, possibleSpawn.Length);
-        if (possibleSpawn.Length != 0)
+
+        if(GameManager.readyForPowerup == true)
         {
-
-            if (percentage <= GameManager.percentMagicWand)
+            if (possibleSpawn.Length != 0)
             {
-                int magicWand = 4;
-                Instantiate(powerups[magicWand], new Vector3(possibleSpawn[rand].transform.position.x, possibleSpawn[rand].transform.position.y + (powerups[magicWand].transform.localScale.y / 2), possibleSpawn[rand].transform.position.z), Quaternion.identity);
+
+                if (percentage <= GameManager.percentMagicWand)
+                {
+                    int magicWand = 4;
+                    Instantiate(powerups[magicWand], new Vector3(possibleSpawn[rand].transform.position.x, possibleSpawn[rand].transform.position.y + (powerups[magicWand].transform.localScale.y / 2), possibleSpawn[rand].transform.position.z), Quaternion.identity);
+                }
+
+                else if (percentage > GameManager.percentMagicWand && percentage <= GameManager.percentVest + GameManager.percentMagicWand)
+                {
+                    int vest = 3;
+                    Instantiate(powerups[vest], new Vector3(possibleSpawn[rand].transform.position.x, possibleSpawn[rand].transform.position.y + (powerups[vest].transform.localScale.y / 2), possibleSpawn[rand].transform.position.z), Quaternion.identity);
+                }
+
+                else if (percentage > GameManager.percentMagicWand + GameManager.percentVest && percentage <= GameManager.percentMagicWand + GameManager.percentVest + GameManager.percentMagnet)
+                {
+                    int magnet = 2;
+                    Instantiate(powerups[magnet], new Vector3(possibleSpawn[rand].transform.position.x, possibleSpawn[rand].transform.position.y + (powerups[magnet].transform.localScale.y / 2), possibleSpawn[rand].transform.position.z), Quaternion.identity);
+                }
+
+                else
+                {
+                    int coin = 1;
+                    Instantiate(powerups[coin], new Vector3(possibleSpawn[rand].transform.position.x, possibleSpawn[rand].transform.position.y + (powerups[coin].transform.localScale.y / 2), possibleSpawn[rand].transform.position.z), transform.rotation);
+                }
+
+                if (possibleSpawn.Length == 2)
+                {
+                    int coin = 1;
+                    Instantiate(powerups[coin], new Vector3(possibleSpawn[1 - rand].transform.position.x, possibleSpawn[1 - rand].transform.position.y + (powerups[coin].transform.localScale.y / 2), possibleSpawn[1 - rand].transform.position.z), transform.rotation);
+                }
             }
 
-            else if (percentage > GameManager.percentMagicWand && percentage <= GameManager.percentVest + GameManager.percentMagicWand)
-            {
-                int vest = 3;
-                Instantiate(powerups[vest], new Vector3(possibleSpawn[rand].transform.position.x, possibleSpawn[rand].transform.position.y + (powerups[vest].transform.localScale.y / 2), possibleSpawn[rand].transform.position.z), Quaternion.identity);
-            }
+            GameManager.readyForPowerup = false;
+        }
 
-            else if (percentage > GameManager.percentMagicWand + GameManager.percentVest && percentage <= GameManager.percentMagicWand + GameManager.percentVest + GameManager.percentMagnet)
-            {
-                int magnet = 2;
-                Instantiate(powerups[magnet], new Vector3(possibleSpawn[rand].transform.position.x, possibleSpawn[rand].transform.position.y + (powerups[magnet].transform.localScale.y / 2), possibleSpawn[rand].transform.position.z), Quaternion.identity);
-            }
-
-            else
+        else
+        {
+            if (possibleSpawn.Length == 2)
             {
                 int coin = 1;
                 Instantiate(powerups[coin], new Vector3(possibleSpawn[rand].transform.position.x, possibleSpawn[rand].transform.position.y + (powerups[coin].transform.localScale.y / 2), possibleSpawn[rand].transform.position.z), transform.rotation);
-            }
-
-            if(possibleSpawn.Length == 2)
-            {
-                int coin = 1;
-                Instantiate(powerups[coin], new Vector3(possibleSpawn[1-rand].transform.position.x, possibleSpawn[rand].transform.position.y + (powerups[coin].transform.localScale.y / 2), possibleSpawn[1-rand].transform.position.z), transform.rotation);
+                Instantiate(powerups[coin], new Vector3(possibleSpawn[1 - rand].transform.position.x, possibleSpawn[1 - rand].transform.position.y + (powerups[coin].transform.localScale.y / 2), possibleSpawn[1 - rand].transform.position.z), transform.rotation);
             }
         }
+        
     }
 
     void DestroyLaneObstacles(ref Queue<Transform> obstacleq)
