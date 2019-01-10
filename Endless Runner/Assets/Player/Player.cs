@@ -39,7 +39,7 @@ public class Player : MonoBehaviour
     [SerializeField]
     bool onGround;
 
-    bool isSliding = false;
+    public static bool isSliding = false;
     float slidingDuration = 1.2f;
     float slidingRemaining = 0f;
 
@@ -147,6 +147,7 @@ public class Player : MonoBehaviour
                     else if (y < 0)
                     {
                         anim.SetTrigger("Slide");
+                        slidingRemaining = slidingDuration;
                     }
                 }
             }

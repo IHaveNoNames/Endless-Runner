@@ -52,22 +52,34 @@ public class Skyline : MonoBehaviour {
 
     void Recycle()
     {
-        Vector3 scale = new Vector3(5f, Random.Range(minSizeY, maxSizeY), Random.Range(minSizeZ, maxSizeZ));
+        Vector3 leftScale = new Vector3(5f, Random.Range(minSizeY, maxSizeY), Random.Range(minSizeZ, maxSizeZ));
+        Vector3 rightScale = new Vector3(5f, Random.Range(minSizeY, maxSizeY), Random.Range(minSizeZ, maxSizeZ));
         Vector3 leftPosition = leftNextPos;
         Vector3 rightPosition = rightNextPos;
-        leftPosition.y += scale.y * 0.5f;
-        rightPosition.y += scale.y * 0.5f;
+        leftPosition.y += leftScale.y * 0.5f;
+        rightPosition.y += rightScale.y * 0.5f;
         leftPosition.z += leftPosition.z * 0.5f;
         rightPosition.z += rightPosition.z * 0.5f;
 
+
+        
+
         Transform leftSkyline = skylineLeftQueue.Dequeue();
         Transform rightSkyline = skylineRightQueue.Dequeue();
-        leftSkyline.localScale = scale;
-        rightSkyline.localScale = scale;
+
+        leftSkyline.localScale = leftScale;
+        rightSkyline.localScale = rightScale;
         leftSkyline.localPosition = leftPosition;
         rightSkyline.localPosition = rightPosition;
-        leftNextPos.z += scale.z + 5f;
-        rightNextPos.z += scale.z + 5f;
+
+        leftNextPos.z += leftScale.z + 5f;
+        rightNextPos.z += rightScale.z + 5f;
+
+        Color leftColor = new Color(Random.value, Random.value, Random.value, 1.0f);
+        Color rightColor = new Color(Random.value, Random.value, Random.value, 1.0f);
+        leftSkyline.gameObject.GetComponent<Renderer>().material.color = leftColor;
+        rightSkyline.gameObject.GetComponent<Renderer>().material.color = rightColor;
+
         skylineLeftQueue.Enqueue(leftSkyline);
         skylineRightQueue.Enqueue(rightSkyline);
     }
