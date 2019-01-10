@@ -52,15 +52,23 @@ public class Skyline : MonoBehaviour {
 
     void Recycle()
     {
-        Vector3 leftScale = new Vector3(5f, Random.Range(minSizeY, maxSizeY), Random.Range(minSizeZ, maxSizeZ));
+        Vector3 scale = new Vector3(5f, Random.Range(minSizeY, maxSizeY), Random.Range(minSizeZ, maxSizeZ));
         Vector3 leftPosition = leftNextPos;
-        leftPosition.y += leftScale.y * 0.5f;
+        Vector3 rightPosition = rightNextPos;
+        leftPosition.y += scale.y * 0.5f;
+        rightPosition.y += scale.y * 0.5f;
         leftPosition.z += leftPosition.z * 0.5f;
+        rightPosition.z += rightPosition.z * 0.5f;
 
         Transform leftSkyline = skylineLeftQueue.Dequeue();
-        leftSkyline.localScale = leftScale;
+        Transform rightSkyline = skylineRightQueue.Dequeue();
+        leftSkyline.localScale = scale;
+        rightSkyline.localScale = scale;
         leftSkyline.localPosition = leftPosition;
-        leftNextPos.z += leftScale.z + 5f;
+        rightSkyline.localPosition = rightPosition;
+        leftNextPos.z += scale.z + 5f;
+        rightNextPos.z += scale.z + 5f;
         skylineLeftQueue.Enqueue(leftSkyline);
+        skylineRightQueue.Enqueue(rightSkyline);
     }
 }
