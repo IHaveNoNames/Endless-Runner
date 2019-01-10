@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Coin : MonoBehaviour
+public class Coin : PowerUps
 {
     private AudioController audioController;
     private GameObject player;

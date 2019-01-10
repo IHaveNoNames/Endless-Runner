@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MagicWand : MonoBehaviour {
+public class MagicWand : PowerUps
+{
     private GameManager GM;
     private AudioController audioController;
 	// Use this for initialization

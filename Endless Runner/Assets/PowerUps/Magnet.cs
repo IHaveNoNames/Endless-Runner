@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Magnet : MonoBehaviour {
+public class Magnet : PowerUps
+{
     private AudioController audioController;
     public float magnetDuration =10f;
 	// Use this for initialization

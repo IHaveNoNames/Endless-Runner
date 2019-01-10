@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Vest : MonoBehaviour {
+public class Vest : PowerUps
+{
     public float vestDuration = 20f;
     private AudioController audioController;
     // Use this for initialization
