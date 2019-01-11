@@ -126,7 +126,7 @@ public class GameManager : MonoBehaviour
     public void TakingFatalHit()   //when player is hit, either function will be called
     {
         Instantiate(destroyParticle, new Vector3(player.transform.position.x, player.transform.position.y + 1.5f, player.transform.position.z), Quaternion.identity);
-
+        audioController.hit.PlayOneShot(audioController.hit.clip);
         if (GameStatus.vest == false)
         {
             //gameover event
