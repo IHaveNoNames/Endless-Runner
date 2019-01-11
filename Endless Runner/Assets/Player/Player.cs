@@ -147,6 +147,7 @@ public class Player : MonoBehaviour
                 {
                     if (y > 0 && onGround &&jumpRemaining<=0)
                     {
+                        audioController.jump.Play();
                         jumpRemaining = jumpDuration;
                         anim.SetTrigger("Jump");
                         rb.AddForce(jumpVelocity, ForceMode.VelocityChange);
