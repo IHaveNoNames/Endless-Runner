@@ -5,13 +5,13 @@ using UnityEngine;
 public class Coin : PowerUps
 {
     private AudioController audioController;
-    private GameObject player;
+    private GameObject Player;
     public float attractDistance;
     public float attractSpeed;
     // Use this for initialization
     void Start()
     {
-        player = GameObject.Find("Player");
+        Player = GameObject.Find("Player");
         audioController = GameObject.Find("Audio").GetComponent<AudioController>();
     }
 
@@ -34,11 +34,11 @@ public class Coin : PowerUps
 
     void MagnetAttraction()
     {
-        float distance = Vector3.Distance(gameObject.transform.position, player.transform.position);
+        float distance = Vector3.Distance(gameObject.transform.position, Player.transform.position);
 
         if (GameStatus.magnet == true && distance < attractDistance)
         {
-            transform.position = Vector3.MoveTowards(transform.position, player.transform.position, attractSpeed * Time.deltaTime);
+            transform.position = Vector3.MoveTowards(transform.position, Player.transform.position, attractSpeed * Time.deltaTime);
         }
     }
 }

@@ -39,9 +39,11 @@ public class Player : MonoBehaviour
     [SerializeField]
     bool onGround;
 
-    public static bool isSliding = false;
-    float slidingDuration = 1.2f;
+    
+    float slidingDuration = 0.9f;
     float slidingRemaining = 0f;
+    float jumpDuration = 0.9f;
+    float jumpRemaining = 0f;
 
     // Use this for initialization
     void Start()
@@ -55,6 +57,10 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (jumpRemaining > 0)
+        {
+            jumpRemaining -= Time.deltaTime;
+        }
 
         if (slidingRemaining >0f)
         {
@@ -89,14 +95,15 @@ public class Player : MonoBehaviour
             }
         }
 
-        if (Input.GetButtonDown("Jump") && onGround)
+        if (Input.GetButtonDown("Jump") && onGround &&jumpRemaining<=0)
         {
             anim.SetTrigger("Jump");
+            jumpRemaining = jumpDuration;
             audioController.jump.Play();
             rb.AddForce(jumpVelocity, ForceMode.VelocityChange);
         }
 
-        if (Input.GetKeyDown(KeyCode.DownArrow))
+        if (Input.GetKeyDown(KeyCode.DownArrow)&&slidingRemaining<=0)
         {
             anim.SetTrigger("Slide");
             slidingRemaining = slidingDuration;
@@ -138,13 +145,14 @@ public class Player : MonoBehaviour
 
                 else if(Mathf.Abs(y) > Mathf.Abs(x))
                 {
-                    if (y > 0 && onGround)
+                    if (y > 0 && onGround &&jumpRemaining<=0)
                     {
+                        jumpRemaining = jumpDuration;
                         anim.SetTrigger("Jump");
                         rb.AddForce(jumpVelocity, ForceMode.VelocityChange);
                     }
 
-                    else if (y < 0)
+                    else if (y < 0 &&slidingRemaining<=0)
                     {
                         anim.SetTrigger("Slide");
                         slidingRemaining = slidingDuration;
