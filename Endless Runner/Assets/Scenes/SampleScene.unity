@@ -147,7 +147,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 13.900002, y: 14.299988}
+  m_AnchoredPosition: {x: 13.900024, y: 14.299988}
   m_SizeDelta: {x: 58.440002, y: 58.44}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &35441891
@@ -231,7 +231,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0.8818743, b: 0, a: 1}
+  m_Color: {r: 0, g: 0.57601166, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -543,7 +543,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0.73493934, b: 0, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -692,7 +692,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -702,8 +702,8 @@ MonoBehaviour:
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
     m_FontSize: 25
-    m_FontStyle: 1
-    m_BestFit: 0
+    m_FontStyle: 3
+    m_BestFit: 1
     m_MinSize: 2
     m_MaxSize: 40
     m_Alignment: 1
@@ -1243,7 +1243,7 @@ Transform:
   m_LocalScale: {x: 0.662457, y: 0.662457, z: 0.662457}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &716698726
 MonoBehaviour:
@@ -1420,7 +1420,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0.9190923, b: 0, a: 1}
+  m_Color: {r: 0, g: 0.6102464, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -1517,6 +1517,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   onGround: 0
+  slidingRemaining: 0
 --- !u!65 &905711878
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2617,8 +2618,8 @@ GameObject:
   - component: {fileID: 1556851899}
   - component: {fileID: 1556851898}
   - component: {fileID: 1556851897}
-  - component: {fileID: 1556851903}
   - component: {fileID: 1556851904}
+  - component: {fileID: 1556851903}
   m_Layer: 0
   m_Name: Audio
   m_TagString: Untagged
@@ -3226,7 +3227,7 @@ MonoBehaviour:
   coin: {fileID: 1556851902}
   die: {fileID: 1556851900}
   jump: {fileID: 1556851898}
-  magic: {fileID: 0}
+  magic: {fileID: 1556851904}
 --- !u!82 &1556851904
 AudioSource:
   m_ObjectHideFlags: 0
@@ -3496,7 +3497,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0.6574917, b: 0, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -3572,7 +3573,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -4053,7 +4054,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4280664316965698, guid: 01c00a1893c76c041b99b53405fc09fc, type: 2}
       propertyPath: m_RootOrder
-      value: 7
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 114783743137757930, guid: 01c00a1893c76c041b99b53405fc09fc,
         type: 2}

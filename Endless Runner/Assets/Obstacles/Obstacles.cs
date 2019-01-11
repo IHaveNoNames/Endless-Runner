@@ -12,6 +12,7 @@ public abstract class Obstacles : MonoBehaviour {
         /*meshRenderer =gameObject.GetComponent<MeshRenderer>();
         boxCollider = gameObject.GetComponent<BoxCollider>();*/
        
+       
     }
 	
 	// Update is called once per frame
@@ -28,7 +29,8 @@ public abstract class Obstacles : MonoBehaviour {
             if (gameObject.CompareTag("HeavyObstacle"))
             {
                 
-                GM.TakingFatalHit();
+                 GM.TakingFatalHit();
+                
                 
             }
             else if (gameObject.CompareTag("LightObstacle"))

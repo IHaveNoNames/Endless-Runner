@@ -41,7 +41,7 @@ public class Player : MonoBehaviour
 
     bool isSliding = false;
     float slidingDuration = 1.2f;
-    float slidingRemaining = 0f;
+    public float slidingRemaining = 0f;
 
     float jumpDuration = 0.7f;
     float jumpRemainning = 0f;
@@ -69,7 +69,7 @@ public class Player : MonoBehaviour
             {
                 //boxcollider becomes smaller
                 boxCollider.center = new Vector3(0f, 0.2f, 0f);
-                boxCollider.size = new Vector3(0.4f, 0.42f, 0.4f);
+                boxCollider.size = new Vector3(0.15f, 0.18f, 0.25f);
             }
         }
         if (slidingRemaining <= 0f)
