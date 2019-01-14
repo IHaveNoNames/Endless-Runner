@@ -2968,8 +2968,8 @@ GameObject:
   - component: {fileID: 1556851899}
   - component: {fileID: 1556851898}
   - component: {fileID: 1556851897}
-  - component: {fileID: 1556851903}
   - component: {fileID: 1556851904}
+  - component: {fileID: 1556851903}
   m_Layer: 0
   m_Name: Audio
   m_TagString: Untagged
@@ -2988,7 +2988,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!82 &1556851897
 AudioSource:
@@ -3577,7 +3577,7 @@ MonoBehaviour:
   coin: {fileID: 1556851902}
   die: {fileID: 1556851900}
   jump: {fileID: 1556851898}
-  magic: {fileID: 0}
+  magic: {fileID: 1556851904}
 --- !u!82 &1556851904
 AudioSource:
   m_ObjectHideFlags: 0
@@ -4404,7 +4404,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4280664316965698, guid: 01c00a1893c76c041b99b53405fc09fc, type: 2}
       propertyPath: m_RootOrder
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 114783743137757930, guid: 01c00a1893c76c041b99b53405fc09fc,
         type: 2}
@@ -7455,6 +7455,8 @@ MonoBehaviour:
   mainCanvas: {fileID: 2067440965}
   pauseUI: {fileID: 378103426}
   wandText: {fileID: 1725675504}
+  bossFightStart: {fileID: 1376724675}
+  bossFightEnd: {fileID: 1438587151}
 --- !u!114 &2128009535
 MonoBehaviour:
   m_ObjectHideFlags: 0

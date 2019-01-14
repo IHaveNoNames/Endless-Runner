@@ -17,4 +17,8 @@ public static class GameStatus  {
     public static int coinCollected = 0;
 
     public static float distanceTravelled = 0f;
+
+    public static float bossFightCoolDown = 0f;
+
+
 }

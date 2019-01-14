@@ -22,6 +22,7 @@ public class GameManager : MonoBehaviour
 
     float minigameDistance = 100;
     float powerupDistance = 200;
+    public float bossCoolDownLength = 120f;
 
     public static int oneObstaclePercent = 35;
     public static int twoObstaclesPercent = 45;
@@ -70,6 +71,10 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (GameStatus.bossFightCoolDown > 0)
+        {
+            GameStatus.bossFightCoolDown -= Time.deltaTime;
+        }
         if (Mathf.RoundToInt(GameStatus.distanceTravelled) % powerupDistance == 0 && Mathf.RoundToInt(GameStatus.distanceTravelled) != 0)
         {
             readyForPowerup = true;
@@ -182,6 +187,7 @@ public class GameManager : MonoBehaviour
             bossFightEnd.SetActive(false);
             //boss defeated
             //disable all the grenades
+            GameStatus.bossFightCoolDown = bossCoolDownLength;
         }
     }
 

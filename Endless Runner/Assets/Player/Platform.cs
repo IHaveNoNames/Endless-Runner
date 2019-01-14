@@ -36,6 +36,9 @@ public class Platform : MonoBehaviour {
     [SerializeField]
     Transform[] powerups;
 
+    [SerializeField]
+    Transform[] bossFigntGrenade;
+
     int noOfPlatforms = 7;
     int noOfObstacles = 7;
 
@@ -116,10 +119,14 @@ public class Platform : MonoBehaviour {
         Transform platformStatus;
         Transform rightPlatformStatus;
 
-        if(GameStatus.distanceTravelled > 50)
+        if(GameStatus.distanceTravelled > 50 && !GameManager.bossFightActive)
         {
             RecycleObstacle(leftPlatform, platform, rightPlatform, out leftPlatformStatus, out platformStatus, out rightPlatformStatus);
             RecyclePowerups(leftPlatformStatus, platformStatus, rightPlatformStatus);
+        }
+        else if (GameManager.bossFightActive)
+        {
+           
         }
     }
 
