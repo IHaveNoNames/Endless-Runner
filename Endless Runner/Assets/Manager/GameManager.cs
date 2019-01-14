@@ -17,6 +17,7 @@ public class GameManager : MonoBehaviour
     [HideInInspector]
     public int bossCurrentHealth;
     [HideInInspector]
+    public static bool bossIsAlive = false;
     public static bool bossFightActive = false;
 
     float minigameDistance = 100;
@@ -45,6 +46,8 @@ public class GameManager : MonoBehaviour
     public GameObject mainCanvas;
     public GameObject pauseUI;
     public Text wandText;
+    public GameObject bossFightStart;
+    public GameObject bossFightEnd;
 
     private AudioController audioController;
 
@@ -90,9 +93,12 @@ public class GameManager : MonoBehaviour
 
         PowerUpCountDown();
         DisplayPowerUps();
-        if (bossCurrentHealth <= 0 && bossFightActive == true)
+        if (bossCurrentHealth <= 0 && bossIsAlive == true)
         {
-            BossDefeated();
+            bossIsAlive = false;
+            bossFightEnd.SetActive(true);
+            Invoke("BossFigntEnd",3);
+
         }
 
         UpdateUIText();
@@ -169,10 +175,11 @@ public class GameManager : MonoBehaviour
 
     }
 
-    public void BossDefeated()
+    public void BossFigntEnd()
     {
         {
             bossFightActive = false;
+            bossFightEnd.SetActive(false);
             //boss defeated
             //disable all the grenades
         }
@@ -182,6 +189,7 @@ public class GameManager : MonoBehaviour
     {
         bossCurrentHealth = bossTotalHeath;
         bossFightActive = true;
+        bossIsAlive = true;
     }
 
     void QTEStart()
