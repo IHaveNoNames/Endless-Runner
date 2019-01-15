@@ -345,12 +345,6 @@ public class Platform : MonoBehaviour {
         {
             if (possibleSpawn.Length != 0)
             {
-                if (GameManager.bossIsAlive)
-                {
-                    int bossPowerUp = 2;
-                    Instantiate(bossFightItems[bossPowerUp], new Vector3(possibleSpawn[rand].transform.position.x, possibleSpawn[rand].transform.position.y + (bossFightItems[bossPowerUp].transform.localScale.y / 2), possibleSpawn[rand].transform.position.z), Quaternion.identity);
-                }
-
                 if (percentage <= GameManager.percentMagicWand)
                 {
                     int magicWand = 4;
@@ -389,6 +383,12 @@ public class Platform : MonoBehaviour {
         {
             if (possibleSpawn.Length == 2)
             {
+                if (GameManager.bossIsAlive)
+                {
+                    int bossPowerUp = 2;
+                    Instantiate(bossFightItems[bossPowerUp], new Vector3(possibleSpawn[rand].transform.position.x, possibleSpawn[rand].transform.position.y + (bossFightItems[bossPowerUp].transform.localScale.y / 2), possibleSpawn[rand].transform.position.z), Quaternion.identity);
+                    Instantiate(bossFightItems[bossPowerUp], new Vector3(possibleSpawn[rand].transform.position.x, possibleSpawn[1-rand].transform.position.y + (bossFightItems[bossPowerUp].transform.localScale.y / 2), possibleSpawn[1-rand].transform.position.z), Quaternion.identity);
+                }
                 int coin = 1;
                 Instantiate(powerups[coin], new Vector3(possibleSpawn[rand].transform.position.x, possibleSpawn[rand].transform.position.y + (powerups[coin].transform.localScale.y / 2), possibleSpawn[rand].transform.position.z), transform.rotation);
                 Instantiate(powerups[coin], new Vector3(possibleSpawn[1 - rand].transform.position.x, possibleSpawn[1 - rand].transform.position.y + (powerups[coin].transform.localScale.y / 2), possibleSpawn[1 - rand].transform.position.z), transform.rotation);

@@ -27,4 +27,6 @@ public class Boss : MonoBehaviour {
         temp.z = player.transform.position.z + distanceToPlayer;
         transform.position = temp;
     }
+
+   
 }

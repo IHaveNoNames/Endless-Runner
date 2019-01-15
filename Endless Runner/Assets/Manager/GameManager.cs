@@ -12,10 +12,11 @@ public class GameManager : MonoBehaviour
     public Camera mainCamera;
     public Chaser chaser;
     public GameObject destroyParticle;
+    public GameObject boss;
 
     public int bossTotalHeath = 10;
     [HideInInspector]
-    public int bossCurrentHealth;
+    public static int bossCurrentHealth;
     [HideInInspector]
     public static bool bossIsAlive = false;
     public static bool bossFightActive = false;
@@ -55,6 +56,7 @@ public class GameManager : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        GameStatus.bossFightCoolDown = bossCoolDownLength;
         gameOverCanvas.SetActive(false);
         pauseUI.SetActive(false);
         platform = GameObject.Find("Game Manager").GetComponent<Platform>();
@@ -75,7 +77,7 @@ public class GameManager : MonoBehaviour
         {
             GameStatus.bossFightCoolDown -= Time.deltaTime;
         }
-        if (Mathf.RoundToInt(GameStatus.distanceTravelled) % powerupDistance == 0 && Mathf.RoundToInt(GameStatus.distanceTravelled) != 0)
+        if (Mathf.RoundToInt(GameStatus.distanceTravelled) % powerupDistance == 0 && Mathf.RoundToInt(GameStatus.distanceTravelled) != 0 && !bossIsAlive)
         {
             readyForPowerup = true;
         }
@@ -107,6 +109,10 @@ public class GameManager : MonoBehaviour
         }
 
         UpdateUIText();
+        if (!bossFightActive && GameStatus.bossFightCoolDown <= 0)
+        {
+            BossFightStart();
+        }
         
     }
 
@@ -188,6 +194,7 @@ public class GameManager : MonoBehaviour
             //boss defeated
             //disable all the grenades
             GameStatus.bossFightCoolDown = bossCoolDownLength;
+            boss.SetActive(false);
         }
     }
 
@@ -195,7 +202,15 @@ public class GameManager : MonoBehaviour
     {
         bossCurrentHealth = bossTotalHeath;
         bossFightActive = true;
+        bossFightStart.SetActive(true);
+        Invoke("BossAppear", 3);
+    }
+
+    public void BossAppear()
+    {
         bossIsAlive = true;
+        bossFightStart.SetActive(false);
+        boss.SetActive(true);
     }
 
     void QTEStart()

@@ -1030,7 +1030,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4161935377506542, guid: 136bec91c2a110a48a49533fdca8b404, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 6.61
+      value: 4.5
       objectReference: {fileID: 0}
     - target: {fileID: 4161935377506542, guid: 136bec91c2a110a48a49533fdca8b404, type: 2}
       propertyPath: m_LocalPosition.z
@@ -2378,7 +2378,7 @@ Rigidbody:
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
@@ -7444,9 +7444,9 @@ MonoBehaviour:
   chaser: {fileID: 59506266}
   destroyParticle: {fileID: 1828520276240564, guid: e2c0680853751214792b5223392da1f4,
     type: 2}
+  boss: {fileID: 1381147321}
   bossTotalHeath: 10
-  bossCurrentHealth: 0
-  bossCoolDownLength: 120
+  bossCoolDownLength: 5
   coinText: {fileID: 1106384364}
   distanceText: {fileID: 1672909126}
   wandButton: {fileID: 388171749}

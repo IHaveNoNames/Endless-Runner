@@ -33,12 +33,13 @@ public class Grenade : MonoBehaviour {
         if (other.gameObject.CompareTag("Player"))
         {
             pickedByPlayer = true;
+            gameObject.tag = "Grenade";
         }
 
         if (other.gameObject.CompareTag("Boss") && pickedByPlayer==true)
         {
             print("hitBOss");
-            GM.bossCurrentHealth -= 1;
+            GameManager.bossCurrentHealth -= 1;
             //some visual effect
 
             Destroy(gameObject);

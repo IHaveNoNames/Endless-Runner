@@ -21,6 +21,7 @@ public abstract class Obstacles : MonoBehaviour {
 
     private void OnCollisionEnter(Collision collision)
     {
+        
         if (collision.gameObject.CompareTag("Player"))
         {
             GameManager GM = GameObject.Find("Game Manager").GetComponent<GameManager>();
