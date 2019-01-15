@@ -96,7 +96,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3cd09655948aa7479c7f8b4c4800ef5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  thrownSpeed: 30
+  thrownSpeed: 100
   pickedByPlayer: 0
   GM: {fileID: 0}
 --- !u!136 &136751461923853366
