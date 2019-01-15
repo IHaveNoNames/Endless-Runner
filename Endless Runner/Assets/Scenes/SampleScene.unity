@@ -1065,6 +1065,11 @@ Prefab:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114876791534542540, guid: 136bec91c2a110a48a49533fdca8b404,
+        type: 2}
+      propertyPath: distanceToPlayer
+      value: 70
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 136bec91c2a110a48a49533fdca8b404, type: 2}
   m_IsPrefabParent: 0
@@ -7446,7 +7451,7 @@ MonoBehaviour:
     type: 2}
   boss: {fileID: 1381147321}
   bossTotalHeath: 10
-  bossCoolDownLength: 5
+  bossCoolDownLength: 120
   coinText: {fileID: 1106384364}
   distanceText: {fileID: 1672909126}
   wandButton: {fileID: 388171749}
