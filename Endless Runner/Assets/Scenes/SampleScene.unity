@@ -7411,6 +7411,10 @@ MonoBehaviour:
   - {fileID: 4319767802216412, guid: 353ae4df9c4535e439232910315e5ea3, type: 2}
   - {fileID: 4778487260892274, guid: 882281d2cd60aea419c092df39d975e1, type: 2}
   - {fileID: 4155354420316560, guid: 701fefd50f39b2a479fe77fb98c17160, type: 2}
+  bossFightItems:
+  - {fileID: 4770092329781024, guid: db93c3c2e297c954dace54dbad8fe6fc, type: 2}
+  - {fileID: 4775528079485096, guid: c5b2cdc1b8234bf498743fad15b0f88d, type: 2}
+  - {fileID: 4909877337296742, guid: 99fd00ac14293ca46bf2dacf68b77547, type: 2}
 --- !u!4 &2128009533
 Transform:
   m_ObjectHideFlags: 0
@@ -7442,6 +7446,7 @@ MonoBehaviour:
     type: 2}
   bossTotalHeath: 10
   bossCurrentHealth: 0
+  bossCoolDownLength: 120
   coinText: {fileID: 1106384364}
   distanceText: {fileID: 1672909126}
   wandButton: {fileID: 388171749}

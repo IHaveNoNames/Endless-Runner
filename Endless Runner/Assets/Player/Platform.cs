@@ -37,7 +37,7 @@ public class Platform : MonoBehaviour {
     Transform[] powerups;
 
     [SerializeField]
-    Transform[] bossFigntGrenade;
+    Transform[] bossFightItems;
 
     int noOfPlatforms = 7;
     int noOfObstacles = 7;
@@ -119,14 +119,10 @@ public class Platform : MonoBehaviour {
         Transform platformStatus;
         Transform rightPlatformStatus;
 
-        if(GameStatus.distanceTravelled > 50 && !GameManager.bossFightActive)
+        if(GameStatus.distanceTravelled > 50)
         {
             RecycleObstacle(leftPlatform, platform, rightPlatform, out leftPlatformStatus, out platformStatus, out rightPlatformStatus);
             RecyclePowerups(leftPlatformStatus, platformStatus, rightPlatformStatus);
-        }
-        else if (GameManager.bossFightActive)
-        {
-           
         }
     }
 
@@ -154,6 +150,10 @@ public class Platform : MonoBehaviour {
             {
                 //if platform chosen to be left platform
                 int leftObstacle = Random.Range(1, obstacles.Length);
+                if (GameManager.bossIsAlive)
+                {
+                    leftObstacle = 1;
+                }
                 Transform newLeftObstacle = HandleRecyclingObstacles(obstacleQueueLeft, leftObstacle, leftPlatform);
 
                 Transform newObstacle = HandleRecyclingObstacles(obstacleQueue, 0, platform);
@@ -163,6 +163,7 @@ public class Platform : MonoBehaviour {
                 leftPlatformStatus = newLeftObstacle;
                 platformStatus = newObstacle;
                 rightPlatformStatus = newRightObstacle;
+                
             }
 
             else if (platformChosen == 2)
@@ -171,6 +172,10 @@ public class Platform : MonoBehaviour {
                 Transform newLeftObstacle = HandleRecyclingObstacles(obstacleQueueLeft, 0, leftPlatform);
 
                 int obstacle = Random.Range(1, obstacles.Length);
+                if (GameManager.bossIsAlive)
+                {
+                    obstacle = 1;
+                }
                 Transform newObstacle = HandleRecyclingObstacles(obstacleQueue, obstacle, platform);
 
                 Transform newRightObstacle = HandleRecyclingObstacles(obstacleQueueRight, 0, rightPlatform);
@@ -189,6 +194,10 @@ public class Platform : MonoBehaviour {
                 Transform newObstacle = HandleRecyclingObstacles(obstacleQueue, 0, platform);
 
                 int rightObstacle = Random.Range(1, obstacles.Length);
+                if (GameManager.bossIsAlive)
+                {
+                    rightObstacle = 1;
+                }
                 Transform newRightObstacle = HandleRecyclingObstacles(obstacleQueueRight, rightObstacle, rightPlatform);
 
                 leftPlatformStatus = newLeftObstacle;
@@ -204,13 +213,21 @@ public class Platform : MonoBehaviour {
 
             if (platformChosen == 1)
             {
+                int obstacle = Random.Range(1, obstacles.Length);
+                int rightObstacle = Random.Range(1, obstacles.Length);
+                if (GameManager.bossIsAlive)
+                {
+                    obstacle = 1;
+                    rightObstacle = 1;
+                }
+
                 //if platform chosen to be middle and right
                 Transform newLeftObstacle = HandleRecyclingObstacles(obstacleQueueLeft, 0, leftPlatform);
 
-                int obstacle = Random.Range(1, obstacles.Length);
+                
                 Transform newObstacle = HandleRecyclingObstacles(obstacleQueue, obstacle, platform);
 
-                int rightObstacle = Random.Range(1, obstacles.Length);
+                
                 Transform newRightObstacle = HandleRecyclingObstacles(obstacleQueueRight, rightObstacle, rightPlatform);
 
                 leftPlatformStatus = newLeftObstacle;
@@ -222,11 +239,17 @@ public class Platform : MonoBehaviour {
             else if (platformChosen == 2) //platform is left and right
             {
                 int leftObstacle = Random.Range(1, obstacles.Length);
+                int rightObstacle = Random.Range(1, obstacles.Length);
+                if (GameManager.bossIsAlive)
+                {
+                    leftObstacle = 1;
+                    rightObstacle = 1;
+                }
                 Transform newLeftObstacle = HandleRecyclingObstacles(obstacleQueueLeft, leftObstacle, leftPlatform);
 
                 Transform newObstacle = HandleRecyclingObstacles(obstacleQueue, 0, platform);
 
-                int rightObstacle = Random.Range(1, obstacles.Length);
+                
                 Transform newRightObstacle = HandleRecyclingObstacles(obstacleQueueRight, rightObstacle, rightPlatform);
 
                 leftPlatformStatus = newLeftObstacle;
@@ -237,9 +260,15 @@ public class Platform : MonoBehaviour {
             else //left middle
             {
                 int leftObstacle = Random.Range(1, obstacles.Length);
+                int obstacle = Random.Range(1, obstacles.Length);
+                if (GameManager.bossIsAlive)
+                {
+                    leftObstacle = 1;
+                    obstacle = 1;
+                }
                 Transform newLeftObstacle = HandleRecyclingObstacles(obstacleQueueLeft, leftObstacle, leftPlatform);
 
-                int obstacle = Random.Range(1, obstacles.Length);
+                
                 Transform newObstacle = HandleRecyclingObstacles(obstacleQueue, obstacle, platform);
 
                 Transform newRightObstacle = HandleRecyclingObstacles(obstacleQueueRight, 0, rightPlatform);
@@ -253,12 +282,20 @@ public class Platform : MonoBehaviour {
         else if (noOfItems > ((GameManager.oneObstaclePercent + GameManager.twoObstaclesPercent + GameManager.threeObstaclesPercent) - GameManager.threeObstaclesPercent))
         {
             int leftObstacle = Random.Range(1, obstacles.Length);
+            int obstacle = Random.Range(1, obstacles.Length);
+            int rightObstacle = Random.Range(1, obstacles.Length);
+            if (GameManager.bossIsAlive)
+            {
+                leftObstacle = 1;
+                obstacle = 1;
+                rightObstacle = 1;
+            }
             Transform newLeftObstacle = HandleRecyclingObstacles(obstacleQueueLeft, leftObstacle, leftPlatform);
 
-            int obstacle = Random.Range(1, obstacles.Length);
+            
             Transform newObstacle = HandleRecyclingObstacles(obstacleQueue, obstacle, platform);
 
-            int rightObstacle = Random.Range(1, obstacles.Length);
+            
             Transform newRightObstacle = HandleRecyclingObstacles(obstacleQueueRight, rightObstacle, rightPlatform);
 
             leftPlatformStatus = newLeftObstacle;
@@ -276,10 +313,19 @@ public class Platform : MonoBehaviour {
 
     Transform HandleRecyclingObstacles(Queue<Transform> queue, int index, Transform transform)
     {
-        Transform gObj = Instantiate(obstacles[index], new Vector3(transform.position.x, transform.position.y + obstacles[index].transform.localScale.y / 2, transform.position.z), Quaternion.identity);
-        queue.Enqueue(gObj);
+        if (GameManager.bossIsAlive)
+        {
+            Transform gObj = Instantiate(bossFightItems[index], new Vector3(transform.position.x, transform.position.y + bossFightItems[index].transform.localScale.y / 2, transform.position.z), Quaternion.identity);
+            queue.Enqueue(gObj);
+            return gObj;
+        }
 
-        return gObj;
+        else
+        {
+            Transform gObj = Instantiate(obstacles[index], new Vector3(transform.position.x, transform.position.y + obstacles[index].transform.localScale.y / 2, transform.position.z), Quaternion.identity);
+            queue.Enqueue(gObj);
+            return gObj;
+        }
     }
 
     void RecyclePowerups(Transform leftStatus, Transform middleStatus, Transform rightStatus)
@@ -299,6 +345,11 @@ public class Platform : MonoBehaviour {
         {
             if (possibleSpawn.Length != 0)
             {
+                if (GameManager.bossIsAlive)
+                {
+                    int bossPowerUp = 2;
+                    Instantiate(bossFightItems[bossPowerUp], new Vector3(possibleSpawn[rand].transform.position.x, possibleSpawn[rand].transform.position.y + (bossFightItems[bossPowerUp].transform.localScale.y / 2), possibleSpawn[rand].transform.position.z), Quaternion.identity);
+                }
 
                 if (percentage <= GameManager.percentMagicWand)
                 {
