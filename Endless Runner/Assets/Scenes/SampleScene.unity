@@ -1736,7 +1736,7 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 0.4, y: 1.14, z: 0.4}
-  m_Center: {x: 0, y: 0.77, z: 0}
+  m_Center: {x: 0, y: 0.57, z: 0}
 --- !u!4 &905711881 stripped
 Transform:
   m_PrefabParentObject: {fileID: 400096, guid: 412b92d4feeb9c548bfa98f62c4d1022, type: 2}
@@ -7399,11 +7399,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   destroyParticle: {fileID: 1828520276240564, guid: e2c0680853751214792b5223392da1f4,
     type: 2}
-  leftPlatformPrefab: {fileID: 4298155660305504, guid: dba026c1006ced0439a79f9a652452e2,
+  leftPlatformPrefab: {fileID: 4255747265098096, guid: 23685066e51a6f34ab778b5f4bc88560,
     type: 2}
-  platformPrefab: {fileID: 4573185039180538, guid: 289405234631ebf48ae56f552f479c9e,
+  platformPrefab: {fileID: 4400804740491124, guid: 5395e39b5b26eb34db6d5e404c66affb,
     type: 2}
-  rightPlatformPrefab: {fileID: 4910854033084850, guid: e1b11cbb20879ee4c88377961bd52519,
+  rightPlatformPrefab: {fileID: 4661856132306258, guid: 45efd9c788cd53543b6b6319521ad3a2,
     type: 2}
   obstacles:
   - {fileID: 4770092329781024, guid: db93c3c2e297c954dace54dbad8fe6fc, type: 2}
@@ -7491,3 +7491,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   skylinePrefab: {fileID: 4419325228824618, guid: 8adae31d573f0cf4a9742920166ac1b1,
     type: 2}
+  skylinePrefabs:
+  - {fileID: 400000, guid: 402d7d20214952143b9f2203662e54a5, type: 3}
+  - {fileID: 400000, guid: 0a9b5a76df96b3e408a0031598eaabd7, type: 3}
+  - {fileID: 400000, guid: 69fc495fe0c18e145b0f92a5be35286e, type: 3}
+  - {fileID: 400000, guid: 0ad20d52af09b47438111ba7cff5521c, type: 3}
+  - {fileID: 400000, guid: e43c75695d56e5b4199a05a2caa5a85a, type: 3}
+  - {fileID: 400000, guid: 6eb256c1af81f8f48a3e93a70a5a2df7, type: 3}
+  - {fileID: 400000, guid: 5493abc62758dc842a28b901b2b4c57f, type: 3}
+  skylinePrefabsLength:
+  - 2.76
+  - 2.55
+  - 2.613
+  - 2.62
+  - 2.62
+  - 4.28
+  - 1.72
+  skylinePrefabsHeight:
+  - 2.4
+  - 3
+  - 3
+  - 2.5
+  - 2.5
+  - 1.76
+  - 1.44

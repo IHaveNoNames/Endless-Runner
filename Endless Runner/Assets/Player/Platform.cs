@@ -35,7 +35,6 @@ public class Platform : MonoBehaviour {
     Transform[] obstacles;
     [SerializeField]
     Transform[] powerups;
-
     [SerializeField]
     Transform[] bossFightItems;
 
@@ -95,9 +94,9 @@ public class Platform : MonoBehaviour {
         Vector3 position = nextPos;
         Vector3 rightPos = nextRightPos;
 
-        leftPos.z += (leftPlatformPrefab.localScale.z / 2);
-        position.z += (platformPrefab.localScale.z / 2);
-        rightPos.z += (rightPlatformPrefab.localScale.z / 2);
+        leftPos.z += (20.87f / 2);
+        position.z += (20.87f / 2);
+        rightPos.z += (20.87f / 2);
 
         Transform leftPlatform = platformLeftQueue.Dequeue();
         Transform platform = platformQueue.Dequeue();
@@ -107,9 +106,9 @@ public class Platform : MonoBehaviour {
         platform.position = position;
         rightPlatform.position = rightPos;
 
-        nextLeftPos.z += leftPlatformPrefab.localScale.z;
-        nextPos.z += platformPrefab.localScale.z;
-        nextRightPos.z += rightPlatformPrefab.localScale.z;
+        nextLeftPos.z += 20.87f;
+        nextPos.z += 20.87f;
+        nextRightPos.z += 20.87f;
 
         platformLeftQueue.Enqueue(leftPlatform);
         platformQueue.Enqueue(platform);

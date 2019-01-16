@@ -72,7 +72,7 @@ public class Player : MonoBehaviour
         if (slidingRemaining <= 0f)
         {
             //normal boxcollider
-            boxCollider.center = new Vector3(0f, 0.77f, 0f);
+            boxCollider.center = new Vector3(0f, 0.57f, 0f);
             boxCollider.size = new Vector3(0.4f, 1.14f, 0.4f);
         }
 
