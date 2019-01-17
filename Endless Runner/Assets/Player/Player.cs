@@ -8,7 +8,7 @@ public class Player : MonoBehaviour
     
     public static float acceleration = 20f;
 
-    Rigidbody rb;
+    public static Rigidbody rb;
 
     Vector3 endPos;
 
@@ -52,6 +52,7 @@ public class Player : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         anim = GetComponent<Animator>();
         audioController = GameObject.Find("Audio").GetComponent<AudioController>();
+        rb.constraints = RigidbodyConstraints.FreezeRotation | RigidbodyConstraints.FreezePositionY;
     }
 
     // Update is called once per frame
@@ -110,6 +111,7 @@ public class Player : MonoBehaviour
             canJump = false;
             anim.SetTrigger("Jump");
             audioController.jump.Play();
+            rb.constraints = RigidbodyConstraints.FreezeRotation;
             rb.AddForce(jumpVelocity, ForceMode.VelocityChange);
         }
 
@@ -155,18 +157,18 @@ public class Player : MonoBehaviour
 
                 else if(Mathf.Abs(y) > Mathf.Abs(x))
                 {
-                    if (y > 0 && onGround &&jumpRemaining<=0)
+                    if (y > 0 && onGround && canJump)
                     {
-                        audioController.jump.Play();
-                        jumpRemaining = jumpDuration;
+                        canJump = false;
                         anim.SetTrigger("Jump");
+                        audioController.jump.Play();
                         rb.AddForce(jumpVelocity, ForceMode.VelocityChange);
                     }
 
-                    else if (y < 0 &&slidingRemaining<=0)
+                    else if (y < 0 && canSlide)
                     {
+                        canSlide = false;
                         anim.SetTrigger("Slide");
-                        slidingRemaining = slidingDuration;
                     }
                 }
             }
