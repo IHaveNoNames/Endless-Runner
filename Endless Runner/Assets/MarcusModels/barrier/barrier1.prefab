@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 65121830614720132}
   - component: {fileID: 114232516695634980}
   m_Layer: 0
-  m_Name: useThisBarrier(Clone)
+  m_Name: barrier1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
