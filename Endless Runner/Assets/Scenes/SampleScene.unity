@@ -7998,7 +7998,7 @@ MonoBehaviour:
   - {fileID: 4770092329781024, guid: db93c3c2e297c954dace54dbad8fe6fc, type: 2}
   - {fileID: 4457018618662696, guid: 0929b2221f5f5844480c5318aaeab4c5, type: 2}
   - {fileID: 4195812544838856, guid: 5d674e8c01c06624a93df6c816278356, type: 2}
-  - {fileID: 4750090335043648, guid: 36c4c79ce840d9a49ab2cb5191cdd11c, type: 2}
+  - {fileID: 4834205470873084, guid: 5ad3568b812e19b43b464b5317ba8a11, type: 2}
   obstaclesHeight:
   - 0.5
   - 0.41
