@@ -34,6 +34,8 @@ public class Platform : MonoBehaviour {
     [SerializeField]
     Transform[] obstacles;
     [SerializeField]
+    float[] obstaclesHeight;
+    [SerializeField]
     Transform[] powerups;
     [SerializeField]
     Transform[] bossFightItems;
@@ -321,7 +323,7 @@ public class Platform : MonoBehaviour {
 
         else
         {
-            Transform gObj = Instantiate(obstacles[index], new Vector3(transform.position.x, transform.position.y + obstacles[index].transform.localScale.y / 2, transform.position.z), Quaternion.identity);
+            Transform gObj = Instantiate(obstacles[index], new Vector3(transform.position.x, transform.position.y + obstaclesHeight[index], transform.position.z), Quaternion.identity);
             queue.Enqueue(gObj);
             return gObj;
         }

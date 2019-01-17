@@ -39,7 +39,7 @@ public class Player : MonoBehaviour
     [SerializeField]
     LayerMask whatIsGround;
     [SerializeField]
-    bool onGround;
+    static bool onGround;
 
     public static bool canJump = true;
     public static bool canSlide = true;
@@ -221,4 +221,5 @@ public class Player : MonoBehaviour
         rb.AddForce(0f, 0f, acceleration, ForceMode.Acceleration);
         anim.SetBool("Run", true);
     }
+
 }

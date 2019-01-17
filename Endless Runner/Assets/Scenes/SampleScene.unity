@@ -7651,9 +7651,14 @@ MonoBehaviour:
     type: 2}
   obstacles:
   - {fileID: 4770092329781024, guid: db93c3c2e297c954dace54dbad8fe6fc, type: 2}
-  - {fileID: 4434212785813074, guid: a56c1f0ca343c6b42a86ae2434fb5a7c, type: 2}
-  - {fileID: 4543071068265108, guid: 3dd35f26d343434448ec475582f0dc76, type: 2}
+  - {fileID: 4457018618662696, guid: 0929b2221f5f5844480c5318aaeab4c5, type: 2}
+  - {fileID: 4195812544838856, guid: 5d674e8c01c06624a93df6c816278356, type: 2}
   - {fileID: 4750090335043648, guid: 36c4c79ce840d9a49ab2cb5191cdd11c, type: 2}
+  obstaclesHeight:
+  - 0.5
+  - 0.41
+  - 0.89
+  - 1
   powerups:
   - {fileID: 4747933368735136, guid: 1ebdf22158bf46842bc055d95b677c64, type: 2}
   - {fileID: 4848199728120166, guid: f28a333c078ff8240b8a72e06ce69809, type: 2}
