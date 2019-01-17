@@ -14,7 +14,7 @@ public class GameManager : MonoBehaviour
     public GameObject destroyParticle;
     public GameObject boss;
 
-    public int bossTotalHeath = 10;
+    public  int bossTotalHeath = 10;
     [HideInInspector]
     public static int bossCurrentHealth;
     [HideInInspector]
@@ -124,8 +124,10 @@ public class GameManager : MonoBehaviour
 
         if (bossIsAlive == true)
         {
-            bossHealthBar.fillAmount = bossCurrentHealth / bossTotalHeath;
+            bossHealthBar.fillAmount =   bossCurrentHealth/ (float)bossTotalHeath;
+            
         }
+
     }
 
     

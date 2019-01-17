@@ -26,23 +26,32 @@ public class Grenade : MonoBehaviour {
         {
             transform.position = Vector3.MoveTowards(transform.position, boss.transform.position, thrownSpeed * Time.deltaTime);
         }
+
+        if (!GameManager.bossIsAlive)
+        {
+            Destroy(gameObject);
+        }
 	}
 
     private void OnTriggerEnter(Collider other)
     {
+
+        if (other.gameObject.CompareTag("Boss") && pickedByPlayer == true)
+        {
+            print("hitBOss");
+            GameManager.bossCurrentHealth -= 1;
+            //some visual effect
+
+
+
+            Destroy(gameObject);
+        }
         if (other.gameObject.CompareTag("Player"))
         {
             pickedByPlayer = true;
             gameObject.tag = "Grenade";
         }
 
-        if (other.gameObject.CompareTag("Boss") && pickedByPlayer==true)
-        {
-            print("hitBOss");
-            GameManager.bossCurrentHealth -= 1;
-            //some visual effect
-
-            Destroy(gameObject);
-        }
+        
     }
 }
