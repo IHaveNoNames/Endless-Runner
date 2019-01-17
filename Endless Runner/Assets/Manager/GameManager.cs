@@ -51,6 +51,7 @@ public class GameManager : MonoBehaviour
     public GameObject bossFightStart;
     public GameObject bossFightEnd;
     public GameObject startAnimation;
+    public Image bossHealthBar;
 
     private AudioController audioController;
 
@@ -73,6 +74,7 @@ public class GameManager : MonoBehaviour
         GameStatus.distanceTravelled = 0f;
         audioController = GameObject.Find("Audio").GetComponent<AudioController>();
         startAnimation.SetActive(true);
+        bossHealthBar.gameObject.SetActive(false);
     }
 
     // Update is called once per frame
@@ -110,6 +112,7 @@ public class GameManager : MonoBehaviour
             bossIsAlive = false;
             bossFightEnd.SetActive(true);
             Invoke("BossFigntEnd",3);
+            bossHealthBar.gameObject.SetActive(false);
 
         }
 
@@ -118,7 +121,11 @@ public class GameManager : MonoBehaviour
         {
             BossFightStart();
         }
-        
+
+        if (bossIsAlive == true)
+        {
+            bossHealthBar.fillAmount = bossCurrentHealth / bossTotalHeath;
+        }
     }
 
     
@@ -216,6 +223,7 @@ public class GameManager : MonoBehaviour
         bossIsAlive = true;
         bossFightStart.SetActive(false);
         boss.SetActive(true);
+        bossHealthBar.gameObject.SetActive(true);
     }
 
     void QTEStart()
