@@ -10,36 +10,33 @@ Cars:
 https://assetstore.unity.com/packages/3d/vehicles/land/modern-sports-car-8-2209
 https://assetstore.unity.com/packages/3d/vehicles/land/modern-sports-car-7-2208
 
-Spikes: (Urgent)
-Making
+Spikes:
+DONE
 
-Barriers: (Urgent) 
-Making
+Barriers:
+DONE
 
-Roads: (Urgent)
-Making
+Roads:
+DONE
 
 Bending Roads: 
-Making
+DONE
 
 ITEMS
 
 Magnet:
-To be done
+DONE
 
 Wand:
 Texture Left
 
-Grapplehook:
-I'm not sure, to be done for now
-
 Bulletproof:
-To be done
+DONE
 
 TERRAIN
 
 Side Buildings:
-TO be done
+DONE
 
 Sidewalks:
 To be done
@@ -57,7 +54,4 @@ Not sure
 
 Police:
 Not sure
-
-Helicopter:
-Not Sure
 
