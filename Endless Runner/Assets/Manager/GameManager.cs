@@ -50,6 +50,7 @@ public class GameManager : MonoBehaviour
     public Text wandText;
     public GameObject bossFightStart;
     public GameObject bossFightEnd;
+    public GameObject startAnimation;
 
     private AudioController audioController;
 
@@ -57,6 +58,8 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         Player.canJump = true;
+        bossFightActive = false;
+        bossIsAlive = false;
         GameStatus.bossFightCoolDown = bossCoolDownLength;
         gameOverCanvas.SetActive(false);
         pauseUI.SetActive(false);
@@ -69,6 +72,7 @@ public class GameManager : MonoBehaviour
         GameStatus.coinCollected = 0;
         GameStatus.distanceTravelled = 0f;
         audioController = GameObject.Find("Audio").GetComponent<AudioController>();
+        startAnimation.SetActive(true);
     }
 
     // Update is called once per frame
@@ -328,5 +332,7 @@ public class GameManager : MonoBehaviour
             wandText.gameObject.SetActive(false);
         }
     }
+
+    
     
 }
