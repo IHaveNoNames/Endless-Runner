@@ -30,6 +30,8 @@ public class Player : MonoBehaviour
 
     private BoxCollider boxCollider;
 
+    public static CapsuleCollider collider;
+
     //Ground Checking
     [SerializeField]
     Transform groundCheck;
@@ -39,15 +41,13 @@ public class Player : MonoBehaviour
     [SerializeField]
     bool onGround;
 
-    
-    float slidingDuration = 0.9f;
-    float slidingRemaining = 0f;
-    float jumpDuration = 0.9f;
-    float jumpRemaining = 0f;
+    public static bool canJump = true;
+    public static bool canSlide = true;
 
     // Use this for initialization
     void Start()
     {
+        collider = GetComponent<CapsuleCollider>();
         boxCollider = GetComponent<BoxCollider>();
         rb = GetComponent<Rigidbody>();
         anim = GetComponent<Animator>();
@@ -57,24 +57,34 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (jumpRemaining > 0)
-        {
-            jumpRemaining -= Time.deltaTime;
-        }
+        //if (jumpRemaining > 0)
+        //{
+        //    rb.constraints = RigidbodyConstraints.None;
+        //    rb.constraints = RigidbodyConstraints.FreezeRotation;
+        //    jumpRemaining -= Time.deltaTime;
+        //}
 
-        if (slidingRemaining >0f)
-        {
-            slidingRemaining -= Time.deltaTime;
-            //boxcollider becomes smaller
-            boxCollider.center = new Vector3(0f, 0.2f, 0f);
-            boxCollider.size = new Vector3(0.4f,0.42f, 0.4f);
-        }
-        if (slidingRemaining <= 0f)
-        {
-            //normal boxcollider
-            boxCollider.center = new Vector3(0f, 0.57f, 0f);
-            boxCollider.size = new Vector3(0.4f, 1.14f, 0.4f);
-        }
+        //else if (jumpRemaining <= 0)
+        //{
+        //    rb.constraints = RigidbodyConstraints.None;
+        //    rb.constraints = RigidbodyConstraints.FreezePositionY;
+        //    rb.constraints = RigidbodyConstraints.FreezeRotation;
+        //}
+
+        //if (slidingRemaining >0f)
+        //{
+        //    slidingRemaining -= Time.deltaTime;
+        //    //boxcollider becomes smaller
+        //    boxCollider.center = new Vector3(0f, 0.2f, 0f);
+        //    boxCollider.size = new Vector3(0.4f,0.42f, 0.4f);
+        //}
+
+        //if (slidingRemaining <= 0f)
+        //{
+        //    //normal boxcollider
+        //    boxCollider.center = new Vector3(0f, 0.57f, 0f);
+        //    boxCollider.size = new Vector3(0.4f, 1.14f, 0.4f);
+        //}
 
 
 #if UNITY_EDITOR || UNITY_STANDALONE || UNITY_WEBPLAYER
@@ -95,18 +105,18 @@ public class Player : MonoBehaviour
             }
         }
 
-        if (Input.GetButtonDown("Jump") && onGround &&jumpRemaining<=0)
+        if (Input.GetButtonDown("Jump") && onGround && canJump)
         {
+            canJump = false;
             anim.SetTrigger("Jump");
-            jumpRemaining = jumpDuration;
             audioController.jump.Play();
             rb.AddForce(jumpVelocity, ForceMode.VelocityChange);
         }
 
-        if (Input.GetKeyDown(KeyCode.DownArrow)&&slidingRemaining<=0)
+        if (Input.GetKeyDown(KeyCode.DownArrow) && canSlide)
         {
+            canSlide = false;
             anim.SetTrigger("Slide");
-            slidingRemaining = slidingDuration;
         }
 #else
         if (Input.touchCount > 0)

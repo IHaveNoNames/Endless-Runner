@@ -38,8 +38,8 @@ public class Platform : MonoBehaviour {
     [SerializeField]
     Transform[] bossFightItems;
 
-    int noOfPlatforms = 7;
-    int noOfObstacles = 7;
+    int noOfPlatforms = 10;
+    int noOfObstacles = 10;
 
 
     // Use this for initialization

@@ -56,6 +56,7 @@ public class GameManager : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        Player.canJump = true;
         GameStatus.bossFightCoolDown = bossCoolDownLength;
         gameOverCanvas.SetActive(false);
         pauseUI.SetActive(false);
