@@ -8750,7 +8750,7 @@ MonoBehaviour:
   - 0.5
   - 0.41
   - 0.89
-  - 1
+  - 0.645
   powerups:
   - {fileID: 4747933368735136, guid: 1ebdf22158bf46842bc055d95b677c64, type: 2}
   - {fileID: 4848199728120166, guid: f28a333c078ff8240b8a72e06ce69809, type: 2}
