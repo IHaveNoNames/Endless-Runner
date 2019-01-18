@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public  class  AudioController :MonoBehaviour {
     private GameObject player;
@@ -12,6 +13,9 @@ public  class  AudioController :MonoBehaviour {
     public  AudioSource jump;
     public AudioSource magic;
     // Use this for initialization
+    public Slider volumeSlider;
+
+    float masterVolume = 0.5f;
 
     private void Start()
     {
@@ -23,6 +27,12 @@ public  class  AudioController :MonoBehaviour {
         {
             transform.position = player.transform.position;
         }
+    }
+
+    public void SetMasterVolume()
+    {
+        masterVolume = volumeSlider.value;
+        AudioListener.volume = masterVolume;
     }
 
 }
