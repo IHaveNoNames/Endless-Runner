@@ -28,9 +28,10 @@ public class Player : MonoBehaviour
 
     private Vector2 touchOrigin = -Vector2.one;
 
-    private BoxCollider boxCollider;
-
     public static CapsuleCollider collider;
+
+    public static Transform playertransform;
+
 
     //Ground Checking
     [SerializeField]
@@ -47,8 +48,8 @@ public class Player : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        playertransform = GetComponent<Transform>();
         collider = GetComponent<CapsuleCollider>();
-        boxCollider = GetComponent<BoxCollider>();
         rb = GetComponent<Rigidbody>();
         anim = GetComponent<Animator>();
         audioController = GameObject.Find("Audio").GetComponent<AudioController>();

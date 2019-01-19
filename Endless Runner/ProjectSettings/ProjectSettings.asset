@@ -242,7 +242,7 @@ PlayerSettings:
   androidSplashScreen: {fileID: 0}
   AndroidKeystoreName: C:/Users/Admin/Documents/!personal/School/!UnityProjects/Endless-Runner/Endless
     Runner/MakiChanAdventureKeyStore.keystore
-  AndroidKeyaliasName: makichanadventure
+  AndroidKeyaliasName: 
   AndroidTVCompatibility: 1
   AndroidIsGame: 1
   AndroidEnableTango: 0
