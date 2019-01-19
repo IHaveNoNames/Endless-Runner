@@ -307,6 +307,7 @@ public class GameManager : MonoBehaviour
         //mainCamera.transform.parent = null;
         mainCanvas.SetActive(false);
         player.GetComponent<Player>().enabled = false;
+        player.GetComponent<CapsuleCollider>().enabled = false;
         playerAnim.SetTrigger("Die");
 
         GameStatus.vest = false;
