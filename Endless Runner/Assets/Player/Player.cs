@@ -162,6 +162,7 @@ public class Player : MonoBehaviour
                         canJump = false;
                         anim.SetTrigger("Jump");
                         audioController.jump.Play();
+                        rb.constraints = RigidbodyConstraints.FreezeRotation;
                         rb.AddForce(jumpVelocity, ForceMode.VelocityChange);
                     }
 
