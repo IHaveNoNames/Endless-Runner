@@ -32,13 +32,19 @@ public class JumpBehaviour : StateMachineBehaviour {
             Player.collider.height = oHeight;
         }
 
+        if(currPos.y == 0 && Mathf.Sign(currPos.y - lastPosition.y) == -1)
+        {
+            Player.rb.constraints = RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotation;
+            //Player.canJump = true;
+        }
+
         lastPosition = currPos;
     }
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        Player.rb.constraints = RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotation;
+        //Player.rb.constraints = RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotation;
         Player.canJump = true;
     }
 
