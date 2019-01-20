@@ -291,6 +291,9 @@ public class GameManager : MonoBehaviour
     public void GameOver()
     {
         Animator playerAnim = player.GetComponent<Animator>();
+        playerAnim.SetTrigger("Die");
+        player.GetComponent<Player>().enabled = false;
+        player.GetComponent<CapsuleCollider>().enabled = false;
         Instantiate(destroyParticle, new Vector3(player.transform.position.x, player.transform.position.y + 1.5f, player.transform.position.z), Quaternion.identity);
         audioController.die.PlayOneShot(audioController.die.clip);
         chaser.timeStarted = Time.time;
@@ -306,9 +309,8 @@ public class GameManager : MonoBehaviour
         distanceTextGameOver.text = "Distance:"+Mathf.RoundToInt(GameStatus.distanceTravelled).ToString();
         //mainCamera.transform.parent = null;
         mainCanvas.SetActive(false);
-        player.GetComponent<Player>().enabled = false;
-        player.GetComponent<CapsuleCollider>().enabled = false;
-        playerAnim.SetTrigger("Die");
+        
+        
 
         GameStatus.vest = false;
         GameStatus.vestRemaining = 0f;
