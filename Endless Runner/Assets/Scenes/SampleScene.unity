@@ -9375,7 +9375,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &2010890711
 RectTransform:
   m_ObjectHideFlags: 0
@@ -9876,7 +9876,6 @@ GameObject:
   - component: {fileID: 2128009534}
   - component: {fileID: 2128009535}
   - component: {fileID: 2128009536}
-  - component: {fileID: 2128009537}
   m_Layer: 0
   m_Name: Game Manager
   m_TagString: Untagged
@@ -10022,13 +10021,6 @@ MonoBehaviour:
   - 2.5
   - 1.76
   - 1.44
---- !u!81 &2128009537
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2128009531}
-  m_Enabled: 1
 --- !u!1 &2130671767
 GameObject:
   m_ObjectHideFlags: 0
