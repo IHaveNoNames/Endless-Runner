@@ -12,6 +12,10 @@ public  class  AudioController :MonoBehaviour {
     public  AudioSource die;
     public  AudioSource jump;
     public AudioSource magic;
+    
+    
+    public AudioSource sliding;
+    public AudioSource explostion;
     // Use this for initialization
     public Slider volumeSlider;
 

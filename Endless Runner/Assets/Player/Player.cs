@@ -120,6 +120,7 @@ public class Player : MonoBehaviour
         {
             canSlide = false;
             anim.SetTrigger("Slide");
+            audioController.sliding.PlayOneShot(audioController.sliding.clip);
         }
 #else
         if (Input.touchCount > 0)
@@ -171,6 +172,7 @@ public class Player : MonoBehaviour
                     {
                         canSlide = false;
                         anim.SetTrigger("Slide");
+                        audioController.sliding.PlayOneShot(audioController.sliding.clip);
                     }
                 }
             }

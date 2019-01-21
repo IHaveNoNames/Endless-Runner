@@ -38,6 +38,7 @@ public class Grenade : MonoBehaviour {
 
         if (other.gameObject.CompareTag("Boss") && pickedByPlayer == true)
         {
+            AudioSource.PlayClipAtPoint(GetComponent<AudioSource>().clip, transform.position);
             print("hitBOss");
             GameManager.bossCurrentHealth -= 1;
             //some visual effect
