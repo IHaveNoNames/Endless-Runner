@@ -107,7 +107,7 @@ public class Player : MonoBehaviour
             }
         }
 
-        if (Input.GetButtonDown("Jump") && onGround && canJump)
+        if (Input.GetButtonDown("Jump") && onGround && canJump && canSlide)
         {
             canJump = false;
             anim.SetTrigger("Jump");
@@ -116,7 +116,7 @@ public class Player : MonoBehaviour
             rb.AddForce(jumpVelocity, ForceMode.VelocityChange);
         }
 
-        if (Input.GetKeyDown(KeyCode.DownArrow) && canSlide)
+        if (Input.GetKeyDown(KeyCode.DownArrow) && canSlide && canJump)
         {
             canSlide = false;
             anim.SetTrigger("Slide");

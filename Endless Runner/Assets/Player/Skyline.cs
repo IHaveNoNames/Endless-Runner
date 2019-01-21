@@ -16,7 +16,7 @@ public class Skyline : MonoBehaviour {
     [SerializeField]
     float[] skylinePrefabsHeight;
 
-    int numberOfObjects = 15;
+    int numberOfObjects = 30;
 
     Vector3 leftStartPos = new Vector3(-11, 0, 0);
     Vector3 rightStartPos = new Vector3(11, 0, 0);
