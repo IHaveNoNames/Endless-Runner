@@ -40,8 +40,8 @@ public class Platform : MonoBehaviour {
     [SerializeField]
     Transform[] bossFightItems;
 
-    int noOfPlatforms = 10;
-    int noOfObstacles = 10;
+    int noOfPlatforms = 12;
+    int noOfObstacles = 12;
 
 
     // Use this for initialization
@@ -120,7 +120,7 @@ public class Platform : MonoBehaviour {
         Transform platformStatus;
         Transform rightPlatformStatus;
 
-        if(GameStatus.distanceTravelled > 50)
+        if(GameStatus.distanceTravelled > 10)
         {
             RecycleObstacle(leftPlatform, platform, rightPlatform, out leftPlatformStatus, out platformStatus, out rightPlatformStatus);
             RecyclePowerups(leftPlatformStatus, platformStatus, rightPlatformStatus);
