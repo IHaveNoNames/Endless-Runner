@@ -20,8 +20,14 @@ public class MovingObstacles : Obstacles
 	// Update is called once per frame
 	void FixedUpdate () {
         Moving();
+        
 		
 	}
+
+    private void Update()
+    {
+        
+    }
 
     private void Moving()
     {
