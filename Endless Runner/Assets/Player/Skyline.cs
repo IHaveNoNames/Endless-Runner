@@ -8,6 +8,9 @@ public class Skyline : MonoBehaviour {
     Transform skylinePrefab;
 
     [SerializeField]
+    Transform sideWalkPrefab;
+
+    [SerializeField]
     Transform[] skylinePrefabs;
 
     [SerializeField]
@@ -18,12 +21,21 @@ public class Skyline : MonoBehaviour {
 
     int numberOfObjects = 30;
 
+    Vector3 leftSideWalkPos = new Vector3(-10.5f, 0.55f, 0);
+    Vector3 rightSideWalkPos = new Vector3(10.5f, 0.55f, 0);
+    Vector3 leftNextSideWalkPos;
+    Vector3 rightNextSideWalkPos;
+
     Vector3 leftStartPos = new Vector3(-11, 0, 0);
     Vector3 rightStartPos = new Vector3(11, 0, 0);
     Vector3 leftNextPos;
     Vector3 rightNextPos;
+
     Queue<Transform> skylineLeftQueue;
     Queue<Transform> skylineRightQueue;
+
+    Queue<Transform> sideWalkLeftQueue;
+    Queue<Transform> sideWalkRightQueue;
 
     float minSizeY = 5f;
     float maxSizeY = 20f;
@@ -35,6 +47,9 @@ public class Skyline : MonoBehaviour {
 	void Start () {
         skylineLeftQueue = new Queue<Transform>(numberOfObjects);
         skylineRightQueue = new Queue<Transform>(numberOfObjects);
+
+        sideWalkLeftQueue = new Queue<Transform>(12);
+        sideWalkRightQueue = new Queue<Transform>(numberOfObjects);
         
         for (int i = 0; i < numberOfObjects; i++)
         {
@@ -42,12 +57,26 @@ public class Skyline : MonoBehaviour {
             skylineRightQueue.Enqueue((Transform)Instantiate(skylinePrefab));
         }
 
+        for(int i = 0; i< 12; i++)
+        {
+            sideWalkLeftQueue.Enqueue((Transform)Instantiate(sideWalkPrefab));
+            sideWalkRightQueue.Enqueue((Transform)Instantiate(sideWalkPrefab));
+        }
+
         leftNextPos = leftStartPos;
         rightNextPos = rightStartPos;
+
+        leftNextSideWalkPos = leftSideWalkPos;
+        rightNextSideWalkPos = rightSideWalkPos;
 
         for (int i = 0; i < numberOfObjects; i++)
         {
             Recycle();
+        }
+
+        for(int i = 0; i< 12; i++)
+        {
+            RecycleSideWalk();
         }
 	}
 	
@@ -56,6 +85,11 @@ public class Skyline : MonoBehaviour {
 		if(skylineLeftQueue.Peek().localPosition.z < GameStatus.distanceTravelled)
         {
             Recycle();
+        }
+
+        if(sideWalkLeftQueue.Peek().localPosition.z + 25f < GameStatus.distanceTravelled)
+        {
+            RecycleSideWalk();
         }
 	}
 
@@ -67,11 +101,7 @@ public class Skyline : MonoBehaviour {
         Vector3 rightPosition = rightNextPos;
         //leftPosition.y += leftScale.y * 0.5f;
         //rightPosition.y += rightScale.y * 0.5f;
-        
 
-
-        
-        
         Transform leftSkyline = skylineLeftQueue.Dequeue();
         Transform rightSkyline = skylineRightQueue.Dequeue();
 
@@ -84,8 +114,11 @@ public class Skyline : MonoBehaviour {
         leftPosition.z += skylinePrefabsLength[leftrand];
         rightPosition.z += skylinePrefabsLength[rightrand];
 
-        leftSkyline = (Transform)Instantiate(skylinePrefabs[leftrand], new Vector3(leftPosition.x, skylinePrefabsHeight[leftrand] + 0.6042783f, leftPosition.z), Quaternion.identity);
-        rightSkyline = (Transform)Instantiate(skylinePrefabs[rightrand], new Vector3(rightPosition.x, skylinePrefabsHeight[rightrand] + 0.5590504f, rightPosition.z), Quaternion.identity);
+        //leftSkyline = (Transform)Instantiate(skylinePrefabs[leftrand], new Vector3(leftPosition.x, skylinePrefabsHeight[leftrand] + 0.6042783f, leftPosition.z), Quaternion.identity);
+        //rightSkyline = (Transform)Instantiate(skylinePrefabs[rightrand], new Vector3(rightPosition.x, skylinePrefabsHeight[rightrand] + 0.5590504f, rightPosition.z), Quaternion.identity);
+
+        leftSkyline = (Transform)Instantiate(skylinePrefabs[leftrand], new Vector3(leftPosition.x, skylinePrefabsHeight[leftrand] + 0.55f, leftPosition.z), Quaternion.identity);
+        rightSkyline = (Transform)Instantiate(skylinePrefabs[rightrand], new Vector3(rightPosition.x, skylinePrefabsHeight[rightrand] + 0.55f, rightPosition.z), Quaternion.identity);
 
         leftSkyline.Rotate(0, -90, 0);
         rightSkyline.Rotate(0, 90, 0);
@@ -98,6 +131,8 @@ public class Skyline : MonoBehaviour {
         leftNextPos.z += skylinePrefabsLength[leftrand] * 2 + 1f;
         rightNextPos.z += skylinePrefabsLength[rightrand] * 2 + 1f;
 
+        
+
         //Color leftColor = new Color(Random.value, Random.value, Random.value, 1.0f);
         //Color rightColor = new Color(Random.value, Random.value, Random.value, 1.0f);
         //leftSkyline.gameObject.GetComponent<Renderer>().material.color = leftColor;
@@ -105,5 +140,26 @@ public class Skyline : MonoBehaviour {
 
         skylineLeftQueue.Enqueue(leftSkyline);
         skylineRightQueue.Enqueue(rightSkyline);
+    }
+
+    void RecycleSideWalk()
+    {
+        Vector3 leftSideWalkPosition = leftNextSideWalkPos;
+        Vector3 rightSideWalkPosition = rightNextSideWalkPos;
+
+        leftSideWalkPosition.z += (20.87f / 2);
+        rightSideWalkPosition.z += (20.87f / 2);
+
+        Transform leftSideWalk = sideWalkLeftQueue.Dequeue();
+        Transform rightSideWalk = sideWalkRightQueue.Dequeue();
+
+        leftSideWalk.position = leftSideWalkPosition;
+        rightSideWalk.position = rightSideWalkPosition;
+
+        leftNextSideWalkPos.z += 20.87f;
+        rightNextSideWalkPos.z += 20.87f;
+
+        sideWalkLeftQueue.Enqueue(leftSideWalk);
+        sideWalkRightQueue.Enqueue(rightSideWalk);
     }
 }
