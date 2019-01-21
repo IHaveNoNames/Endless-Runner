@@ -82,7 +82,7 @@ public class Skyline : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if(skylineLeftQueue.Peek().localPosition.z < GameStatus.distanceTravelled)
+		if(skylineLeftQueue.Peek().localPosition.z + 25f < GameStatus.distanceTravelled)
         {
             Recycle();
         }
