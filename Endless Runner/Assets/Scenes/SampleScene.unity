@@ -6805,8 +6805,12 @@ MonoBehaviour:
   - {fileID: 4155354420316560, guid: 701fefd50f39b2a479fe77fb98c17160, type: 2}
   bossFightItems:
   - {fileID: 4770092329781024, guid: db93c3c2e297c954dace54dbad8fe6fc, type: 2}
-  - {fileID: 4775528079485096, guid: c5b2cdc1b8234bf498743fad15b0f88d, type: 2}
-  - {fileID: 4909877337296742, guid: 99fd00ac14293ca46bf2dacf68b77547, type: 2}
+  - {fileID: 4687668923595960, guid: e0826e212ebe8264fa6984cce53fc8f3, type: 2}
+  - {fileID: 4423845006275558, guid: df73a2b929f256741bf56ee0686d51fd, type: 2}
+  bossFightItemsHeight:
+  - 0.5
+  - 1
+  - 0.51
 --- !u!4 &2128009533
 Transform:
   m_ObjectHideFlags: 0

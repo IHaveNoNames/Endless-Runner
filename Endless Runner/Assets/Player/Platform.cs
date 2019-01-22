@@ -39,6 +39,8 @@ public class Platform : MonoBehaviour {
     Transform[] powerups;
     [SerializeField]
     Transform[] bossFightItems;
+    [SerializeField]
+    float[] bossFightItemsHeight;
 
     int noOfPlatforms = 12;
     int noOfObstacles = 12;
@@ -316,7 +318,7 @@ public class Platform : MonoBehaviour {
     {
         if (GameManager.bossIsAlive)
         {
-            Transform gObj = Instantiate(bossFightItems[index], new Vector3(transform.position.x, transform.position.y + bossFightItems[index].transform.localScale.y / 2, transform.position.z), Quaternion.identity);
+            Transform gObj = Instantiate(bossFightItems[index], new Vector3(transform.position.x, transform.position.y + bossFightItemsHeight[index], transform.position.z), Quaternion.identity);
             queue.Enqueue(gObj);
             return gObj;
         }
