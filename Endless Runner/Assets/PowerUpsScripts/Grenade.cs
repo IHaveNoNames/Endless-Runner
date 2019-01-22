@@ -8,14 +8,17 @@ public class Grenade : MonoBehaviour {
     public float thrownSpeed;
     public bool pickedByPlayer = false;
     public GameManager GM;
+    private Rigidbody rb;
+    public float upForce = 100f;
     
 
 	// Use this for initialization
 	void Start () {
-        
 
-        boss = GameObject.Find("Boss");
+
+        boss = GameObject.Find("BossCentre");
         GM = GameObject.Find("Game Manager").GetComponent<GameManager>();
+        rb = GetComponent<Rigidbody>();
             
         
 	}
@@ -24,6 +27,8 @@ public class Grenade : MonoBehaviour {
 	void Update () {
         if (pickedByPlayer == true)
         {
+            
+            
             transform.position = Vector3.MoveTowards(transform.position, boss.transform.position, thrownSpeed * Time.deltaTime);
         }
 
@@ -51,6 +56,8 @@ public class Grenade : MonoBehaviour {
         {
             pickedByPlayer = true;
             gameObject.tag = "Grenade";
+            rb.constraints = RigidbodyConstraints.None;
+            rb.AddForce(Vector3.up * upForce);
         }
 
         

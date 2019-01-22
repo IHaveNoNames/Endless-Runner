@@ -1399,6 +1399,34 @@ Transform:
   m_PrefabParentObject: {fileID: 4374013208162082, guid: 412b92d4feeb9c548bfa98f62c4d1022,
     type: 2}
   m_PrefabInternal: {fileID: 1949337574}
+--- !u!1 &584937236
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 584937237}
+  m_Layer: 0
+  m_Name: BossCentre
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &584937237
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 584937236}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 11.23, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1892071690}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &596382490
 GameObject:
   m_ObjectHideFlags: 0
@@ -5862,6 +5890,11 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!4 &1892071690 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 4587756876036610, guid: 077155289d2e14247bd0864b560f74ac,
+    type: 2}
+  m_PrefabInternal: {fileID: 1892071683}
 --- !u!1 &1898082761
 GameObject:
   m_ObjectHideFlags: 0

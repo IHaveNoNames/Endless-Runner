@@ -24,6 +24,7 @@ GameObject:
   - component: {fileID: 65303125143941032}
   - component: {fileID: 114686086651052770}
   - component: {fileID: 82944274463508974}
+  - component: {fileID: 114153512304085140}
   m_Layer: 0
   m_Name: Nissan
   m_TagString: HeavyObstacle
@@ -222,6 +223,18 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &114153512304085140
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1144651106157500}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 986077ebfeb252a47ae6ab5d41411efa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerCheck: {fileID: 1585068983497684}
 --- !u!114 &114686086651052770
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -233,7 +246,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a74b6d80fd23394c8584631083d5664, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  carHorn: {fileID: 82944274463508974}
   maxSpeed: 30
   minSpeed: 15
-  playerCheck: {fileID: 1585068983497684}
