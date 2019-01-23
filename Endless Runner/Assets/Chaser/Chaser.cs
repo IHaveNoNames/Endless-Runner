@@ -37,9 +37,10 @@ public class Chaser : MonoBehaviour
 
         if (dangerousTimeRemaining <= 0 && isClose == true)//lerp to far
         {
+            isLerping = true;
             isClose = false;
             isFar = true;
-            isLerping = true;
+            
         }
         if (isLerping)
         {
