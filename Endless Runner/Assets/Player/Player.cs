@@ -32,7 +32,7 @@ public class Player : MonoBehaviour
 
     public static Transform playertransform;
 
-    private AudioSource footStep;
+    public AudioSource footStep;
 
 
     //Ground Checking

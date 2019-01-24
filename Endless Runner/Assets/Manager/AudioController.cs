@@ -15,9 +15,13 @@ public  class  AudioController :MonoBehaviour {
     
     
     public AudioSource sliding;
-    public AudioSource explostion;
+    public AudioSource bossFightBGM;
+    public AudioSource mainBGM;
     // Use this for initialization
     public Slider volumeSlider;
+
+    public static bool keepFadingIn;
+    public static bool keepFadingOut;
 
     float masterVolume = 0.5f;
 
@@ -39,6 +43,46 @@ public  class  AudioController :MonoBehaviour {
         AudioListener.volume = masterVolume;
     }
 
-   
+   public static IEnumerator MusicFadeIn(AudioSource music, float speed,float maxVolume)
+    {
+       /* keepFadingIn = true;
+        keepFadingOut = false;*/
+
+        music.volume = 0;
+
+        float audioVolume = music.volume;
+
+        while (music.volume < maxVolume)
+        {
+            audioVolume += speed;
+            music.volume = audioVolume;
+            yield return new WaitForSeconds(0.1f);
+        }
+    }
+
+   public static IEnumerator MusicFadeOut(AudioSource music,float speed)
+    {
+        /*keepFadingIn = false;
+        keepFadingOut = true;*/
+
+        music.volume = 0;
+
+        float audioVolume = music.volume;
+
+        while (music.volume >= speed )
+        {
+            audioVolume -= speed;
+            music.volume = audioVolume;
+            yield return new WaitForSeconds(0.1f);
+        }
+    }
+
+
+    public void MusicTransition(AudioSource musicIn,AudioSource musicOut)
+    {
+        musicIn.Play();
+        StartCoroutine(MusicFadeIn(musicIn, 0.005f, 0.15f));
+        StartCoroutine(MusicFadeOut(musicOut, 0.008f));
+    }
 
 }

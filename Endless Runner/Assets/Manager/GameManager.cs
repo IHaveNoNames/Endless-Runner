@@ -75,6 +75,7 @@ public class GameManager : MonoBehaviour
         audioController = GameObject.Find("Audio").GetComponent<AudioController>();
         startAnimation.SetActive(true);
         bossHealthBar.gameObject.SetActive(false);
+        AudioController.MusicFadeIn(audioController.mainBGM, 0.008f, 0.15f);
     }
 
     // Update is called once per frame
@@ -203,6 +204,7 @@ public class GameManager : MonoBehaviour
     public void BossFigntEnd()
     {
         {
+            audioController.MusicTransition(audioController.mainBGM, audioController.bossFightBGM);
             bossFightActive = false;
             bossFightEnd.SetActive(false);
             //boss defeated
@@ -222,6 +224,7 @@ public class GameManager : MonoBehaviour
 
     public void BossAppear()
     {
+        audioController.MusicTransition(audioController.bossFightBGM, audioController.mainBGM);
         bossIsAlive = true;
         bossFightStart.SetActive(false);
         boss.SetActive(true);
