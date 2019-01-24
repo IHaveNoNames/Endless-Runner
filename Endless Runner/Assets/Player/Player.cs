@@ -32,6 +32,8 @@ public class Player : MonoBehaviour
 
     public static Transform playertransform;
 
+    private AudioSource footStep;
+
 
     //Ground Checking
     [SerializeField]
@@ -48,6 +50,7 @@ public class Player : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        footStep.Play();
         playertransform = GetComponent<Transform>();
         collider = GetComponent<CapsuleCollider>();
         rb = GetComponent<Rigidbody>();
@@ -59,6 +62,8 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        
         //if (jumpRemaining > 0)
         //{
         //    rb.constraints = RigidbodyConstraints.None;
@@ -111,6 +116,7 @@ public class Player : MonoBehaviour
         {
             canJump = false;
             anim.SetTrigger("Jump");
+            footStep.Pause();
             audioController.jump.Play();
             rb.constraints = RigidbodyConstraints.FreezeRotation;
             rb.AddForce(jumpVelocity, ForceMode.VelocityChange);
@@ -118,7 +124,9 @@ public class Player : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.DownArrow) && canSlide && canJump)
         {
+            
             canSlide = false;
+            footStep.Pause();
             anim.SetTrigger("Slide");
             audioController.sliding.PlayOneShot(audioController.sliding.clip);
         }
@@ -166,6 +174,7 @@ public class Player : MonoBehaviour
                         audioController.jump.Play();
                         rb.constraints = RigidbodyConstraints.FreezeRotation;
                         rb.AddForce(jumpVelocity, ForceMode.VelocityChange);
+                        footStep.Pause();
                     }
 
                     else if (y < 0 && canSlide)
@@ -173,6 +182,7 @@ public class Player : MonoBehaviour
                         canSlide = false;
                         anim.SetTrigger("Slide");
                         audioController.sliding.PlayOneShot(audioController.sliding.clip);
+                        footStep.Pause();
                     }
                 }
             }
@@ -226,4 +236,12 @@ public class Player : MonoBehaviour
         anim.SetBool("Run", true);
     }
 
+    public void ResumeFootStep()
+    {
+        if (!footStep.isPlaying)
+        {
+            footStep.Play();
+        }
+
+    }
 }
