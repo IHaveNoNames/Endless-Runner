@@ -7319,7 +7319,7 @@ MonoBehaviour:
     type: 2}
   boss: {fileID: 1892071684}
   bossTotalHeath: 10
-  bossCoolDownLength: 10
+  bossCoolDownLength: 65
   coinText: {fileID: 1106384364}
   distanceText: {fileID: 1672909126}
   wandButton: {fileID: 388171749}
