@@ -2960,6 +2960,14 @@ Prefab:
       propertyPath: m_Name
       value: Chaser
       objectReference: {fileID: 0}
+    - target: {fileID: 9500000, guid: bdd7a03fd93bf2d4cb6babd63ceabee8, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 0c8b79dc4ec28534aadbe2b5cf748096, type: 2}
+    - target: {fileID: 9500000, guid: bdd7a03fd93bf2d4cb6babd63ceabee8, type: 3}
+      propertyPath: m_ApplyRootMotion
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: bdd7a03fd93bf2d4cb6babd63ceabee8, type: 3}
   m_IsPrefabParent: 0
@@ -6494,7 +6502,9 @@ Prefab:
       propertyPath: footStep
       value: 
       objectReference: {fileID: 905711877}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 65005062515322118, guid: 412b92d4feeb9c548bfa98f62c4d1022, type: 2}
+    - {fileID: 11400000, guid: 412b92d4feeb9c548bfa98f62c4d1022, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 412b92d4feeb9c548bfa98f62c4d1022, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &1970322159
