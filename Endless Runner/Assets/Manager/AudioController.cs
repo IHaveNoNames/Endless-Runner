@@ -81,8 +81,9 @@ public  class  AudioController :MonoBehaviour {
     public void MusicTransition(AudioSource musicIn,AudioSource musicOut)
     {
         musicIn.Play();
-        StartCoroutine(MusicFadeIn(musicIn, 0.005f, 0.15f));
-        StartCoroutine(MusicFadeOut(musicOut, 0.008f));
+        StartCoroutine(MusicFadeOut(musicOut, 0.01f));
+        StartCoroutine(MusicFadeIn(musicIn, 0.005f, 0.12f));
+        
     }
 
 }

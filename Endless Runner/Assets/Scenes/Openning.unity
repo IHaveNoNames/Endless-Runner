@@ -629,7 +629,8 @@ MonoBehaviour:
   jump: {fileID: 0}
   magic: {fileID: 0}
   sliding: {fileID: 0}
-  explostion: {fileID: 0}
+  bossFightBGM: {fileID: 0}
+  mainBGM: {fileID: 0}
   volumeSlider: {fileID: 581353164}
 --- !u!82 &388604901
 AudioSource:
@@ -640,7 +641,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 351f7ea73a0a4b148bfe91bb49003f34, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 6546c3a4504063948a6257bfc452ea0f, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 0.615
   m_Pitch: 1
@@ -735,7 +736,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 6c3b1a8ec483aa147adf1811715da2c9, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 76e3ecf189cfcf945ae73c8d00accbcf, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0.094
   m_Pitch: 1

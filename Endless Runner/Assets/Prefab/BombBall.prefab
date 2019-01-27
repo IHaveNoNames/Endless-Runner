@@ -76,7 +76,7 @@ GameObject:
   - component: {fileID: 82479887576992212}
   m_Layer: 0
   m_Name: BombBall
-  m_TagString: Untagged
+  m_TagString: Grenade
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -297,9 +297,9 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 500
+  MaxDistance: 200
   Pan2D: 0
-  rolloffMode: 0
+  rolloffMode: 1
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0
@@ -332,7 +332,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -387,6 +387,7 @@ MonoBehaviour:
   pickedByPlayer: 0
   GM: {fileID: 0}
   upForce: 240
+  explostion: {fileID: 1828520276240564, guid: e2c0680853751214792b5223392da1f4, type: 2}
 --- !u!135 &135788707902083310
 SphereCollider:
   m_ObjectHideFlags: 1

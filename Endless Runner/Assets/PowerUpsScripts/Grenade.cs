@@ -10,7 +10,7 @@ public class Grenade : MonoBehaviour {
     public GameManager GM;
     private Rigidbody rb;
     public float upForce = 100f;
-    
+    public GameObject explostion;
 
 	// Use this for initialization
 	void Start () {
@@ -43,7 +43,8 @@ public class Grenade : MonoBehaviour {
 
         if (other.gameObject.CompareTag("Boss") && pickedByPlayer == true)
         {
-            AudioSource.PlayClipAtPoint(GetComponent<AudioSource>().clip, transform.position);
+           // AudioSource.PlayClipAtPoint(GetComponent<AudioSource>().clip, transform.position);
+            Instantiate(explostion, transform.position, Quaternion.identity);
             print("hitBOss");
             GameManager.bossCurrentHealth -= 1;
             //some visual effect

@@ -28,5 +28,13 @@ public class Boss : MonoBehaviour {
         transform.position = temp;
     }
 
-   
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Grenade"))
+        {
+            GetComponent<AudioSource>().Play();
+        }
+    }
+
+
 }

@@ -110,6 +110,8 @@ public class GameManager : MonoBehaviour
         DisplayPowerUps();
         if (bossCurrentHealth <= 0 && bossIsAlive == true)
         {
+            Instantiate(destroyParticle, boss.transform.position, Quaternion.identity);
+            boss.SetActive(false);
             bossIsAlive = false;
             bossFightEnd.SetActive(true);
             Invoke("BossFigntEnd",3);
